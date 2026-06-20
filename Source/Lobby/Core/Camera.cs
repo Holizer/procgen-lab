@@ -4,7 +4,7 @@ namespace ProcGenLab.Lobby.Core;
 
 public partial class Camera : Camera2D
 {
-    private static readonly float[] ZoomLevels = { 0.25f, 0.5f, 1.0f, 2.0f, 3.0f, 4.0f };
+    private static readonly float[] ZoomLevels = [0.25f, 0.5f, 1.0f, 2.0f, 3.0f, 4.0f];
 
     private int _currentZoomIndex = 2;
     private bool _isPanning;
@@ -44,7 +44,7 @@ public partial class Camera : Camera2D
             Pan(motionEvent);
     }
 
-    public void CenterOn(Vector2 worldPos)
+    private void CenterOn(Vector2 worldPos)
     {
         Position = worldPos.Round();
         _targetZoom = 1.0f;
