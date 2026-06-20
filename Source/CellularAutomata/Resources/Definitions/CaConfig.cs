@@ -22,15 +22,18 @@ public partial class CaConfig : PixelMapConfig
     [Export(PropertyHint.Range, "0, 100, 1")]
     public int FillPercent { get; set; } = 45;
 
-    [Export(PropertyHint.Range, "2, 6, 1")]
-    public int MaxSurroundingWalls { get; set; } = 4;
+    [Export(PropertyHint.Range, "2, 5, 1")]
+    public int WallTransitionThreshold { get; set; } = 4;
 
     [Export(PropertyHint.Range, "0, 10, 1")]
     public int SimulationSteps { get; set; } = 5;
 
     [ExportGroup("Cleanup Settings")]
-    [Export]
-    public int MinWallSize { get; set; } = 10;
+    [Export(PropertyHint.Range, "0, 500, 1")]
 
-    [Export] public int MinRegionSizeTiles { get; set; } = 50;
+    public int MinIslandSizeTiles { get; set; } = 10;
+
+    [Export(PropertyHint.Range, "0, 500, 1")]
+
+    public int MinLakeSizeTiles { get; set; } = 50;
 }

@@ -10,8 +10,8 @@ namespace ProcGenLab.CellularAutomata.Core;
 
 public class CaMapBuilder : BaseMapBuilder<CaMapBuilder, CaMap, CaConfig>
 {
-    private readonly RegionConnector _regionConnector = new();
     private readonly RegionAnalyzer _regionAnalyzer = new();
+    private readonly RegionConnector _regionConnector = new();
     private readonly AutomataSimulator _simulator = new();
     private BiomeCreator _biomeService;
     private PropsPlacer _propsPlacer;
@@ -50,7 +50,7 @@ public class CaMapBuilder : BaseMapBuilder<CaMapBuilder, CaMap, CaConfig>
         return Step(() =>
         {
             for (var i = 0; i < Config.SimulationSteps; i++)
-                _simulator.RunStep(Map, Config);
+                _simulator.RunStep(Map, Config.WallTransitionThreshold);
         });
     }
 
@@ -68,7 +68,7 @@ public class CaMapBuilder : BaseMapBuilder<CaMapBuilder, CaMap, CaConfig>
 
     public CaMapBuilder RemoveIslandsAndPockets()
     {
-        return Step(() => { _regionAnalyzer.CleanupRegions(Map, Config.MinRegionSizeTiles, Config.MinWallSize); });
+        return Step(() => { _regionAnalyzer.CleanupRegions(Map, Config.MinIslandSizeTiles, Config.MinLakeSizeTiles); });
     }
 
     public CaMapBuilder CreateBiomes()

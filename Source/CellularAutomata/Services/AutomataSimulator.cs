@@ -1,7 +1,6 @@
 using System;
 using System.Runtime.CompilerServices;
 using ProcGenLab.CellularAutomata.Models;
-using ProcGenLab.CellularAutomata.Resources;
 using ProcGenLab.Shared.Core;
 using ProcGenLab.Shared.Enums;
 
@@ -11,10 +10,9 @@ public class AutomataSimulator
 {
     private TileType[] _buffer = [];
 
-    public void RunStep(CaMap map, CaConfig config)
+    public void RunStep(CaMap map, int wallThreshold)
     {
         var (width, height, total) = map;
-        var maxWalls = config.MaxSurroundingWalls;
 
         if (_buffer.Length != total)
             _buffer = new TileType[total];
@@ -31,9 +29,9 @@ public class AutomataSimulator
                 var walls = GetSurroundingWallCount(x, y, width, height, current);
                 var idx = rowOffset + x;
 
-                if (walls > maxWalls)
+                if (walls > wallThreshold)
                     next[idx] = TileType.Water;
-                else if (walls < maxWalls)
+                else if (walls < wallThreshold)
                     next[idx] = TileType.Ground;
                 else
                     next[idx] = current[idx].Terrain;

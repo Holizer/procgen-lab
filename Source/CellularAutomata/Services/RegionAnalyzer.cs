@@ -130,7 +130,7 @@ public class RegionAnalyzer
         return tiles;
     }
 
-    public void CleanupRegions(CaMap map, int minGroundSize, int minWaterSize)
+    public void CleanupRegions(CaMap map, int minIslandSize, int minLakeSize)
     {
         var allRegions = GetAllRegions(map);
 
@@ -143,10 +143,15 @@ public class RegionAnalyzer
             var type = map.GetTerrain(map.GetIndex(firstCellPos.X, firstCellPos.Y));
             var isGround = type == TileType.Ground;
 
-            if (isGround && region.Count < minGroundSize)
-                map.FillRegion(region, TileType.Water);
-            else if (!isGround && region.Count < minWaterSize)
-                map.FillRegion(region, TileType.Ground);
+            switch (isGround)
+            {
+                case true when region.Count < minIslandSize:
+                    map.FillRegion(region, TileType.Water);
+                    break;
+                case false when region.Count < minLakeSize:
+                    map.FillRegion(region, TileType.Ground);
+                    break;
+            }
         }
     }
 }
