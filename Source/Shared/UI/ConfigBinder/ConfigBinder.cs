@@ -72,13 +72,13 @@ public class ConfigBinder<TConfig>(Control panel)
             if (row == null)
                 continue;
 
+            ApplyRangeIfPresent(prop, row);
+
             var value = prop.GetValue(defaults);
             if (value is bool b)
                 row.IsChecked = b;
             else
                 row.Value = Convert.ToDouble(value);
-
-            ApplyRangeIfPresent(prop, row);
         }
     }
 
