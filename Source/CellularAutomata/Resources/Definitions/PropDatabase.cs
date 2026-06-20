@@ -9,7 +9,7 @@ namespace ProcGenLab.CellularAutomata.Resources;
 [GlobalClass]
 public partial class PropDatabase : Resource
 {
-    [Export] public Array<PropGroup> Groups { get; set; } = new();
+    [Export] public Array<PropGroup> Groups { get; set; } = [];
 
     public PropData GetRandomVariation(PropType type, RandomNumberGenerator rng)
     {

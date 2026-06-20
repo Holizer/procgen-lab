@@ -11,8 +11,8 @@ namespace ProcGenLab.CellularAutomata.Core;
 public class CaMapBuilder : BaseMapBuilder<CaMapBuilder, CaMap, CaConfig>
 {
     private readonly RegionConnector _regionConnector = new();
-    private readonly RegionService _regionService = new();
-    private readonly AutomataSimulationService _simulationService = new();
+    private readonly RegionAnalyzer _regionAnalyzer = new();
+    private readonly AutomataSimulator _simulator = new();
     private BiomeCreator _biomeService;
     private PropsPlacer _propsPlacer;
     protected override CaMap EmptyMap => new(0, 0);
@@ -50,7 +50,7 @@ public class CaMapBuilder : BaseMapBuilder<CaMapBuilder, CaMap, CaConfig>
         return Step(() =>
         {
             for (var i = 0; i < Config.SimulationSteps; i++)
-                _simulationService.RunStep(Map, Config);
+                _simulator.RunStep(Map, Config);
         });
     }
 
@@ -58,7 +58,7 @@ public class CaMapBuilder : BaseMapBuilder<CaMapBuilder, CaMap, CaConfig>
     {
         return Step(() =>
         {
-            var regions = _regionService.GetRegionsType(Map, TileType.Ground);
+            var regions = _regionAnalyzer.GetRegionsType(Map, TileType.Ground);
             if (regions.Count != 0)
                 _regionConnector.Connect(Map, regions);
             else
@@ -68,18 +68,17 @@ public class CaMapBuilder : BaseMapBuilder<CaMapBuilder, CaMap, CaConfig>
 
     public CaMapBuilder RemoveIslandsAndPockets()
     {
-        return Step(() => { _regionService.CleanupRegions(Map, Config.MinRegionSizeTiles, Config.MinWallSize); });
+        return Step(() => { _regionAnalyzer.CleanupRegions(Map, Config.MinRegionSizeTiles, Config.MinWallSize); });
     }
 
     public CaMapBuilder CreateBiomes()
     {
         return Step(() =>
         {
-            var allRegions = _regionService.GetAllRegions(Map);
+            var allRegions = _regionAnalyzer.GetAllRegions(Map);
             _biomeService.AssignBiomes(Map, allRegions, Rng, Config.BiomeNoiseFrequency);
 
             var biomesMap = Config.BiomesSettings.ToDictionary(biome => biome.Type);
-            Map.GenerateDistanceMaps();
             _propsPlacer.PlaceProps(Map, allRegions, biomesMap, Rng);
         });
     }

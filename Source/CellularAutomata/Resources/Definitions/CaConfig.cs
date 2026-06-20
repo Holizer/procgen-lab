@@ -11,7 +11,7 @@ public partial class CaConfig : PixelMapConfig
     [Export]
     public Array<BiomeSettings> BiomesSettings { get; set; }
 
-    [Export(PropertyHint.Range, "0.001,0.2,0.001")]
+    [Export(PropertyHint.Range, "0.005,0.08,0.001")]
     public float BiomeNoiseFrequency { get; set; } = 0.03f;
 
     [ExportGroup("Props Database")]

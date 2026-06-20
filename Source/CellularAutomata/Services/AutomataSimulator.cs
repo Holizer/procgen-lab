@@ -2,34 +2,34 @@ using System;
 using System.Runtime.CompilerServices;
 using ProcGenLab.CellularAutomata.Models;
 using ProcGenLab.CellularAutomata.Resources;
+using ProcGenLab.Shared.Core;
 using ProcGenLab.Shared.Enums;
 
 namespace ProcGenLab.CellularAutomata.Services;
 
-public class AutomataSimulationService
+public class AutomataSimulator
 {
-    private TileType[] _buffer = Array.Empty<TileType>();
+    private TileType[] _buffer = [];
 
     public void RunStep(CaMap map, CaConfig config)
     {
-        var width = map.Width;
-        var height = map.Height;
-        var totalCells = width * height;
+        var (width, height, total) = map;
         var maxWalls = config.MaxSurroundingWalls;
 
-        if (_buffer.Length != totalCells)
-            _buffer = new TileType[totalCells];
+        if (_buffer.Length != total)
+            _buffer = new TileType[total];
 
         ReadOnlySpan<CaCell> current = map.Grid;
-        var next = _buffer.AsSpan(0, totalCells);
+        var next = _buffer.AsSpan(0, total);
 
         for (var y = 0; y < height; y++)
         {
-            var row = y * width;
+            var rowOffset = y * width;
+
             for (var x = 0; x < width; x++)
             {
                 var walls = GetSurroundingWallCount(x, y, width, height, current);
-                var idx = row + x;
+                var idx = rowOffset + x;
 
                 if (walls > maxWalls)
                     next[idx] = TileType.Water;

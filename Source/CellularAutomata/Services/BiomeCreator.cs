@@ -13,18 +13,14 @@ namespace ProcGenLab.CellularAutomata.Services;
 public class BiomeCreator
 {
     private readonly List<BiomeSettings> _landBiomes;
+    private readonly int _minRegionSizeForSplitting;
 
-    private readonly bool IsFailed;
-
-    public BiomeCreator(IEnumerable<BiomeSettings> biomes)
+    public BiomeCreator(IEnumerable<BiomeSettings> biomes, int minRegionSizeForSplitting = 150)
     {
-        _landBiomes = biomes?.Where(b => b.Type.IsLand()).ToList() ?? new List<BiomeSettings>();
+        _landBiomes = biomes?.Where(biome => biome.Type.IsLand()).ToList() ?? [];
+        _minRegionSizeForSplitting = minRegionSizeForSplitting;
 
-        if (_landBiomes.Count == 0)
-        {
-            this.LogWarning("There are no land biomes here.");
-            IsFailed = true;
-        }
+        if (_landBiomes.Count == 0) this.LogWarning("There are no land biomes configured.");
     }
 
     public void AssignBiomes(
@@ -34,7 +30,7 @@ public class BiomeCreator
         float frequency
     )
     {
-        if (IsFailed)
+        if (_landBiomes.Count == 0 || regions == null)
             return;
 
         var noise = new FastNoiseLite
@@ -46,52 +42,58 @@ public class BiomeCreator
 
         foreach (var region in regions)
         {
-            if (region.Count == 0)
+            if (region == null || region.Count == 0)
                 continue;
 
-            var isWaterRegion = map.IsType(region[0], TileType.Water);
-            if (isWaterRegion)
-            {
-                var isLake = !region.Any(pos => GridUtils.IsBorder(pos, map.Width, map.Height));
-                var waterBiome = isLake ? BiomeZone.Lake : BiomeZone.Sea;
-                foreach (var pos in region)
-                    map.AssignBiome(pos, waterBiome);
-                continue;
-            }
-
-            if (region.Count < _landBiomes.Count * 10)
-            {
-                var center = GridUtils.GetCentroid(region);
-                var centerNoise = noise.GetNoise2D(center.X, center.Y);
-                var index = Math.Clamp(
-                    (int)((centerNoise + 1f) / 2f * _landBiomes.Count),
-                    0,
-                    _landBiomes.Count - 1
-                );
-
-                foreach (var pos in region)
-                    map.AssignBiome(pos, _landBiomes[index].Type);
-
-                continue;
-            }
-
-            var noiseValues = region.Select(pos => noise.GetNoise2D(pos.X, pos.Y)).ToList();
-            var min = noiseValues.Min();
-            var max = noiseValues.Max();
-            var range = max - min;
-
-            for (var i = 0; i < region.Count; i++)
-            {
-                var normalized = range > 0.001f ? (noiseValues[i] - min) / range : 0.5f;
-
-                var index = Math.Clamp(
-                    (int)(normalized * _landBiomes.Count),
-                    0,
-                    _landBiomes.Count - 1
-                );
-
-                map.AssignBiome(region[i], _landBiomes[index].Type);
-            }
+            if (map.IsRegionType(region, TileType.Water))
+                AssignWaterRegion(map, region);
+            else if (region.Count < _minRegionSizeForSplitting)
+                AssignSingleBiomeByCentroid(map, region, noise);
+            else
+                AssignLandRegionWithNoise(map, region, noise);
         }
+    }
+
+    private void AssignWaterRegion(CaMap map, List<Vector2I> region)
+    {
+        var isLake = !region.Any(pos => GridUtils.IsBorder(pos, map.Width, map.Height));
+        var waterBiome = isLake ? BiomeZone.Lake : BiomeZone.Sea;
+
+        foreach (var pos in region) map.AssignBiome(pos, waterBiome);
+    }
+
+    private void AssignSingleBiomeByCentroid(CaMap map, List<Vector2I> region, FastNoiseLite noise)
+    {
+        var center = GridUtils.GetCentroid(region);
+        var noiseValue = noise.GetNoise2D(center.X, center.Y);
+        var biomeType = GetBiomeByNoise(noiseValue);
+
+        foreach (var pos in region) map.AssignBiome(pos, biomeType);
+    }
+
+    private void AssignLandRegionWithNoise(CaMap map, List<Vector2I> region, FastNoiseLite noise)
+    {
+        foreach (var pos in region)
+        {
+            var noiseValue = noise.GetNoise2D(pos.X, pos.Y);
+            var biomeType = GetBiomeByNoise(noiseValue);
+            map.AssignBiome(pos, biomeType);
+        }
+    }
+
+    private BiomeZone GetBiomeByNoise(float noiseValue)
+    {
+        const float expectedMinNoise = -0.2f;
+        const float expectedMaxNoise = 0.2f;
+
+        var normalized = Mathf.InverseLerp(expectedMinNoise, expectedMaxNoise, noiseValue);
+
+        var index = Math.Clamp(
+            (int)(normalized * _landBiomes.Count),
+            0,
+            _landBiomes.Count - 1
+        );
+
+        return _landBiomes[index].Type;
     }
 }

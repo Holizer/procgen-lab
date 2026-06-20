@@ -30,18 +30,17 @@ public class RegionConnector
             var bestUnconnectedIdx = -1;
 
             foreach (var cIdx in connectedRegions)
-                for (var i = 0; i < unconnectedRegions.Count; i++)
-                {
-                    var uIdx = unconnectedRegions[i];
-                    var distSq = GridUtils.GetDistanceSquare(centroids[cIdx], centroids[uIdx]);
+            foreach (var uIdx in unconnectedRegions)
+            {
+                var distSq = GridUtils.GetDistanceSquare(centroids[cIdx], centroids[uIdx]);
 
-                    if (distSq < minDistanceSquare)
-                    {
-                        minDistanceSquare = distSq;
-                        bestConnectedIdx = cIdx;
-                        bestUnconnectedIdx = uIdx;
-                    }
+                if (distSq < minDistanceSquare)
+                {
+                    minDistanceSquare = distSq;
+                    bestConnectedIdx = cIdx;
+                    bestUnconnectedIdx = uIdx;
                 }
+            }
 
             var (tileA, tileB) = GridUtils.FindClosestTiles(
                 regions[bestConnectedIdx],

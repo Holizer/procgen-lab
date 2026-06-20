@@ -22,4 +22,16 @@ public static partial class GridUtils
         new(-1, 0),
         new(1, 0)
     };
+
+    public static readonly Vector2I[] EightDirectionOffsets =
+    {
+        new(0, -1),
+        new(0, 1),
+        new(-1, 0),
+        new(1, 0),
+        new(-1, -1),
+        new(1, -1),
+        new(-1, 1),
+        new(1, 1)
+    };
 }

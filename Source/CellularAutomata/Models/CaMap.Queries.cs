@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Godot;
 using ProcGenLab.Shared.Enums;
@@ -15,16 +16,27 @@ public partial class CaMap
         return this[x, y].Terrain == type;
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public bool IsType(in Vector2I coords, TileType type)
+    public bool IsRegionType(IReadOnlyList<Vector2I> region, TileType type)
     {
-        return IsType(coords.X, coords.Y, type);
+        if (region == null || region.Count == 0)
+            return false;
+
+        return IsType(region[0].X, region[0].Y, type);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool IsOccupied(int x, int y)
     {
         return !GridUtils.InBounds(x, y, Width, Height) || this[x, y].IsOccupied;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public bool HasAdjacentWater(Vector2I pos)
+    {
+        foreach (var dir in GridUtils.EightDirectionOffsets)
+            if (IsType(pos.X + dir.X, pos.Y + dir.Y, TileType.Water))
+                return true;
+        return false;
     }
 
     public bool CanFitObject(
@@ -40,7 +52,7 @@ public partial class CaMap
         )
             return false;
 
-        if (size.X == 1 && size.Y == 1)
+        if (size is { X: 1, Y: 1 })
         {
             var idx = GetIndex(startPos);
             return Grid[idx].Terrain == requiredTerrain

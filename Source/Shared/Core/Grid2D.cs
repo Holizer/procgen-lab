@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.CompilerServices;
 using Godot;
 
@@ -8,6 +9,22 @@ public abstract class Grid2D(int width, int height)
     public int Width { get; } = width;
     public int Height { get; } = height;
     public int TotalCells => Width * Height;
+}
+
+public static class Grid2DExtensions
+{
+    public static void Deconstruct(this Grid2D grid, out int width, out int height)
+    {
+        width = grid.Width;
+        height = grid.Height;
+    }
+
+    public static void Deconstruct(this Grid2D grid, out int width, out int height, out int total)
+    {
+        width = grid.Width;
+        height = grid.Height;
+        total = grid.TotalCells;
+    }
 }
 
 public abstract class Grid2D<TCell> : Grid2D
@@ -42,5 +59,11 @@ public abstract class Grid2D<TCell> : Grid2D
     public int GetIndex(in Vector2I coords)
     {
         return GetIndex(coords.X, coords.Y);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public Span<TCell> GetRow(int y)
+    {
+        return Grid.AsSpan(y * Width, Width);
     }
 }
