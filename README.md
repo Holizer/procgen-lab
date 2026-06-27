@@ -18,6 +18,18 @@ The laboratory is divided into three core generation modules, each using a funda
 
 ---
 
+### Using the laboratory
+
+In the **ProcGen Lab** control panel you can:
+
+* **Tune parameters in real time:** Drag sliders to adjust minimum/maximum room sizes, noise frequencies, cell thresholds, and WFC weights.
+* **Visualizer debug mode:** Watch algorithms execute step by step — see rooms split or cellular automata structures smooth out in real time.
+* **Performance monitoring:** Analyze generation time, search depth, and system load via built-in diagnostic panels.
+
+> ⚠️ This repository contains source code only (C#). Graphical assets are not included due to licensing restrictions — the project cannot be built as-is. Links to the original asset packs are listed in the Credits section.
+
+---
+
 ## Algorithm Overview
 
 ### 1. Binary Space Partitioning (BSP)
@@ -27,22 +39,22 @@ BSP recursively divides a 2D area into smaller rectangular sub-zones, building a
 
 ```mermaid
 graph TD
-    A[Initial map area] --> B{Should the area be split?};
-    B -- Yes --> C{Determine split axis};
-    C -- Vertical --> D[Left child node] & E[Right child node];
-    C -- Horizontal --> F[Top child node] & G[Bottom child node];
-    D --> B;
-    E --> B;
-    F --> B;
-    G --> B;
-    B -- No --> H[Leaf node: Create room / corridor];
+	A[Initial map area] --> B{Should the area be split?};
+	B -- Yes --> C{Determine split axis};
+	C -- Vertical --> D[Left child node] & E[Right child node];
+	C -- Horizontal --> F[Top child node] & G[Bottom child node];
+	D --> B;
+	E --> B;
+	F --> B;
+	G --> B;
+	B -- No --> H[Leaf node: Create room / corridor];
 ```
 
 **Technical implementation:**
-* **Partition tree:** Implemented via [`BspNode`](Source/BSP/Models/BspNode.cs), where each node stores its area bounds (`Area`) and references to child branches.
-* **Smart axis selection:** [`BspProcessor.TryGetSplitOrientation()`](Source/BSP/Services/BspProcessor.cs) dynamically picks vertical or horizontal cuts based on the current area's aspect ratio, using `AspectRatioThreshold` from [`BspConfig`](Source/BSP/Resources/Definitions/BspConfig.cs).
+* **Partition tree:** Implemented via [`BspNode`](source/bsp/models/BspNode.cs), where each node stores its area bounds (`Area`) and references to child branches.
+* **Smart axis selection:** [`BspProcessor.TryGetSplitOrientation()`](source/bsp/services/BspProcessor.cs) dynamically picks vertical or horizontal cuts based on the current area's aspect ratio, using `AspectRatioThreshold` from [`BspConfig`](source/bsp/resources/definitions/BspConfig.cs).
 * **Size constraints:** The `MinSplitSize` parameter limits split offsets, ensuring child nodes are always large enough to fit rooms with their required padding.
-* **Layout generation:** Leaf nodes serve as containers for [`Room`](Source/BSP/Models/Room.cs) objects, which are then connected via MST pathfinding and corridor generation.
+* **Layout generation:** Leaf nodes serve as containers for [`Room`](source/bsp/models/Room.cs) objects, which are then connected via MST pathfinding and corridor generation.
 
 ---
 
@@ -66,10 +78,10 @@ graph TD
 ```
 
 **Technical implementation:**
-* **Grid evolution:** Simulation is driven by [`AutomataSimulator`](Source/CellularAutomata/Services/AutomataSimulator.cs), which evaluates the 3×3 Moore neighborhood for each cell.
+* **Grid evolution:** Simulation is driven by [`AutomataSimulator`](source/cellular_automata/services/AutomataSimulator.cs), which evaluates the 3×3 Moore neighborhood for each cell.
 * **Transition rules:** Logic is controlled by `FillPercent` (initial fill density) and `WallTransitionThreshold` (threshold at which a cell solidifies).
-* **Cleanup and connectivity:** Isolated regions are resolved using a **Union-Find** algorithm inside [`RegionAnalyzer`](Source/CellularAutomata/Services/RegionAnalyzer.cs) and [`RegionConnector`](Source/CellularAutomata/Services/RegionConnector.cs). They identify separate regions, flood-fill to merge them, remove structures smaller than `MinIslandSizeTiles`, and carve corridors to guarantee 100% traversability.
-* **Biome layers:** FastNoiseLite integration in [`BiomeCreator`](Source/CellularAutomata/Services/BiomeCreator.cs) overlays noise layers for procedural biome distribution and smooth parameter blending.
+* **Cleanup and connectivity:** Isolated regions are resolved using a **Union-Find** algorithm inside [`RegionAnalyzer`](source/cellular_automata/services/RegionAnalyzer.cs) and [`RegionConnector`](source/cellular_automata/services/RegionConnector.cs). They identify separate regions, flood-fill to merge them, remove structures smaller than `MinIslandSizeTiles`, and carve corridors to guarantee 100% traversability.
+* **Biome layers:** FastNoiseLite integration in [`BiomeCreator`](source/cellular_automata/services/BiomeCreator.cs) overlays noise layers for procedural biome distribution and smooth parameter blending.
 
 ---
 
@@ -89,44 +101,15 @@ graph TD
 ```
 
 **Technical implementation:**
-* **Entropy and collapse:** Managed by [`WfcSolver`](Source/WFC/Services/WfcSolver.cs). The algorithm picks the cell with the fewest valid options (`PickLowestEntropy`) and collapses it to a single tile using weighted probabilities from [`WfcWeightConfig`](Source/WFC/Resources/Definitions/WfcWeightConfig.cs).
-* **Constraint propagation:** After each collapse, the solver iteratively narrows valid tile types for neighboring cells based on the socket compatibility table in [`MacroTileSocketMap`](Source/WFC/Services/MacroTileSocketMap.cs).
-* **BSP topology hybrid:** A unique feature of this project — WFC can be overlaid on a macro-structure. When `UseBspTopology` is enabled in [`WfcConfig`](Source/WFC/Resources/Definitions/WfcConfig.cs), the BSP tree is converted into a level topology graph, and [`TopologyPlacer`](Source/WFC/Services/topology_placer/TopologyPlacer.cs) pre-constrains key paths to guarantee dungeon connectivity.
+* **Entropy and collapse:** Managed by [`WfcSolver`](source/wfc/services/WfcSolver.cs). The algorithm picks the cell with the fewest valid options (`PickLowestEntropy`) and collapses it to a single tile using weighted probabilities from [`WfcWeightConfig`](source/wfc/resources/definitions/WfcWeightConfig.cs).
+* **Constraint propagation:** After each collapse, the solver iteratively narrows valid tile types for neighboring cells based on the socket compatibility table in [`MacroTileSocketMap`](source/wfc/services/MacroTileSocketMap.cs).
+* **BSP topology hybrid:** A unique feature of this project — WFC can be overlaid on a macro-structure. When `UseBspTopology` is enabled in [`WfcConfig`](source/wfc/resources/definitions/WfcConfig.cs), the BSP tree is converted into a level topology graph, and [`TopologyPlacer`](source/wfc/services/topology_placer/TopologyPlacer.cs) pre-constrains key paths to guarantee dungeon connectivity.
 
 ---
 
 ## Screenshots
 
 > *(Screenshots will be added upon itch.io publication)*
-
----
-
-## Getting Started
-
-> ⚠️ This repository contains source code only (C#). Graphical assets are not included due to licensing restrictions — the project cannot be built as-is. Links to the original asset packs are listed in the Credits section.
-
-### Requirements
-
-* **Godot Engine** 4.3 (with C# / .NET support)
-* **.NET SDK** 6.0 or later
-
-### Running the project (if you have the assets)
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/procgen-lab.git
-   ```
-2. Open the project in Godot 4.3 via `project.godot`
-3. Place assets according to the folder structure (see Credits)
-4. Run the scene `source/app/Main.tscn`
-
-### Using the laboratory
-
-In the **ProcGen Lab** control panel you can:
-
-* **Tune parameters in real time:** Drag sliders to adjust minimum/maximum room sizes, noise frequencies, cell thresholds, and WFC weights.
-* **Visualizer debug mode:** Watch algorithms execute step by step — see rooms split or cellular automata structures smooth out in real time.
-* **Performance monitoring:** Analyze generation time, search depth, and system load via built-in diagnostic panels.
 
 ---
 
