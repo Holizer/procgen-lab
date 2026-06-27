@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using Godot;
 using ProcGenLab.Shared.Enums;
@@ -11,6 +10,7 @@ namespace ProcGenLab.WFC.Services;
 
 public class WfcSolver(WfcMap map, MacroRegistry registry, RandomNumberGenerator rng)
 {
+    private readonly HashSet<MacroTileType> _allowedScratch = [];
     private readonly Stack<Vector2I> _propStack = new(256);
 
     public bool Solve(int maxAttempts = 256)
@@ -81,12 +81,13 @@ public class WfcSolver(WfcMap map, MacroRegistry registry, RandomNumberGenerator
                 if (neighbor.IsCollapsed)
                     continue;
 
-                if (ConstrainByNeighbor(neighbor, current.PossibleTypes, dir, registry))
-                {
-                    if (neighbor.Entropy == 0)
-                        return false;
-                    _propStack.Push(new Vector2I(nx, ny));
-                }
+                if (!TryConstrainByNeighbor(neighbor, current.PossibleTypes, dir))
+                    continue;
+
+                if (neighbor.Entropy == 0)
+                    return false;
+
+                _propStack.Push(new Vector2I(nx, ny));
             }
         }
 
@@ -114,35 +115,40 @@ public class WfcSolver(WfcMap map, MacroRegistry registry, RandomNumberGenerator
 
     private MacroTileType PickByWeight(WfcCell cell)
     {
-        var possibleTypes = cell.PossibleTypes.ToList();
-        var total = possibleTypes.Sum(registry.GetWeight);
+        var possibleTypes = cell.PossibleTypes;
+        var total = 0f;
+
+        foreach (var type in possibleTypes)
+            total += registry.GetWeight(type);
 
         var roll = rng.RandfRange(0f, total);
         var cursor = 0f;
+
+        MacroTileType last = default;
         foreach (var type in possibleTypes)
         {
+            last = type;
             cursor += registry.GetWeight(type);
             if (roll <= cursor)
                 return type;
         }
 
-        return possibleTypes[^1];
+        return last;
     }
 
-    private static bool ConstrainByNeighbor(
+    private bool TryConstrainByNeighbor(
         WfcCell cell,
         HashSet<MacroTileType> neighborTypes,
-        Direction dir,
-        MacroRegistry registry
+        Direction dir
     )
     {
         var before = cell.Entropy;
+        _allowedScratch.Clear();
 
-        var allowed = new HashSet<MacroTileType>();
         foreach (var neighborType in neighborTypes)
-            allowed.UnionWith(registry.GetCompatible(neighborType, dir));
+            _allowedScratch.UnionWith(registry.GetCompatible(neighborType, dir));
 
-        cell.PossibleTypes.IntersectWith(allowed);
+        cell.PossibleTypes.IntersectWith(_allowedScratch);
         cell.SyncCollapsedState();
         return cell.Entropy < before;
     }

@@ -9,6 +9,8 @@ namespace ProcGenLab.WFC.Services;
 
 public class MacroRegistry
 {
+    private static readonly HashSet<MacroTileType> EmptyCompatible = [];
+
     private readonly Dictionary<
         MacroTileType,
         Dictionary<Direction, HashSet<MacroTileType>>

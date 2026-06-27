@@ -6,6 +6,7 @@
         <RootNamespace>ProcGenLab</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
-        <Folder Include="Source\App\"/>
+        <Content Include=".aider.conf.yml"/>
+        <Content Include="Source\App\main.tscn"/>
     </ItemGroup>
 </Project>

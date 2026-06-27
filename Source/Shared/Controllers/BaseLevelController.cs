@@ -1,7 +1,7 @@
 using Godot;
 using ProcGenLab.Shared.Core;
 
-namespace ProcGenLab.Shared.Controllers;
+namespace ProcGenLab.Shared.Сontrollers;
 
 public abstract partial class BaseLevelController : Node2D
 {

@@ -10,13 +10,11 @@ namespace ProcGenLab.BSP.Services;
 public class CorridorBuilder
 {
     private readonly Dictionary<(Room Room, Direction Dir), Vector2I> _entrances = new();
-    private readonly List<Vector2I> _pathTiles = new();
+    private readonly List<Vector2I> _pathTiles = [];
 
     public int GetRoomConnectionCount(Room room)
     {
-        if (room == null)
-            return 0;
-        return _entrances.Keys.Count(key => key.Room == room);
+        return room == null ? 0 : _entrances.Keys.Count(key => key.Room == room);
     }
 
     public void Connect(BspNode root, BspMap map)
@@ -25,7 +23,6 @@ public class CorridorBuilder
         _entrances.Clear();
 
         ConnectNodes(root);
-
         map.PathsTiles = _pathTiles;
     }
 
@@ -37,76 +34,72 @@ public class CorridorBuilder
         ConnectNodes(node.Left);
         ConnectNodes(node.Right);
 
-        var roomsLeft = new List<Room>();
-        var roomsRight = new List<Room>();
-
-        GetRoomsInSubtree(node.Left, roomsLeft);
-        GetRoomsInSubtree(node.Right, roomsRight);
-
-        if (roomsLeft.Count == 0 || roomsRight.Count == 0)
-            return;
-
-        Room bestA = null;
-        Room bestB = null;
-        var minScore = float.MaxValue;
-
-        foreach (var rA in roomsLeft)
-        foreach (var rB in roomsRight)
-        {
-            float distSq = rA.Rect.GetCenter().DistanceSquaredTo(rB.Rect.GetCenter());
-
-            var existingConnections = GetRoomConnectionCount(rA) + GetRoomConnectionCount(rB);
-
-            var score = distSq + existingConnections * 1500f;
-            if (score < minScore)
-            {
-                minScore = score;
-                bestA = rA;
-                bestB = rB;
-            }
-        }
+        var (bestA, bestB) = FindBestRoomsToConnect(node.Left, node.Right);
 
         if (bestA == null || bestB == null)
             return;
 
-        var centerA = bestA.Rect.GetCenter();
-        var centerB = bestB.Rect.GetCenter();
+        BuildCorridorBetween(bestA, bestB, node.IsHorizontal);
+    }
+
+    private (Room, Room) FindBestRoomsToConnect(BspNode leftNode, BspNode rightNode)
+    {
+        var roomsLeft = leftNode.GetRooms().ToArray();
+        var roomsRight = rightNode.GetRooms().ToArray();
+
+        Room bestLeft = null;
+        Room bestRight = null;
+
+        var lowestScore = float.MaxValue;
+        foreach (var roomLeft in roomsLeft)
+        foreach (var roomRight in roomsRight)
+        {
+            var currentScore = GetConnectionScore(roomLeft, roomRight);
+            if (currentScore < lowestScore)
+            {
+                lowestScore = currentScore;
+                bestLeft = roomLeft;
+                bestRight = roomRight;
+            }
+        }
+
+        return (bestLeft, bestRight);
+    }
+
+    private float GetConnectionScore(Room roomA, Room roomB)
+    {
+        float distance = roomA.Rect.GetCenter().DistanceSquaredTo(roomB.Rect.GetCenter());
+        var totalConnections = GetRoomConnectionCount(roomA) + GetRoomConnectionCount(roomB);
+        return distance + totalConnections * 1500f;
+    }
+
+    private void BuildCorridorBetween(Room roomA, Room roomB, bool isHorizontalSplit)
+    {
+        var centerA = roomA.Rect.GetCenter();
+        var centerB = roomB.Rect.GetCenter();
 
         Direction sideA;
-        if (node.IsHorizontal)
+        if (isHorizontalSplit)
             sideA = centerB.Y > centerA.Y ? Direction.South : Direction.North;
         else
             sideA = centerB.X > centerA.X ? Direction.East : Direction.West;
 
         var sideB = sideA.GetOpposite();
 
-        var start = GridUtils.GetCenter(bestA.Rect);
-        var end = GridUtils.GetCenter(bestB.Rect);
+        var start = GridUtils.GetCenter(roomA.Rect);
+        var end = GridUtils.GetCenter(roomB.Rect);
 
-        _entrances[(bestA, sideA)] = start;
-        _entrances[(bestB, sideB)] = end;
+        _entrances[(roomA, sideA)] = start;
+        _entrances[(roomB, sideB)] = end;
 
         CreateLPath(start, end);
-    }
-
-    private void GetRoomsInSubtree(BspNode node, List<Room> rooms)
-    {
-        if (node == null)
-            return;
-        if (node.IsLeaf && node.Room != null)
-        {
-            rooms.Add(node.Room);
-            return;
-        }
-
-        GetRoomsInSubtree(node.Left!, rooms);
-        GetRoomsInSubtree(node.Right!, rooms);
     }
 
     private void CreateLPath(Vector2I start, Vector2I end)
     {
         var current = start;
         _pathTiles.Add(current);
+
         MoveX(ref current, end.X);
         MoveY(ref current, end.Y);
     }
@@ -116,8 +109,8 @@ public class CorridorBuilder
         var stepX = targetX > current.X ? 1 : -1;
         while (current.X != targetX)
         {
-            _pathTiles.Add(current);
             current.X += stepX;
+            _pathTiles.Add(current);
         }
     }
 
@@ -126,8 +119,8 @@ public class CorridorBuilder
         var stepY = targetY > current.Y ? 1 : -1;
         while (current.Y != targetY)
         {
-            _pathTiles.Add(current);
             current.Y += stepY;
+            _pathTiles.Add(current);
         }
     }
 }

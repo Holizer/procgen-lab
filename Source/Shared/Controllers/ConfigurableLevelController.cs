@@ -2,6 +2,7 @@ using System;
 using ProcGenLab.Shared.Core;
 using ProcGenLab.Shared.Interfaces;
 using ProcGenLab.Shared.Utils;
+using ProcGenLab.Shared.Сontrollers;
 
 namespace ProcGenLab.Shared.Controllers;
 

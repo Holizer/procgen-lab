@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using ProcGenLab.WFC.Enums;
 
 namespace ProcGenLab.WFC.Models;
@@ -7,11 +6,10 @@ namespace ProcGenLab.WFC.Models;
 public class WfcCell(IEnumerable<MacroTileType> allTypes)
 {
     private MacroTileType? _collapsedType;
-    public HashSet<MacroTileType> PossibleTypes { get; private set; } = [..allTypes];
+    public HashSet<MacroTileType> PossibleTypes { get; private set; } = [.. allTypes];
     public int Entropy => PossibleTypes.Count;
     public bool IsCollapsed => _collapsedType.HasValue;
     public MacroTileType? CollapsedType => _collapsedType;
-
 
     public void Collapse(MacroTileType type)
     {
@@ -28,7 +26,17 @@ public class WfcCell(IEnumerable<MacroTileType> allTypes)
 
     public void SyncCollapsedState()
     {
-        _collapsedType = PossibleTypes.Count == 1 ? PossibleTypes.First() : null;
+        if (PossibleTypes.Count != 1)
+        {
+            _collapsedType = null;
+            return;
+        }
+
+        foreach (var type in PossibleTypes)
+        {
+            _collapsedType = type;
+            return;
+        }
     }
 
     public HashSet<MacroTileType> ClonePossibleTypes()
