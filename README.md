@@ -26,7 +26,7 @@ In the **ProcGen Lab** control panel you can:
 * **Visualizer debug mode:** Watch algorithms execute step by step — see rooms split or cellular automata structures smooth out in real time.
 * **Performance monitoring:** Analyze generation time, search depth, and system load via built-in diagnostic panels.
 
-> ⚠️ This repository contains source code only (C#). Graphical assets are not included due to licensing restrictions — the project cannot be built as-is. Links to the original asset packs are listed in the Credits section.
+> ⚠️ Some graphical assets are not included due to licensing restrictions. The asset used by the WFC algorithm is prohibited from redistribution under the author's license terms. The project cannot be built independently — links to the original asset packs are listed in the Credits section.
 
 ---
 
