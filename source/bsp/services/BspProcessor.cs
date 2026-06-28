@@ -16,6 +16,7 @@ public class BspProcessor(RandomNumberGenerator rng)
         while (queue.Count > 0)
         {
             var currentNode = queue.Dequeue();
+
             if (TrySplitNode(currentNode, config))
             {
                 queue.Enqueue(currentNode.Left!);
@@ -80,6 +81,7 @@ public class BspProcessor(RandomNumberGenerator rng)
         var canH = size.Y > config.MinSplitSize * 2;
 
         splitVertically = false;
+
         if (!canV && !canH)
             return false;
 

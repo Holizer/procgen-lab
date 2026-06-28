@@ -11,9 +11,13 @@ public abstract class BaseMapBuilder<TBuilder, TMap, TConfig>
     where TConfig : GenerationConfig
 {
     protected TMap Map { get; set; }
+
     protected TConfig Config { get; private set; }
+
     protected RandomNumberGenerator Rng { get; private set; }
+
     public bool IsFaulted { get; protected set; }
+
     protected abstract TMap EmptyMap { get; }
 
     private TBuilder Self => (TBuilder)this;
@@ -29,6 +33,7 @@ public abstract class BaseMapBuilder<TBuilder, TMap, TConfig>
     protected virtual TBuilder Step(Action action, [CallerMemberName] string name = "")
     {
         TryExecute(action, name);
+
         return Self;
     }
 

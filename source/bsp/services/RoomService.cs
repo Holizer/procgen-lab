@@ -20,6 +20,7 @@ public class RoomService(RandomNumberGenerator rng)
         {
             GenerateRooms(node.Left!, config, roomsList);
             GenerateRooms(node.Right!, config, roomsList);
+
             return;
         }
 

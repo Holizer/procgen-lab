@@ -7,9 +7,9 @@ using ProcGenLab.WFC.Visualization;
 
 namespace ProcGenLab.WFC.Core;
 
-public partial class WfcController : ConfigurableLevelController<WfcConfig>
+public partial class WfcLevelController : ConfigurableLevelController<WfcConfig>
 {
-    [Export] public WfcVisualizer Visualizer { get; set; }
+    [Export] public WfcMapVisualizer Visualizer { get; set; }
 
     [Export] public WfcChunkCatalog Catalog { get; set; }
 
@@ -19,7 +19,7 @@ public partial class WfcController : ConfigurableLevelController<WfcConfig>
 
     protected override void CreateLevel()
     {
-        var wfcBuilder = new WfcBuilder();
+        var wfcBuilder = new WfcMapBuilder();
         var (timeMs, memoryMb, map) = BenchmarkService.Profile(
             static state =>
             {
@@ -38,6 +38,7 @@ public partial class WfcController : ConfigurableLevelController<WfcConfig>
         if (wfcBuilder.IsFaulted || map == null)
         {
             this.LogError("Generation failed at one of the steps");
+
             return;
         }
 

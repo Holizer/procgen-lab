@@ -10,8 +10,6 @@ public partial class BspMapVisualizer : BaseMapVisualizer<BspMapRenderContext>
         var map = context.BspMap;
         Clear();
         DrawTerrain(map);
-        DrawTerrainSolidBorder(map);
-
         DrawObjects(map);
         if (ShowDebugLabels)
             DrawDebugInfo(map);

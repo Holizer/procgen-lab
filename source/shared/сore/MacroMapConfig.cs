@@ -15,6 +15,8 @@ public partial class MacroMapConfig : GenerationConfig, IMapConfig
     [Export] public int MicroTilesPerMacroCell { get; set; } = 15;
 
     public int MacroCellSizePixels => MicroTilesPerMacroCell * TileSize;
+
     public int MapWidth => MapWidthInChunks;
+
     public int MapHeight => MapHeightInChunks;
 }

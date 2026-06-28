@@ -10,6 +10,7 @@ namespace ProcGenLab.CellularAutomata.Core;
 public partial class CaLevelController : ConfigurableLevelController<CaConfig>
 {
     [Export] public CaMapVisualizer Visualizer { get; set; }
+
     [Export] public CaConfig DevConfig { get; set; }
 
     protected override CaConfig DefaultConfig => DevConfig;
@@ -27,6 +28,7 @@ public partial class CaLevelController : ConfigurableLevelController<CaConfig>
             static state =>
             {
                 var (builder, config) = state;
+
                 return builder
                     .Initialize(config)
                     .GenerateRandomNoise()
@@ -42,6 +44,7 @@ public partial class CaLevelController : ConfigurableLevelController<CaConfig>
         if (caBuilder.IsFaulted || map == null)
         {
             this.LogError("Generation failed at one of the steps");
+
             return;
         }
 

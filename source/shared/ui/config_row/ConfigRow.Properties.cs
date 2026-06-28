@@ -7,11 +7,14 @@ public partial class ConfigRow
     public enum ConfigRowVariants
     {
         LineEdit = 0,
+
         CheckBox = 1
     }
 
     private string _labelText = "Parameter";
+
     private string _labelTooltip = "";
+
     private ConfigRowVariants _type;
 
     [Export]

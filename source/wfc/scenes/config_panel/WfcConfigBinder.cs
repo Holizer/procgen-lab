@@ -18,6 +18,7 @@ public class WfcConfigBinder(WfcConfigPanel panel) : ConfigBinder<WfcConfig>(pan
         BuildWeightsUi(CurrentConfig.Weights);
 
         var topologyRow = FindConfigRow(nameof(WfcConfig.UseBspTopology));
+
         if (topologyRow?.CheckBoxNode != null)
         {
             if (
@@ -38,6 +39,7 @@ public class WfcConfigBinder(WfcConfigPanel panel) : ConfigBinder<WfcConfig>(pan
     {
         var config = base.BuildConfig();
         config.Weights = BuildWeightsConfig();
+
         return config;
     }
 
@@ -45,8 +47,10 @@ public class WfcConfigBinder(WfcConfigPanel panel) : ConfigBinder<WfcConfig>(pan
     {
         panel.WeightsRowsContainer.Clear();
         _weightConfigRows.Clear();
+
         if (weights?.Weights is null)
             return;
+
         foreach (var entry in weights.Weights)
         {
             var row = panel.ConfigRowScene.Instantiate<ConfigRow>();

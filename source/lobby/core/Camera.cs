@@ -7,7 +7,9 @@ public partial class Camera : Camera2D
     private static readonly float[] ZoomLevels = [0.25f, 0.5f, 1.0f, 2.0f, 3.0f, 4.0f];
 
     private int _currentZoomIndex = 2;
+
     private bool _isPanning;
+
     private float _targetZoom = 1.0f;
 
     [Export] public float ZoomLerpSpeed = 10.0f;
@@ -34,6 +36,7 @@ public partial class Camera : Camera2D
             if (mouseEvent.ButtonIndex == MouseButton.Middle)
             {
                 _isPanning = mouseEvent.Pressed;
+
                 return;
             }
 
@@ -60,10 +63,12 @@ public partial class Camera : Camera2D
         {
             case MouseButton.WheelUp:
                 ApplyZoomStep(true);
+
                 break;
 
             case MouseButton.WheelDown:
                 ApplyZoomStep(false);
+
                 break;
         }
     }
@@ -91,6 +96,7 @@ public partial class Camera : Camera2D
         for (var i = 0; i < ZoomLevels.Length; i++)
         {
             var diff = Mathf.Abs(ZoomLevels[i] - currentZoom);
+
             if (diff < minDiff)
             {
                 minDiff = diff;

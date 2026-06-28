@@ -15,6 +15,7 @@ public static partial class GridUtils
     public static Vector2I GetCentroid(ReadOnlySpan<Vector2I> region)
     {
         var count = region.Length;
+
         if (count == 0)
             return Vector2I.Zero;
 

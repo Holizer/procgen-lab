@@ -57,10 +57,12 @@ public class AutomataSimulator
             if (ny < 0 || ny >= height)
             {
                 wallCount += 3;
+
                 continue;
             }
 
             var row = ny * width;
+
             for (var nx = gridX - 1; nx <= gridX + 1; nx++)
             {
                 if (nx == gridX && ny == gridY)

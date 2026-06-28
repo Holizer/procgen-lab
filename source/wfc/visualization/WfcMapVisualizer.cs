@@ -7,9 +7,10 @@ using ProcGenLab.WFC.Resources;
 
 namespace ProcGenLab.WFC.Visualization;
 
-public partial class WfcVisualizer : BaseMapVisualizer<WfcRenderContext>
+public partial class WfcMapVisualizer : BaseMapVisualizer<WfcRenderContext>
 {
     private int _cellPx;
+
     private Node2D _chunkScenesRoot;
 
     [Export] public bool DebugMode { get; set; }

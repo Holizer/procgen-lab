@@ -22,6 +22,7 @@ public static class WfcCellExtensions
 
         cell.PossibleTypes.IntersectWith(allowed);
         cell.SyncCollapsedState();
+
         return cell.Entropy < before;
     }
 }

@@ -13,6 +13,7 @@ namespace ProcGenLab.CellularAutomata.Services;
 public class BiomeCreator
 {
     private readonly List<BiomeSettings> _landBiomes;
+
     private readonly int _minRegionSizeForSplitting;
 
     public BiomeCreator(IEnumerable<BiomeSettings> biomes, int minRegionSizeForSplitting = 150)

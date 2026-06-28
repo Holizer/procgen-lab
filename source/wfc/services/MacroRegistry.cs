@@ -23,6 +23,7 @@ public class MacroRegistry
         if (catalog?.Tiles == null)
         {
             this.LogWarning("Catalog is null");
+
             return;
         }
 
@@ -47,6 +48,7 @@ public class MacroRegistry
     private void BuildCompatibilityTable()
     {
         var types = Tiles.Keys.ToList();
+
         foreach (var t in types)
         {
             _compatible[t] = new Dictionary<Direction, HashSet<MacroTileType>>();

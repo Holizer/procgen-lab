@@ -33,6 +33,7 @@ public partial class ConfigRow : Control
             SpinBoxNode.MouseExited += OnMouseExitedRow;
 
             var internalLineEdit = SpinBoxNode.GetLineEdit();
+
             if (internalLineEdit != null)
             {
                 internalLineEdit.TextChanged += OnTextChanged;

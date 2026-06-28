@@ -18,8 +18,10 @@ public partial class RoomDecorator
     private void PlaceKey(IReadOnlyList<Room> rooms)
     {
         var standardRooms = rooms.Where(r => r.Type == RoomType.Standard).ToList();
+
         if (standardRooms.Count == 0)
             return;
+
         var keyRoom = standardRooms[rng.RandiRange(0, standardRooms.Count - 1)];
         keyRoom.AddObject(new GameObject(ObjectType.Key, GetRandomPos(keyRoom)));
     }
@@ -30,12 +32,15 @@ public partial class RoomDecorator
         {
             case RoomType.Treasure:
                 PlaceTreasureObjects(room);
+
                 break;
             case RoomType.Boss:
                 PlaceBossObjects(room);
+
                 break;
             case RoomType.Standard:
                 PlaceStandardObjects(room);
+
                 break;
         }
     }
@@ -48,9 +53,11 @@ public partial class RoomDecorator
         room.AddObject(
             new GameObject(ObjectType.Coin, new Vector2I(floor.End.X - 1, floor.Position.Y))
         );
+
         room.AddObject(
             new GameObject(ObjectType.Coin, new Vector2I(floor.Position.X, floor.End.Y - 1))
         );
+
         room.AddObject(new GameObject(ObjectType.Coin, floor.End - Vector2I.One));
     }
 

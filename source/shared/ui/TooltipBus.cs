@@ -5,8 +5,11 @@ namespace ProcGenLab.Shared.UI;
 public static class TooltipBus
 {
     private static string _activeFocusDesc;
+
     private static string _activeHoverDesc;
+
     public static event Action<string> OnRowHovered;
+
     public static event Action OnRowUnhovered;
 
     public static void SetFocus(string desc)

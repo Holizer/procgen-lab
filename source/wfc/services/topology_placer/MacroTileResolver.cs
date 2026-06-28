@@ -33,6 +33,7 @@ public static class MacroTileResolver
         foreach (var t in MacroTileKindSets.ConnectorTypes)
             if (SocketKey(t) == key)
                 result.Add(t);
+
         return result;
     }
 

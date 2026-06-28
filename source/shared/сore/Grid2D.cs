@@ -7,7 +7,9 @@ namespace ProcGenLab.Shared.Core;
 public abstract class Grid2D(int width, int height)
 {
     public int Width { get; } = width;
+
     public int Height { get; } = height;
+
     public int TotalCells => Width * Height;
 }
 

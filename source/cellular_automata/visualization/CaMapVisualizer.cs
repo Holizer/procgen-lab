@@ -69,6 +69,7 @@ public partial class CaMapVisualizer : BaseMapVisualizer<СaMapRenderContext>
             TerrainSetId,
             WaterTerrainId
         );
+
         TerrainLayer.SetCellsTerrainConnect(
             new Array<Vector2I>(groundCells),
             TerrainSetId,
@@ -88,6 +89,7 @@ public partial class CaMapVisualizer : BaseMapVisualizer<СaMapRenderContext>
         for (var y = 0; y < height; y++)
         {
             var rowStartIndex = y * width;
+
             for (var x = 0; x < width; x++)
             {
                 var currentIndex = rowStartIndex + x;

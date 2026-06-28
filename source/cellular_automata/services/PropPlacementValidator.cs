@@ -28,6 +28,7 @@ public static class PropPlacementValidator
     private static bool IsValidContext(CaMap map, Vector2I pos, PlacementContext context)
     {
         var biome = map.GetBiome(pos);
+
         return context switch
         {
             PlacementContext.LakeOnly => biome == BiomeZone.Lake,

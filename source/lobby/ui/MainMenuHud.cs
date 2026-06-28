@@ -20,6 +20,7 @@ public partial class MainMenuHud : Control
     public delegate void MenuToggleRequestedEventHandler();
 
     private readonly Dictionary<AlgorithmType, BaseConfigPanel> _panels = [];
+
     private PackedScene _pendingScene;
 
     [Export] public Array<ProcGenWorldOption> Worlds { get; set; } = [];
@@ -64,6 +65,7 @@ public partial class MainMenuHud : Control
             return;
 
         var config = ActiveConfigPanel.BuildConfig();
+
         if (config is null)
             return;
 
@@ -78,6 +80,7 @@ public partial class MainMenuHud : Control
     private void OnAlgorithmSelected(AlgorithmType type)
     {
         var option = Worlds.FirstOrDefault(world => world.Type == type);
+
         if (option is null || !_panels.TryGetValue(type, out var targetPanel))
             return;
 

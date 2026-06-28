@@ -6,13 +6,21 @@ namespace ProcGenLab.Lobby.UI;
 public partial class PerformanceMonitor : Control
 {
     private readonly Color _colorGold = new("f2be32");
+
     private readonly Color _colorGreen = new("5cb85c");
+
     private readonly Color _colorOrange = new("f0ad4e");
+
     private readonly Color _colorRed = new("d9534f");
+
     private readonly Color _colorWhite = new("ffffff");
+
     [Export] public Label AlgoValueLabel { get; set; }
+
     [Export] public Label TimeValueLabel { get; set; }
+
     [Export] public Label MemoryValueLabel { get; set; }
+
     [Export] public Label SeedValueLabel { get; set; }
 
     public override void _Ready()

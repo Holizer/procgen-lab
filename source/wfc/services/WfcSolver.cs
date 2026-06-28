@@ -11,15 +11,18 @@ namespace ProcGenLab.WFC.Services;
 public class WfcSolver(WfcMap map, MacroRegistry registry, RandomNumberGenerator rng)
 {
     private readonly HashSet<MacroTileType> _allowedScratch = [];
+
     private readonly Stack<Vector2I> _propStack = new(256);
 
     public bool Solve(int maxAttempts = 256)
     {
         var snapshot = SnapshotDomains();
+
         for (var attempt = 0; attempt < maxAttempts; attempt++)
         {
             if (attempt > 0)
                 RestoreDomains(snapshot);
+
             if (RunCollapsePass())
                 return true;
         }
@@ -32,6 +35,7 @@ public class WfcSolver(WfcMap map, MacroRegistry registry, RandomNumberGenerator
         var snap = new HashSet<MacroTileType>[map.TotalCells];
         for (var i = 0; i < map.TotalCells; i++)
             snap[i] = map.Grid[i].ClonePossibleTypes();
+
         return snap;
     }
 
@@ -46,10 +50,12 @@ public class WfcSolver(WfcMap map, MacroRegistry registry, RandomNumberGenerator
         while (true)
         {
             var coords = PickLowestEntropy();
+
             if (coords == null)
                 return true;
 
             var cell = map[coords.Value];
+
             if (cell.Entropy == 0)
                 return false;
 
@@ -78,6 +84,7 @@ public class WfcSolver(WfcMap map, MacroRegistry registry, RandomNumberGenerator
                     continue;
 
                 var neighbor = map[nx, ny];
+
                 if (neighbor.IsCollapsed)
                     continue;
 
@@ -99,13 +106,17 @@ public class WfcSolver(WfcMap map, MacroRegistry registry, RandomNumberGenerator
     {
         Vector2I? best = null;
         var min = int.MaxValue;
+
         for (var i = 0; i < map.TotalCells; i++)
         {
             var cell = map.Grid[i];
+
             if (cell.IsCollapsed || cell.Entropy >= min)
                 continue;
+
             min = cell.Entropy;
             best = new Vector2I(i % map.Width, i / map.Width);
+
             if (min == 1)
                 break;
         }
@@ -125,10 +136,12 @@ public class WfcSolver(WfcMap map, MacroRegistry registry, RandomNumberGenerator
         var cursor = 0f;
 
         MacroTileType last = default;
+
         foreach (var type in possibleTypes)
         {
             last = type;
             cursor += registry.GetWeight(type);
+
             if (roll <= cursor)
                 return type;
         }
@@ -150,6 +163,7 @@ public class WfcSolver(WfcMap map, MacroRegistry registry, RandomNumberGenerator
 
         cell.PossibleTypes.IntersectWith(_allowedScratch);
         cell.SyncCollapsedState();
+
         return cell.Entropy < before;
     }
 }

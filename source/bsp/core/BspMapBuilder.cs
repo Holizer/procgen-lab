@@ -9,10 +9,13 @@ namespace ProcGenLab.BSP.Core;
 public class BspMapBuilder : BaseMapBuilder<BspMapBuilder, BspMap, BspConfig>
 {
     private readonly CorridorBuilder _corridorBuilder = new();
-    private readonly GridRasterizer _gridRasterizer = new();
+
     private RoomDecorator _roomDecorator;
+
     private RoomService _roomService;
+
     private BspNode _root;
+
     protected override BspMap EmptyMap => new(0, 0);
 
     public BspMapBuilder Initialize(BspConfig config)
@@ -73,10 +76,5 @@ public class BspMapBuilder : BaseMapBuilder<BspMapBuilder, BspMap, BspConfig>
             _roomDecorator.PlaceObjects(Map.Rooms);
             _roomDecorator.PlaceEnemies(Map.Rooms, Config.EnemyConfig);
         });
-    }
-
-    public BspMapBuilder BakeGrid()
-    {
-        return Step(() => _gridRasterizer.Rasterize(Map));
     }
 }

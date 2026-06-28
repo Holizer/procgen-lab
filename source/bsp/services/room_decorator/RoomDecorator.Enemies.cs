@@ -19,14 +19,18 @@ public partial class RoomDecorator
                 case RoomType.Standard:
                     if (enemyConfig.StandardGroups == null || enemyConfig.StandardGroups.Count == 0)
                         break;
+
                     var index = rng.RandiRange(0, enemyConfig.StandardGroups.Count - 1);
                     PlaceGroup(room, enemyConfig.StandardGroups[index], rng);
+
                     break;
 
                 case RoomType.Boss:
                     if (enemyConfig.BossGroup == null)
                         break;
+
                     PlaceGroup(room, enemyConfig.BossGroup, rng);
+
                     break;
             }
     }
@@ -42,6 +46,7 @@ public partial class RoomDecorator
                     rng.RandiRange(inner.Position.X, inner.End.X - 1),
                     rng.RandiRange(inner.Position.Y, inner.End.Y - 1)
                 );
+
                 room.AddEnemy(new EnemySpawn(entry.Type, pos));
             }
     }

@@ -24,8 +24,11 @@ public partial class BspConfig : PixelMapConfig, IBspConfig
     public int RoomPaddingPx { get; set; } = 16;
 
     public int MinRoomWidthTiles => FromPxToTiles(MinRoomWidthPx);
+
     public int MinRoomHeightTiles => FromPxToTiles(MinRoomHeightPx);
+
     public int PaddingTiles => FromPxToTiles(RoomPaddingPx);
+
     public int MinSplitSize => Mathf.Max(MinRoomWidthTiles, MinRoomHeightTiles) + PaddingTiles * 2;
 
     [ExportGroup("BSP Constraints")]

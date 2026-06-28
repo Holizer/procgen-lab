@@ -1,39 +1,24 @@
-using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Godot;
 using ProcGenLab.Shared.Core;
 using ProcGenLab.Shared.Enums;
-using ProcGenLab.Shared.Utils;
 
 namespace ProcGenLab.BSP.Models;
 
-public class BspMap : Grid2D<TileType>
+public class BspMap(int width, int height) : Grid2D<TileType>(width, height)
 {
-    public BspMap(int width, int height)
-        : base(width, height)
-    {
-        Array.Fill(Grid, TileType.Wall);
-    }
-
     public IReadOnlyList<Room> Rooms { get; set; }
+
     public IReadOnlyList<Vector2I> PathsTiles { get; set; }
 
-    public ReadOnlySpan<TileType> AsSpan()
+    public IEnumerable<Vector2I> GetFloorTiles()
     {
-        return Grid.AsSpan();
-    }
+        foreach (var room in Rooms)
+            for (var y = room.Rect.Position.Y; y < room.Rect.End.Y; y++)
+            for (var x = room.Rect.Position.X; x < room.Rect.End.X; x++)
+                yield return new Vector2I(x, y);
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public bool IsType(int x, int y, TileType type)
-    {
-        return GridUtils.InBounds(x, y, Width, Height) && this[x, y] == type;
-    }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void SetTile(int x, int y, TileType type)
-    {
-        if (GridUtils.InBounds(x, y, Width, Height))
-            this[x, y] = type;
+        foreach (var tile in PathsTiles)
+            yield return tile;
     }
 }

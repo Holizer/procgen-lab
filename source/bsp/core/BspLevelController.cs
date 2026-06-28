@@ -22,13 +22,13 @@ public partial class BspLevelController : ConfigurableLevelController<BspConfig>
             static state =>
             {
                 var (builder, config) = state;
+
                 return builder
                     .Initialize(config)
                     .SplitSpace()
                     .AddRooms()
                     .ConnectRooms()
                     .AssignRoomRoles()
-                    .BakeGrid()
                     .Build();
             },
             (Builder: bspBuilder, Config)
@@ -37,6 +37,7 @@ public partial class BspLevelController : ConfigurableLevelController<BspConfig>
         if (bspBuilder.IsFaulted || map is null)
         {
             this.LogError("Generation failed at one of the steps");
+
             return;
         }
 

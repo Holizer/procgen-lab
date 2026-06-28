@@ -26,6 +26,7 @@ public partial class BspMapVisualizer : BaseMapVisualizer<BspMapRenderContext>
         foreach (var room in map.Rooms)
         {
             LabelSettings uniqueSettings = null;
+
             if (DebugLabelStyle != null)
             {
                 uniqueSettings = (LabelSettings)DebugLabelStyle.Duplicate();

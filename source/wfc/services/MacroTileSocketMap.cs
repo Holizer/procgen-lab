@@ -8,6 +8,7 @@ namespace ProcGenLab.WFC.Services;
 public static class MacroTileSocketMap
 {
     private const MacroSocketType W = MacroSocketType.Wall;
+
     private const MacroSocketType C = MacroSocketType.Corridor;
 
     private static readonly FrozenDictionary<

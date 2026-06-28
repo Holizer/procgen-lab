@@ -21,6 +21,7 @@ public partial class GenerationConfig : Resource, ISeedableConfig
     {
         var rng = new RandomNumberGenerator();
         rng.Seed = UseRandomSeed ? (ulong)GD.RandRange(0, int.MaxValue) : (ulong)Seed;
+
         return rng;
     }
 

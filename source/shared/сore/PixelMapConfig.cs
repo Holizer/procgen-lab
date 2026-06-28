@@ -14,11 +14,13 @@ public partial class PixelMapConfig : GenerationConfig, IMapConfig
     public int MapHeightPx { get; set; } = 1024;
 
     public int MapWidth => FromPxToTiles(MapWidthPx);
+
     public int MapHeight => FromPxToTiles(MapHeightPx);
 
     protected int FromPxToTiles(float px)
     {
         var size = TileSize > 0 ? TileSize : 16;
+
         return Mathf.CeilToInt(px / size);
     }
 }

@@ -89,6 +89,7 @@ public class RegionAnalyzer
             if (cy > 0)
             {
                 var ni = idx - width;
+
                 if (!visited[ni] && map.GetTerrain(ni) == type)
                 {
                     visited[ni] = true;
@@ -99,6 +100,7 @@ public class RegionAnalyzer
             if (cy < height - 1)
             {
                 var ni = idx + width;
+
                 if (!visited[ni] && map.GetTerrain(ni) == type)
                 {
                     visited[ni] = true;
@@ -109,6 +111,7 @@ public class RegionAnalyzer
             if (cx > 0)
             {
                 var ni = idx - 1;
+
                 if (!visited[ni] && map.GetTerrain(ni) == type)
                 {
                     visited[ni] = true;
@@ -119,6 +122,7 @@ public class RegionAnalyzer
             if (cx < width - 1)
             {
                 var ni = idx + 1;
+
                 if (!visited[ni] && map.GetTerrain(ni) == type)
                 {
                     visited[ni] = true;
@@ -147,9 +151,11 @@ public class RegionAnalyzer
             {
                 case true when region.Count < minIslandSize:
                     map.FillRegion(region, TileType.Water);
+
                     break;
                 case false when region.Count < minLakeSize:
                     map.FillRegion(region, TileType.Ground);
+
                     break;
             }
         }

@@ -54,6 +54,7 @@ public partial class CaMap
             return;
 
         var baseIdx = GetIndex(startPos);
+
         for (var y = 0; y < size.Y; y++)
         {
             var rowIdx = baseIdx + y * Width;

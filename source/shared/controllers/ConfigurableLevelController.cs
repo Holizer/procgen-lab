@@ -12,15 +12,18 @@ public abstract partial class ConfigurableLevelController<TConfig>
     where TConfig : GenerationConfig
 {
     protected TConfig Config { get; private set; }
+
     protected virtual TConfig DefaultConfig => null;
 
     public void ApplyConfig(GenerationConfig config)
     {
         ArgumentNullException.ThrowIfNull(config);
+
         if (config is not TConfig typedConfig)
             throw new ArgumentException(
                 $"Expected {typeof(TConfig).Name}, got {config.GetType().Name}."
             );
+
         Config = typedConfig;
         OnConfigApplied(Config);
     }
@@ -32,9 +35,11 @@ public abstract partial class ConfigurableLevelController<TConfig>
             case null when DefaultConfig is not null:
                 Config = DefaultConfig;
                 OnConfigApplied(Config);
+
                 break;
             case null:
                 this.LogWarning($"{Name}: no config. Override DefaultConfig for F6 testing.");
+
                 break;
         }
 

@@ -14,6 +14,7 @@ public partial class PropDatabase : Resource
     public PropData GetRandomVariation(PropType type, RandomNumberGenerator rng)
     {
         var group = Groups.FirstOrDefault(g => g.Type == type);
+
         if (group?.Variations == null || group.Variations.Count == 0)
             return null;
 

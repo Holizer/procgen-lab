@@ -19,6 +19,7 @@ public static class UIExtensions
         if (string.IsNullOrEmpty(newText))
         {
             lineEdit.Text = "";
+
             return;
         }
 
@@ -53,6 +54,7 @@ public static class UIExtensions
         }
 
         var result = filtered.ToString();
+
         if (newText != result)
         {
             lineEdit.Text = result;

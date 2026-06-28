@@ -37,6 +37,7 @@ public partial class ConfigRow
         if (SpinBoxNode != null)
         {
             var lineEdit = SpinBoxNode.GetLineEdit();
+
             if (lineEdit != null && lineEdit.HasThemeColor("font_focus_color"))
             {
                 var focusColor = lineEdit.GetThemeColor("font_focus_color");

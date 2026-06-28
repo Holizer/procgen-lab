@@ -6,6 +6,7 @@ namespace ProcGenLab.Shared.Utils;
 public class TileLibrary
 {
     private readonly Dictionary<string, int> _sourceByTag = new();
+
     private readonly Dictionary<string, List<Vector2I>> _tilesByTag = new();
 
     public TileLibrary(TileSet tileSet, string layerName)
@@ -14,6 +15,7 @@ public class TileLibrary
         {
             var sourceId = tileSet.GetSourceId(i);
             var source = tileSet.GetSource(sourceId) as TileSetAtlasSource;
+
             if (source == null)
                 continue;
 
@@ -22,6 +24,7 @@ public class TileLibrary
                 var coords = source.GetTileId(j);
                 var data = source.GetTileData(coords, 0);
                 var tag = data.GetCustomData(layerName).AsString();
+
                 if (string.IsNullOrEmpty(tag))
                     continue;
 
@@ -40,6 +43,7 @@ public class TileLibrary
     public (Vector2I AtlasCoords, int SourceId) GetRandomTile(string tag)
     {
         var (isExist, list) = TryGetTilesIfExist(tag);
+
         if (!isExist)
             return (GridUtils.InvalidTile, 0);
 
@@ -66,6 +70,7 @@ public class TileLibrary
         if (!_tilesByTag.TryGetValue(tag, out var list) || list.Count == 0)
         {
             this.LogError($"Tag '{tag}' not found!");
+
             return (false, null);
         }
 

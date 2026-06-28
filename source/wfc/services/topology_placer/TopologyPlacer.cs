@@ -17,6 +17,7 @@ public static class TopologyPlacer
         map.CollapseMapToType(MacroTileType.Void);
 
         var nodes = topology.Nodes;
+
         if (nodes.Count == 0)
             return;
 
@@ -62,6 +63,7 @@ public static class TopologyPlacer
         }
 
         connectionList.Sort((a, b) => a.Distance.CompareTo(b.Distance));
+
         return connectionList;
     }
 

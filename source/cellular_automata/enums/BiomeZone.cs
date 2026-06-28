@@ -3,11 +3,17 @@ namespace ProcGenLab.CellularAutomata.Enums;
 public enum BiomeZone
 {
     Clearing = 0,
+
     Sparse = 1,
+
     ConiferousForest = 2,
+
     OakForest = 3,
+
     MixedForest = 4,
+
     Lake = 10,
+
     Sea = 11
 }
 

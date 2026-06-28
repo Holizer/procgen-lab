@@ -25,6 +25,7 @@ public partial class RoomDecorator(RandomNumberGenerator rng)
             return;
 
         var shuffledRooms = new List<Room>(rooms);
+
         for (var i = shuffledRooms.Count - 1; i > 0; i--)
         {
             var j = rng.RandiRange(0, i);
@@ -53,10 +54,12 @@ public partial class RoomDecorator(RandomNumberGenerator rng)
             deadEnds.Remove(bossRoom);
 
             var treasuresPlaced = 0;
+
             foreach (var room in deadEnds)
             {
                 if (treasuresPlaced >= maxTreasureRoomsCounts)
                     break;
+
                 if (room == spawnRoom)
                     continue;
 
@@ -81,6 +84,7 @@ public partial class RoomDecorator(RandomNumberGenerator rng)
     private Vector2I GetRandomPos(Room room)
     {
         var inner = room.Rect.Grow(-1);
+
         return new Vector2I(
             rng.RandiRange(inner.Position.X, inner.End.X - 1),
             rng.RandiRange(inner.Position.Y, inner.End.Y - 1)

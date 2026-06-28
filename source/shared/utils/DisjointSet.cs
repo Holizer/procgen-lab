@@ -21,6 +21,7 @@ public class DisjointSet
             return false;
 
         _parent[rootI] = rootJ;
+
         return true;
     }
 
@@ -29,6 +30,7 @@ public class DisjointSet
         if (!_parent.TryGetValue(id, out var parentId))
         {
             _parent[id] = id;
+
             return id;
         }
 

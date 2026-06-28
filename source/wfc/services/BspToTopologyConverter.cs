@@ -32,6 +32,7 @@ public static class BspToTopologyConverter
         if (node.IsLeaf)
         {
             result.Add(node);
+
             return;
         }
 
@@ -45,6 +46,7 @@ public static class BspToTopologyConverter
         var yOverlap = a.Position.Y < b.End.Y && b.Position.Y < a.End.Y;
         var xTouches = a.End.X == b.Position.X || b.End.X == a.Position.X;
         var yTouches = a.End.Y == b.Position.Y || b.End.Y == a.Position.Y;
+
         return (xTouches && yOverlap) || (yTouches && xOverlap);
     }
 }

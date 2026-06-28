@@ -7,7 +7,9 @@ namespace ProcGenLab.Lobby.Core;
 public partial class GameCoordinator : Node
 {
     private bool _hasActiveWorld;
+
     private bool _isMenuOpen = true;
+
     private GenerationConfig _lastConfig;
 
     private PackedScene _lastScene;
@@ -68,6 +70,7 @@ public partial class GameCoordinator : Node
             return;
 
         _lastConfig = MainMenuHud.ActiveConfigPanel.BuildConfig();
+
         if (_lastConfig is null)
             return;
 

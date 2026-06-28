@@ -11,10 +11,15 @@ namespace ProcGenLab.CellularAutomata.Core;
 public class CaMapBuilder : BaseMapBuilder<CaMapBuilder, CaMap, CaConfig>
 {
     private readonly RegionAnalyzer _regionAnalyzer = new();
+
     private readonly RegionConnector _regionConnector = new();
+
     private readonly AutomataSimulator _simulator = new();
+
     private BiomeCreator _biomeService;
+
     private PropsPlacer _propsPlacer;
+
     protected override CaMap EmptyMap => new(0, 0);
 
     public CaMapBuilder Initialize(CaConfig config)

@@ -6,9 +6,13 @@ namespace ProcGenLab.WFC.Models;
 public class WfcCell(IEnumerable<MacroTileType> allTypes)
 {
     private MacroTileType? _collapsedType;
+
     public HashSet<MacroTileType> PossibleTypes { get; private set; } = [.. allTypes];
+
     public int Entropy => PossibleTypes.Count;
+
     public bool IsCollapsed => _collapsedType.HasValue;
+
     public MacroTileType? CollapsedType => _collapsedType;
 
     public void Collapse(MacroTileType type)
@@ -29,12 +33,14 @@ public class WfcCell(IEnumerable<MacroTileType> allTypes)
         if (PossibleTypes.Count != 1)
         {
             _collapsedType = null;
+
             return;
         }
 
         foreach (var type in PossibleTypes)
         {
             _collapsedType = type;
+
             return;
         }
     }

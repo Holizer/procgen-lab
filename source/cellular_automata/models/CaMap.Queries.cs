@@ -13,6 +13,7 @@ public partial class CaMap
     {
         if (!GridUtils.InBounds(x, y, Width, Height))
             return type == TileType.Water;
+
         return this[x, y].Terrain == type;
     }
 
@@ -36,6 +37,7 @@ public partial class CaMap
         foreach (var dir in GridUtils.EightDirectionOffsets)
             if (IsType(pos.X + dir.X, pos.Y + dir.Y, TileType.Water))
                 return true;
+
         return false;
     }
 
@@ -55,19 +57,24 @@ public partial class CaMap
         if (size is { X: 1, Y: 1 })
         {
             var idx = GetIndex(startPos);
+
             return Grid[idx].Terrain == requiredTerrain
                    && (!checkOccupied || !Grid[idx].IsOccupied);
         }
 
         var baseIdx = GetIndex(startPos);
+
         for (var y = 0; y < size.Y; y++)
         {
             var rowIdx = baseIdx + y * Width;
+
             for (var x = 0; x < size.X; x++)
             {
                 var idx = rowIdx + x;
+
                 if (Grid[idx].Terrain != requiredTerrain)
                     return false;
+
                 if (checkOccupied && Grid[idx].IsOccupied)
                     return false;
             }

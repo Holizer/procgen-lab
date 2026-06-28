@@ -11,6 +11,7 @@ public class ConfigBinder<TConfig>(Control panel)
     where TConfig : GenerationConfig
 {
     private static PropertyInfo[] ConfigProperties => ConfigPropertiesCache<TConfig>.Properties;
+
     protected TConfig CurrentConfig { get; private set; }
 
     public virtual void LoadConfig(GenerationConfig defaults)
@@ -25,6 +26,7 @@ public class ConfigBinder<TConfig>(Control panel)
         ResetToDefaults(CurrentConfig);
 
         var randomSeedRow = FindConfigRow(nameof(ISeedableConfig.UseRandomSeed));
+
         if (randomSeedRow?.CheckBoxNode != null)
         {
             if (
@@ -58,6 +60,7 @@ public class ConfigBinder<TConfig>(Control panel)
         }
 
         CurrentConfig = config;
+
         return config;
     }
 
@@ -69,6 +72,7 @@ public class ConfigBinder<TConfig>(Control panel)
         foreach (var prop in ConfigProperties)
         {
             var row = FindConfigRow(prop.Name);
+
             if (row == null)
                 continue;
 
@@ -93,6 +97,7 @@ public class ConfigBinder<TConfig>(Control panel)
                 continue;
 
             var row = FindConfigRow(prop.Name);
+
             if (row == null)
                 continue;
 
@@ -104,6 +109,7 @@ public class ConfigBinder<TConfig>(Control panel)
     private void ApplyRangeIfPresent(PropertyInfo prop, ConfigRow row)
     {
         var exportAttr = prop.GetCustomAttribute<ExportAttribute>();
+
         if (exportAttr == null || exportAttr.Hint != PropertyHint.Range)
             return;
 
@@ -114,17 +120,20 @@ public class ConfigBinder<TConfig>(Control panel)
     private static bool TryConvertValue(PropertyInfo prop, ConfigRow row, out object value)
     {
         var targetType = prop.PropertyType;
+
         try
         {
             value =
                 targetType == typeof(bool)
                     ? row.IsChecked
                     : Convert.ChangeType(row.Value, targetType);
+
             return true;
         }
         catch
         {
             value = null;
+
             return false;
         }
     }
@@ -134,6 +143,7 @@ public class ConfigBinder<TConfig>(Control panel)
         foreach (var child in panel.GetChildren())
         {
             var found = FindConfigRowInNode(child, name);
+
             if (found != null)
                 return found;
         }
@@ -152,6 +162,7 @@ public class ConfigBinder<TConfig>(Control panel)
         foreach (var child in node.GetChildren())
         {
             var found = FindConfigRowInNode(child, name);
+
             if (found != null)
                 return found;
         }

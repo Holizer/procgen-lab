@@ -15,6 +15,7 @@ public static class PathTracer
     {
         int x = from.X,
             y = from.Y;
+
         var dx = Math.Abs(to.X - from.X);
         var dy = Math.Abs(to.Y - from.Y);
         var stepX = from.X < to.X ? 1 : -1;
@@ -57,6 +58,7 @@ public static class PathTracer
     {
         if (!requirements.TryGetValue(pos, out var set))
             requirements[pos] = set = new HashSet<Direction>();
+
         set.Add(dir);
     }
 }

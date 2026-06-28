@@ -36,6 +36,7 @@ public class PropsPlacer(PropDatabase db)
         if (map.IsOccupied(pos.X, pos.Y)) return;
 
         var biomeZone = map.GetBiome(pos);
+
         if (biomeZone == null || !biomesMap.TryGetValue(biomeZone.Value, out var biomeSettings)) return;
 
         if (rng.Randf() >= biomeSettings.PropDensityNormalized) return;
@@ -43,6 +44,7 @@ public class PropsPlacer(PropDatabase db)
         var requiredTerrain = biomeZone.Value.IsWater() ? TileType.Water : TileType.Ground;
 
         var validRules = biomeSettings.PropRules;
+
         if (validRules.Count == 0) return;
 
         var rule = WeightedSelector.Pick(validRules, rule => rule.Weight, rng);
@@ -71,6 +73,7 @@ public class PropsPlacer(PropDatabase db)
             if (!PropPlacementValidator.IsValidContextForArea(map, offsetPos, size, context)) continue;
 
             map.PlaceProp(offsetPos, rule.Tag, size);
+
             return true;
         }
 

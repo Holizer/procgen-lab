@@ -25,6 +25,7 @@ public static class WeightedSelector
         for (var i = 0; i < items.Count; i++)
         {
             cumulative += weightSelector(items[i]);
+
             if (roll < cumulative)
                 return items[i];
         }

@@ -7,12 +7,13 @@ using ProcGenLab.WFC.Services;
 
 namespace ProcGenLab.WFC.Core;
 
-public class WfcBuilder : BaseMapBuilder<WfcBuilder, WfcMap, WfcConfig>
+public class WfcMapBuilder : BaseMapBuilder<WfcMapBuilder, WfcMap, WfcConfig>
 {
     protected override WfcMap EmptyMap => new(0, 0, []);
+
     public MacroRegistry Registry { get; private set; }
 
-    public WfcBuilder Initialize(WfcConfig config, WfcChunkCatalog catalog)
+    public WfcMapBuilder Initialize(WfcConfig config, WfcChunkCatalog catalog)
     {
         return Step(() =>
         {
@@ -22,7 +23,7 @@ public class WfcBuilder : BaseMapBuilder<WfcBuilder, WfcMap, WfcConfig>
         });
     }
 
-    public WfcBuilder ApplyBspTopology()
+    public WfcMapBuilder ApplyBspTopology()
     {
         return Step(() =>
         {
@@ -33,7 +34,7 @@ public class WfcBuilder : BaseMapBuilder<WfcBuilder, WfcMap, WfcConfig>
         });
     }
 
-    public WfcBuilder Solve()
+    public WfcMapBuilder Solve()
     {
         return Step(() =>
         {

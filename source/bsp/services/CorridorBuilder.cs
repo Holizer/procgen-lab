@@ -10,6 +10,7 @@ namespace ProcGenLab.BSP.Services;
 public class CorridorBuilder
 {
     private readonly Dictionary<(Room Room, Direction Dir), Vector2I> _entrances = new();
+
     private readonly List<Vector2I> _pathTiles = [];
 
     public int GetRoomConnectionCount(Room room)
@@ -51,10 +52,12 @@ public class CorridorBuilder
         Room bestRight = null;
 
         var lowestScore = float.MaxValue;
+
         foreach (var roomLeft in roomsLeft)
         foreach (var roomRight in roomsRight)
         {
             var currentScore = GetConnectionScore(roomLeft, roomRight);
+
             if (currentScore < lowestScore)
             {
                 lowestScore = currentScore;
@@ -70,6 +73,7 @@ public class CorridorBuilder
     {
         float distance = roomA.Rect.GetCenter().DistanceSquaredTo(roomB.Rect.GetCenter());
         var totalConnections = GetRoomConnectionCount(roomA) + GetRoomConnectionCount(roomB);
+
         return distance + totalConnections * 1500f;
     }
 
@@ -107,6 +111,7 @@ public class CorridorBuilder
     private void MoveX(ref Vector2I current, int targetX)
     {
         var stepX = targetX > current.X ? 1 : -1;
+
         while (current.X != targetX)
         {
             current.X += stepX;
@@ -117,6 +122,7 @@ public class CorridorBuilder
     private void MoveY(ref Vector2I current, int targetY)
     {
         var stepY = targetY > current.Y ? 1 : -1;
+
         while (current.Y != targetY)
         {
             current.Y += stepY;
