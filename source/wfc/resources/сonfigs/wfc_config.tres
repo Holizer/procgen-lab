@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WfcConfig" format=3 uid="uid://1s8d3cr34vle"]
+
+[ext_resource type="Resource" uid="uid://dmfn3vx7jylrv" path="res://source/wfc/resources/сonfigs/wfc_wheight_config.tres" id="1_07nlr"]
+[ext_resource type="Script" uid="uid://cdat5vhkbun8e" path="res://source/wfc/resources/definitions/WfcConfig.cs" id="2_pvx7y"]
+
+[resource]
+script = ExtResource("2_pvx7y")
+Weights = ExtResource("1_07nlr")
+MaxDepth = 10
+MinSplitSize = 2

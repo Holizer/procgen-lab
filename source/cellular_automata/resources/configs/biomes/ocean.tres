@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="BiomeSettings" format=3 uid="uid://bajl4wgdy1f61"]
+
+[ext_resource type="Script" uid="uid://g6tmslfhman" path="res://source/cellular_automata/resources/definitions/PropRule.cs" id="1_h1kc1"]
+[ext_resource type="Script" uid="uid://d3k77k71hsqwy" path="res://source/cellular_automata/resources/definitions/BiomeSettings.cs" id="5_ob4hm"]
+
+[sub_resource type="Resource" id="Resource_r23j3"]
+script = ExtResource("1_h1kc1")
+Type = 71
+Context = 2
+
+[resource]
+script = ExtResource("5_ob4hm")
+Type = 11
+PropDensity = 5.0
+PropRules = Array[ExtResource("1_h1kc1")]([SubResource("Resource_r23j3")])

@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bmhxnmkn1k8ou"]
+
+[ext_resource type="Texture2D" uid="uid://c8tpbw5fljdhf" path="res://Assets/LevelsTileSets/BSP/2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/vampire/v2/vampire_v2_1.png" id="1_3ugv8"]
+[ext_resource type="Texture2D" uid="uid://b77yxke8mvrp" path="res://Assets/LevelsTileSets/BSP/2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/vampire/v2/vampire_v2_2.png" id="2_1b1c7"]
+[ext_resource type="Texture2D" uid="uid://dxmc7b1h857qu" path="res://Assets/LevelsTileSets/BSP/2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/vampire/v2/vampire_v2_3.png" id="3_r4846"]
+[ext_resource type="Texture2D" uid="uid://b1gonfvmdop4" path="res://Assets/LevelsTileSets/BSP/2D Pixel Dungeon Asset Pack/Character_animation/monsters_idle/vampire/v2/vampire_v2_4.png" id="4_8llae"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7p3gs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3ugv8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1b1c7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_r4846")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8llae")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Entity" type="Node2D" unique_id=237085532]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2122311732]
+sprite_frames = SubResource("SpriteFrames_7p3gs")
+autoplay = "default"
+frame_progress = 0.053869203

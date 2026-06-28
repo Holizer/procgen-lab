@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bajeecl3u4a08"]
+
+[ext_resource type="Texture2D" uid="uid://dh8bnmacfjql3" path="res://assets/tilesets/2d_pixel_dungeon/сharacter_animation/monsters_idle/skeleton1/skeleton_1.png" id="1_ppaf7"]
+[ext_resource type="Texture2D" uid="uid://b5yrykeaqmae2" path="res://assets/tilesets/2d_pixel_dungeon/сharacter_animation/monsters_idle/skeleton1/skeleton_2.png" id="2_vdb6c"]
+[ext_resource type="Texture2D" uid="uid://cppwr6wnd4pwf" path="res://assets/tilesets/2d_pixel_dungeon/сharacter_animation/monsters_idle/skeleton1/skeleton_3.png" id="3_4n0ax"]
+[ext_resource type="Texture2D" uid="uid://d33yrjkmhdcib" path="res://assets/tilesets/2d_pixel_dungeon/сharacter_animation/monsters_idle/skeleton1/skeleton_4.png" id="4_utp7i"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7p3gs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ppaf7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_vdb6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4n0ax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_utp7i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Entity" type="Node2D" unique_id=237085532]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2122311732]
+sprite_frames = SubResource("SpriteFrames_7p3gs")
+autoplay = "default"
+frame_progress = 0.3936296

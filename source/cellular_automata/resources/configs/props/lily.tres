@@ -1,0 +1,14 @@
+[gd_resource type="Resource" format=3 uid="uid://hndhq5kl7wld"]
+
+[ext_resource type="Script" uid="uid://bf35s2g22re5e" path="res://source/cellular_automata/resources/definitions/PropData.cs" id="1_fyqvt"]
+[ext_resource type="Script" uid="uid://db33brhoatumo" path="res://source/cellular_automata/resources/definitions/PropGroup.cs" id="2_dln88"]
+
+[sub_resource type="Resource" id="Resource_b6nwk"]
+script = ExtResource("1_fyqvt")
+Tag = "lily"
+metadata/_custom_type_script = "uid://cp0i12k2i0v8e"
+
+[resource]
+script = ExtResource("2_dln88")
+Type = 17
+Variations = Array[Object]([SubResource("Resource_b6nwk")])

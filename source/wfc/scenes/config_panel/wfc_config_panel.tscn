@@ -1,0 +1,173 @@
+[gd_scene format=3 uid="uid://bra36gkawo4np"]
+
+[ext_resource type="Script" uid="uid://br4l7h7c76250" path="res://Source/WFC/Scenes/ConfigPanel/WfcConfigPanel.cs" id="1_xl67d"]
+[ext_resource type="PackedScene" uid="uid://cym1gi22r1n8s" path="res://Source/Shared/UI/ConfigRow/сonfig_row.tscn" id="3_q7my4"]
+[ext_resource type="PackedScene" uid="uid://wjmcuh18vcqi" path="res://Source/Shared/UI/RowDescriptionPanel/row_description_panel.tscn" id="5_wb44u"]
+[ext_resource type="PackedScene" uid="uid://bp0wqslkwp8ep" path="res://Source/Shared/UI/ScrollPanel/scroll_panel.tscn" id="6_wb44u"]
+
+[node name="WFCConfigPanel" type="Control" unique_id=1120707116 node_paths=PackedStringArray("WeightsRowsContainer", "BspSettingsContainer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xl67d")
+WeightsRowsContainer = NodePath("SettingsAnchor/WeightPanel")
+BspSettingsContainer = NodePath("SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer/ItemContainer2")
+ConfigRowScene = ExtResource("3_q7my4")
+
+[node name="SettingsAnchor" type="Control" parent="." unique_id=648528795]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -185.0
+offset_right = 185.0
+grow_horizontal = 2
+
+[node name="SettingsPanel" parent="SettingsAnchor" unique_id=1391092548 instance=ExtResource("6_wb44u")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -185.0
+offset_right = 185.0
+offset_bottom = 442.0
+grow_horizontal = 2
+TitleText = "Wave Function Collapse
+Settings"
+
+[node name="TitleLabel" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1391092548, 1367772229) index="0" unique_id=36782893]
+text = "Wave Function Collapse
+Settings"
+
+[node name="MapWidthInChunks" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="0" unique_id=1182190479 instance=ExtResource("3_q7my4")]
+unique_name_in_owner = true
+layout_mode = 2
+LabelText = "Map Width In Chunks"
+LabelTooltip = "[color=#f2be32][b]Map Width[/b][/color]
+[color=#8e6e53][i]Unit: Chunks | Range: 4 - 32 Chunks[/i][/color]
+
+[b]Effect:[/b] Sets the horizontal map size in large puzzle chunks (Macro Cells).
+(e.g., at 15 tiles per chunk, a width of 10 chunks creates a grid 150 tiles wide).
+
+[b]Visual Result:[/b] 
+[color=#5cb85c]Larger:[/color] Broadens the map horizontally, allowing for many more connected macro-territories.
+[color=#d9534f]Smaller:[/color] Narrows the world, limiting the puzzle area to a tight, compact layout."
+
+[node name="MapHeightInChunks" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="1" unique_id=1210564527 instance=ExtResource("3_q7my4")]
+unique_name_in_owner = true
+layout_mode = 2
+LabelText = "Map Height In Chunks"
+LabelTooltip = "[color=#f2be32][b]Map Height[/b][/color]
+[color=#8e6e53][i]Unit: Chunks | Range: 4 - 32 Chunks[/i][/color]
+
+[b]Effect:[/b] Sets the vertical map size in large puzzle chunks (Macro Cells).
+(e.g., at 15 tiles per chunk, a height of 10 chunks creates a grid 150 tiles tall).
+
+[b]Visual Result:[/b] 
+[color=#5cb85c]Larger:[/color] Extends the world vertically, giving the WFC solver room to build tall layouts.
+[color=#d9534f]Smaller:[/color] Shortens the map boundaries, making the level compact."
+
+[node name="UseBspTopology" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="2" unique_id=248412759 instance=ExtResource("3_q7my4")]
+unique_name_in_owner = true
+layout_mode = 2
+LabelText = "Use BSP Topology"
+LabelTooltip = "[color=#f2be32][b]Use BSP Topology[/b][/color]
+[color=#8e6e53][i]Toggle | Boolean[/i][/color]
+
+[b]Effect:[/b] Constrains the WFC solver using a BSP-generated room graph as a macro-level skeleton.
+
+[b]Visual Result:[/b] Rooms and corridors follow a structured layout. Disable for a fully unconstrained wave collapse."
+Type = 1
+
+[node name="ItemContainer2" type="VBoxContainer" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="3" unique_id=1163697196]
+visible = false
+layout_mode = 2
+
+[node name="MaxDepth" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer/ItemContainer2" unique_id=1259980806 instance=ExtResource("3_q7my4")]
+layout_mode = 2
+LabelText = "Macro Subdivision Depth"
+LabelTooltip = "[color=#f2be32][b]Macro Subdivision Depth[/b][/color]
+[color=#8e6e53][i]Unit: Split Levels | Range: 1 - 20[/i][/color]
+
+[b]Effect:[/b] The maximum number of times the global map can be recursively split into smaller macro-zones before the WFC solver starts.
+
+[b]Visual Result:[/b] 
+
+[color=#5cb85c]Higher value:[/color] Divides the map into a complex network of many small, highly detailed macro-blocks.
+
+[color=#d9534f]Lower value:[/color] The map is split into only a few massive blocks, creating simple, large, uniform territories."
+
+[node name="MinSplitSize" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer/ItemContainer2" unique_id=1672422728 instance=ExtResource("3_q7my4")]
+layout_mode = 2
+LabelText = "Min Macro Split Size"
+LabelTooltip = "[color=#f2be32][b]Min Macro Split Size[/b][/color]
+[color=#8e6e53][i]Unit: Macro Cells | Range: 1 - 10[/i][/color]
+
+[b]Effect:[/b] Defines the absolute smallest size a subdivided zone can be, measured in macro-cells/blocks. The generator will stop splitting if a zone gets smaller than this.
+
+[b]Visual Result:[/b] 
+
+[color=#5cb85c]Higher value:[/color] Guarantees that all generated macro-zones remain large and spacious.
+
+[color=#d9534f]Lower value:[/color] Allows zones to shrink down to individual tiny blocks, creating highly fractured layouts."
+
+[node name="AspectRatioThreshold" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer/ItemContainer2" unique_id=145925133 instance=ExtResource("3_q7my4")]
+layout_mode = 2
+LabelText = "Macro Elongation Limit"
+LabelTooltip = "[color=#f2be32][b]Macro Elongation Limit[/b][/color]
+[color=#8e6e53][i]Unit: Ratio | Range: 1.0 - 3.0[/i][/color]
+
+[b]Effect:[/b] Limits how stretched a macro-zone can be. If a zone’s length exceeds its width by this factor, it forces a split to prevent extremely narrow rooms.
+
+[b]Visual Result:[/b]
+ 
+[color=#5cb85c]Higher value:[/color] Allows the generation of long, narrow, corridor-like macro-regions.
+
+[color=#d9534f]Close to 1.0:[/color] Forces all macro-zones to remain strictly square, blocky, and symmetrical."
+
+[node name="UseRandomSeed" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="4" unique_id=2136915381 instance=ExtResource("3_q7my4")]
+unique_name_in_owner = true
+layout_mode = 2
+LabelText = "Use Random Seed"
+LabelTooltip = "[color=#f2be32][b]Use Random Seed[/b][/color]
+[color=#8e6e53][i]Toggle | Boolean[/i][/color]
+
+[b]Effect:[/b] Automatically generates a completely new seed for each run.
+
+[b]Visual Result:[/b] Every single click of the \"Generate\" button will produce a brand new, unique island layout."
+Type = 1
+
+[node name="Seed" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="5" unique_id=1421268399 instance=ExtResource("3_q7my4")]
+unique_name_in_owner = true
+layout_mode = 2
+LabelText = "Manual Seed"
+LabelTooltip = "[color=#f2be32][b]Manual Seed[/b][/color]
+[color=#8e6e53][i]Integer Value[/i][/color]
+
+[b]Effect:[/b] Allows you to input a specific numerical key to build the map.
+
+[b]Visual Result:[/b] Using the exact same seed value will always reproduce the identical world layout. Perfect for sharing maps with others!"
+
+[node name="RowDescriptionPanel" parent="SettingsAnchor" unique_id=2053969804 instance=ExtResource("5_wb44u")]
+layout_mode = 1
+offset_left = -290.0
+offset_right = -10.0
+
+[node name="WeightPanel" parent="SettingsAnchor" unique_id=1101002889 instance=ExtResource("6_wb44u")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 10.0
+offset_right = 325.0
+offset_bottom = 355.0
+grow_horizontal = 0
+TitleText = "Weights Settings"
+
+[node name="SettingsAnchor_SettingsPanel_MarginContainer_VBoxContainer_ScrollContainer_ItemContainer_UseBSPTopology#VBoxContainer" type="VBoxContainer" parent="." unique_id=1999121581]
+layout_mode = 0
+
+[editable path="SettingsAnchor/SettingsPanel"]

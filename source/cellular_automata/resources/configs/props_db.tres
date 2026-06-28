@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PropDatabase" format=3 uid="uid://dvn4w5q5le622"]
+
+[ext_resource type="Script" uid="uid://q41sru7ro8sm" path="res://source/cellular_automata/resources/definitions/PropDatabase.cs" id="1_1p6jc"]
+[ext_resource type="Script" uid="uid://db33brhoatumo" path="res://source/cellular_automata/resources/definitions/PropGroup.cs" id="1_f82ga"]
+[ext_resource type="Resource" uid="uid://bcps4y1aoru57" path="res://source/cellular_automata/resources/configs/props/grass.tres" id="2_ekbct"]
+[ext_resource type="Resource" uid="uid://dyjbp7volpa25" path="res://source/cellular_automata/resources/configs/props/flower.tres" id="3_cjs2b"]
+[ext_resource type="Resource" uid="uid://kp3iju5yv16j" path="res://source/cellular_automata/resources/configs/props/ground_rock.tres" id="4_533t7"]
+[ext_resource type="Resource" uid="uid://dk7e2c7wngudm" path="res://source/cellular_automata/resources/configs/props/branch.tres" id="5_3466h"]
+[ext_resource type="Resource" uid="uid://14fq2wocyhgv" path="res://source/cellular_automata/resources/configs/props/bush.tres" id="6_jvdxn"]
+[ext_resource type="Resource" uid="uid://bpar3jh14n7ml" path="res://source/cellular_automata/resources/configs/props/mushroom.tres" id="8_0pry4"]
+[ext_resource type="Resource" uid="uid://hndhq5kl7wld" path="res://source/cellular_automata/resources/configs/props/lily.tres" id="9_or63u"]
+[ext_resource type="Resource" uid="uid://d3sldec3t4yo" path="res://source/cellular_automata/resources/configs/props/oak.tres" id="10_533t7"]
+[ext_resource type="Resource" uid="uid://dblgonkyeavnm" path="res://source/cellular_automata/resources/configs/props/water_rock.tres" id="10_g8s4c"]
+[ext_resource type="Resource" uid="uid://dguew5nktos3i" path="res://source/cellular_automata/resources/configs/props/spurce.tres" id="11_3466h"]
+
+[resource]
+script = ExtResource("1_1p6jc")
+Groups = Array[ExtResource("1_f82ga")]([ExtResource("2_ekbct"), ExtResource("3_cjs2b"), ExtResource("4_533t7"), ExtResource("5_3466h"), ExtResource("6_jvdxn"), ExtResource("8_0pry4"), ExtResource("9_or63u"), ExtResource("10_g8s4c"), ExtResource("10_533t7"), ExtResource("11_3466h")])

@@ -1,0 +1,70 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="procgen-lab"
+run/main_scene="uid://b1lcqwpcmh2nm"
+config/features=PackedStringArray("4.7", "C#", "Forward Plus")
+config/icon="uid://duixk6c7wn0wv"
+config/windows_native_icon="res://icon.ico"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/mode=3
+window/stretch/mode="canvas_items"
+
+[dotnet]
+
+project/assembly_name="procgen-lab"
+
+[editor_plugins]
+
+enabled=PackedStringArray()
+
+[gui]
+
+theme/custom="uid://dnqultoxu00ss"
+theme/custom_font="uid://7luemu2pby6d"
+
+[importer_defaults]
+
+YATI={
+"add_class_as_metadata": false,
+"add_id_as_metadata": false,
+"custom_data_prefix": "data_",
+"map_wangset_to_terrain": false,
+"no_alternative_tiles": false,
+"post_processor": "",
+"save_tileset_to": "",
+"tiled_project_file": "",
+"use_default_filter": false
+}
+
+[input]
+
+regenerate={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)
+]
+}
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+rendering_device/driver.windows="d3d12"
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true

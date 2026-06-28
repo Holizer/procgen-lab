@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CaConfig" format=3 uid="uid://ux5aen4uft8u"]
+
+[ext_resource type="Resource" uid="uid://ctx786lnwl330" path="res://source/cellular_automata/resources/configs/biomes/clearing.tres" id="1_vaoom"]
+[ext_resource type="Resource" uid="uid://bdh54a15lrhw4" path="res://source/cellular_automata/resources/configs/biomes/coniferous_forest.tres" id="2_rnkxn"]
+[ext_resource type="Resource" uid="uid://be7i10qpno4q4" path="res://source/cellular_automata/resources/configs/biomes/lake.tres" id="3_wfhqk"]
+[ext_resource type="Resource" uid="uid://t5u2hxsohjad" path="res://source/cellular_automata/resources/configs/biomes/mixed_forest.tres" id="4_w2kfn"]
+[ext_resource type="Resource" uid="uid://d1xor3tucn76q" path="res://source/cellular_automata/resources/configs/biomes/oak_forest.tres" id="5_e3sk1"]
+[ext_resource type="Resource" uid="uid://bajl4wgdy1f61" path="res://source/cellular_automata/resources/configs/biomes/ocean.tres" id="6_mobvn"]
+[ext_resource type="Resource" uid="uid://xulapssj8qvr" path="res://source/cellular_automata/resources/configs/biomes/sparse.tres" id="7_pkqlq"]
+[ext_resource type="Resource" uid="uid://dvn4w5q5le622" path="res://source/cellular_automata/resources/configs/props_db.tres" id="8_v14mt"]
+[ext_resource type="Script" uid="uid://dc1l2lc2k81dd" path="res://source/cellular_automata/resources/definitions/CaConfig.cs" id="9_f1s2n"]
+
+[resource]
+script = ExtResource("9_f1s2n")
+BiomesSettings = Array[Object]([ExtResource("1_vaoom"), ExtResource("2_rnkxn"), ExtResource("3_wfhqk"), ExtResource("4_w2kfn"), ExtResource("5_e3sk1"), ExtResource("6_mobvn"), ExtResource("7_pkqlq")])
+BiomeNoiseFrequency = 0.030000000000000002
+PropDatabase = ExtResource("8_v14mt")

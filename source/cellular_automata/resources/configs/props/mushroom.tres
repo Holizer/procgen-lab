@@ -1,0 +1,14 @@
+[gd_resource type="Resource" format=3 uid="uid://bpar3jh14n7ml"]
+
+[ext_resource type="Script" uid="uid://bf35s2g22re5e" path="res://source/cellular_automata/resources/definitions/PropData.cs" id="1_u6g4e"]
+[ext_resource type="Script" uid="uid://db33brhoatumo" path="res://source/cellular_automata/resources/definitions/PropGroup.cs" id="2_7x7gx"]
+
+[sub_resource type="Resource" id="Resource_icuc3"]
+script = ExtResource("1_u6g4e")
+Tag = "mushroom"
+metadata/_custom_type_script = "uid://cp0i12k2i0v8e"
+
+[resource]
+script = ExtResource("2_7x7gx")
+Type = 2
+Variations = Array[Object]([SubResource("Resource_icuc3")])

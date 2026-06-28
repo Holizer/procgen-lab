@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="BiomeSettings" format=3 uid="uid://xulapssj8qvr"]
+
+[ext_resource type="Script" uid="uid://g6tmslfhman" path="res://source/cellular_automata/resources/definitions/PropRule.cs" id="1_j16qb"]
+[ext_resource type="Script" uid="uid://d3k77k71hsqwy" path="res://source/cellular_automata/resources/definitions/BiomeSettings.cs" id="8_gfmmd"]
+
+[sub_resource type="Resource" id="Resource_qn3ao"]
+script = ExtResource("1_j16qb")
+
+[sub_resource type="Resource" id="Resource_0ymvv"]
+script = ExtResource("1_j16qb")
+Type = 1
+Weight = 8
+
+[sub_resource type="Resource" id="Resource_7utgp"]
+script = ExtResource("1_j16qb")
+Type = 2
+Weight = 2
+
+[sub_resource type="Resource" id="Resource_lcko8"]
+script = ExtResource("1_j16qb")
+Type = 4
+Weight = 2
+
+[sub_resource type="Resource" id="Resource_8t1x8"]
+script = ExtResource("1_j16qb")
+Type = 51
+Weight = 20
+metadata/_custom_type_script = "uid://6cqgkeooecma"
+
+[resource]
+script = ExtResource("8_gfmmd")
+Type = 1
+PropDensity = 60.0
+PropRules = Array[ExtResource("1_j16qb")]([SubResource("Resource_qn3ao"), SubResource("Resource_0ymvv"), SubResource("Resource_7utgp"), SubResource("Resource_lcko8"), SubResource("Resource_8t1x8")])

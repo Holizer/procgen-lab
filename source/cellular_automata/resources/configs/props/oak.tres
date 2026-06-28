@@ -1,0 +1,37 @@
+[gd_resource type="Resource" format=3 uid="uid://d3sldec3t4yo"]
+
+[ext_resource type="Script" uid="uid://bf35s2g22re5e" path="res://source/cellular_automata/resources/definitions/PropData.cs" id="1_261nu"]
+[ext_resource type="Script" uid="uid://db33brhoatumo" path="res://source/cellular_automata/resources/definitions/PropGroup.cs" id="2_5we1b"]
+
+[sub_resource type="Resource" id="Resource_lmpbp"]
+script = ExtResource("1_261nu")
+Tag = "oak"
+ObjectSize = Vector2i(2, 3)
+Weight = 40
+metadata/_custom_type_script = "uid://cp0i12k2i0v8e"
+
+[sub_resource type="Resource" id="Resource_ks271"]
+script = ExtResource("1_261nu")
+Tag = "leaflessless_oak"
+ObjectSize = Vector2i(2, 2)
+Weight = 2
+metadata/_custom_type_script = "uid://cp0i12k2i0v8e"
+
+[sub_resource type="Resource" id="Resource_3wbvg"]
+script = ExtResource("1_261nu")
+Tag = "felled_oak"
+ObjectSize = Vector2i(2, 2)
+Weight = 1
+metadata/_custom_type_script = "uid://cp0i12k2i0v8e"
+
+[sub_resource type="Resource" id="Resource_ithkv"]
+script = ExtResource("1_261nu")
+Tag = "oak_tripple"
+ObjectSize = Vector2i(6, 4)
+Weight = 60
+metadata/_custom_type_script = "uid://cp0i12k2i0v8e"
+
+[resource]
+script = ExtResource("2_5we1b")
+Type = 50
+Variations = Array[Object]([SubResource("Resource_lmpbp"), SubResource("Resource_ks271"), SubResource("Resource_3wbvg"), SubResource("Resource_ithkv")])

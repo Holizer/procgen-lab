@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BspConfig" format=3 uid="uid://bwd0g2vj7u2mn"]
+
+[ext_resource type="Resource" uid="uid://g2xh22yjt8dl" path="res://source/bsp/resources/configs/enemy_config.tres" id="1_i6sxf"]
+[ext_resource type="Script" uid="uid://bc0kgncst7syl" path="res://source/bsp/resources/definitions/BspConfig.cs" id="2_50fhp"]
+
+[resource]
+script = ExtResource("2_50fhp")
+EnemyConfig = ExtResource("1_i6sxf")
+MinRoomWidthPx = 96
+MinRoomHeightPx = 96
+RoomPaddingPx = 32

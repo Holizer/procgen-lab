@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bp0wqslkwp8ep"]
+
+[ext_resource type="StyleBox" uid="uid://b7orw2jsxmshu" path="res://assets/ui/themes/golden_ui/panels/golden_panel_decorated.tres" id="1_gic8l"]
+[ext_resource type="Script" uid="uid://bdwlw4esr0btw" path="res://source/shared/ui/scroll_panel/ScrollPanel.cs" id="2_cvg11"]
+[ext_resource type="FontFile" uid="uid://7luemu2pby6d" path="res://assets/fonts/quaver.ttf" id="2_e3btd"]
+[ext_resource type="Theme" uid="uid://dnqultoxu00ss" path="res://assets/ui/themes/golden_ui/golden_theme.tres" id="3_cvg11"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uf8x4"]
+font = ExtResource("2_e3btd")
+font_size = 18
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="ScrollPanel" type="PanelContainer" unique_id=1391092548 node_paths=PackedStringArray("TitleLabel", "ItemContainer", "ScrollNode")]
+offset_right = 250.0
+offset_bottom = 339.0
+theme_override_styles/panel = ExtResource("1_gic8l")
+script = ExtResource("2_cvg11")
+TitleLabel = NodePath("MarginContainer/VBoxContainer/TitleLabel")
+ItemContainer = NodePath("MarginContainer/VBoxContainer/ScrollContainer/ItemContainer")
+ScrollNode = NodePath("MarginContainer/VBoxContainer/ScrollContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1166733486]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1367772229]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=36782893]
+layout_mode = 2
+text = "Title"
+label_settings = SubResource("LabelSettings_uf8x4")
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer" unique_id=1191930301]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_cvg11")
+
+[node name="ItemContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer" unique_id=1407372978]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

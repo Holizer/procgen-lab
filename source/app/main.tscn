@@ -1,0 +1,426 @@
+[gd_scene format=3 uid="uid://b1lcqwpcmh2nm"]
+
+[ext_resource type="Script" uid="uid://l1ip4x8sd4r" path="res://source/lobby/core/GameCoordinator.cs" id="1_jypu3"]
+[ext_resource type="Texture2D" uid="uid://0gv3etqnv6u2" path="res://assets/ui/textures/arrow_pointer.png" id="2_xji3q"]
+[ext_resource type="Texture2D" uid="uid://b7w8rm2fybqmt" path="res://assets/ui/textures/mouse.png" id="3_fggjv"]
+[ext_resource type="Script" uid="uid://es23wim245gc" path="res://source/lobby/core/LevelStage.cs" id="4_gtjuo"]
+[ext_resource type="Script" uid="uid://dbk0ay4hamfvg" path="res://source/lobby/core/Camera.cs" id="5_la0cc"]
+[ext_resource type="Texture2D" uid="uid://xlg2p3e817cr" path="res://assets/ui/textures/keyboard_extras.png" id="6_gkk1s"]
+[ext_resource type="StyleBox" uid="uid://bkohwb8ojlt35" path="res://assets/ui/themes/golden_ui/panels/golden_panel_common.tres" id="7_hd2o6"]
+[ext_resource type="Script" uid="uid://cbraf7ofwnclw" path="res://source/lobby/ui/PerformanceMonitor.cs" id="8_8ggac"]
+[ext_resource type="Script" uid="uid://0okhwqhoaf6l" path="res://source/lobby/ui/MainMenuHud.cs" id="9_rh7da"]
+[ext_resource type="Script" uid="uid://wvnhvldsuhsr" path="res://source/lobby/resources/ProcGenWorldOption.cs" id="10_qyih8"]
+[ext_resource type="PackedScene" uid="uid://cbma31oehx75f" path="res://source/bsp/scenes/config_panel/bsp_config_panel.tscn" id="11_ks0v6"]
+[ext_resource type="Resource" uid="uid://bwd0g2vj7u2mn" path="res://source/bsp/resources/configs/bsp_config.tres" id="12_jyioa"]
+[ext_resource type="PackedScene" uid="uid://cityjj8la0lo" path="res://source/bsp/scenes/bsp_main.tscn" id="13_rj4rc"]
+[ext_resource type="PackedScene" uid="uid://dc2c83of4lxte" path="res://source/cellular_automata/scenes/config_panel/сa_сonfig_panel.tscn" id="14_e4wht"]
+[ext_resource type="Resource" uid="uid://ux5aen4uft8u" path="res://source/cellular_automata/resources/configs/ca_config.tres" id="15_anm26"]
+[ext_resource type="PackedScene" uid="uid://bal5p7mawl1jv" path="res://source/cellular_automata/scenes/ca_main.tscn" id="16_a675d"]
+[ext_resource type="PackedScene" uid="uid://bra36gkawo4np" path="res://source/wfc/scenes/config_panel/wfc_config_panel.tscn" id="17_rqyrn"]
+[ext_resource type="Resource" uid="uid://1s8d3cr34vle" path="res://source/wfc/resources/сonfigs/wfc_config.tres" id="18_ywp0e"]
+[ext_resource type="PackedScene" uid="uid://b4bg4eyigr41g" path="res://source/wfc/scenes/wfc_main.tscn" id="19_0tw4g"]
+[ext_resource type="Texture2D" uid="uid://b026p3osqmka7" path="res://assets/ui/themes/golden_ui/back_button/back_button_normal.tres" id="20_xyvg5"]
+[ext_resource type="Texture2D" uid="uid://r210rj8qpsmn" path="res://assets/ui/themes/golden_ui/back_button/back_button_hovered.tres" id="21_cnboq"]
+[ext_resource type="FontFile" uid="uid://7luemu2pby6d" path="res://assets/fonts/quaver.ttf" id="22_4bcei"]
+[ext_resource type="Texture2D" uid="uid://soxxds2olua3" path="res://assets/ui/themes/golden_ui/quit_button/quit_button_normal.tres" id="23_yrhi6"]
+[ext_resource type="Texture2D" uid="uid://dxa41y04hpawx" path="res://assets/ui/themes/golden_ui/quit_button/quit_button_hovered.tres" id="24_qakib"]
+[ext_resource type="Texture2D" uid="uid://ce1xta6b4kx4y" path="res://assets/ui/themes/golden_ui/cursor/pointer.tres" id="25_npvl2"]
+[ext_resource type="Script" uid="uid://ckfqs2nd231mq" path="res://source/lobby/ui/CursorSprite.cs" id="26_uc5gi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_suach"]
+font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_8mju2"]
+font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_4sfge"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6jju"]
+atlas = ExtResource("6_gkk1s")
+region = Rect2(64, 32, 32, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eshy1"]
+texture = SubResource("AtlasTexture_a6jju")
+texture_margin_left = 4.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="Resource" id="Resource_suach"]
+script = ExtResource("10_qyih8")
+Type = 1
+Scene = ExtResource("13_rj4rc")
+ConfigPanel = ExtResource("11_ks0v6")
+DefaultConfig = ExtResource("12_jyioa")
+
+[sub_resource type="Resource" id="Resource_01ok1"]
+script = ExtResource("10_qyih8")
+Scene = ExtResource("16_a675d")
+ConfigPanel = ExtResource("14_e4wht")
+DefaultConfig = ExtResource("15_anm26")
+
+[sub_resource type="Resource" id="Resource_iv70r"]
+script = ExtResource("10_qyih8")
+Type = 2
+Scene = ExtResource("19_0tw4g")
+ConfigPanel = ExtResource("17_rqyrn")
+DefaultConfig = ExtResource("18_ywp0e")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hep7x"]
+texture = ExtResource("20_xyvg5")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a1wpp"]
+texture = ExtResource("21_cnboq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_klqev"]
+texture = ExtResource("23_yrhi6")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sqa74"]
+texture = ExtResource("24_qakib")
+
+[node name="Lobby" type="Control" unique_id=862285698 node_paths=PackedStringArray("MainMenuHud", "PerformanceMonitor", "RegenerateLevelHint", "LevelStage")]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jypu3")
+MainMenuHud = NodePath("Hud/MainMenu")
+PerformanceMonitor = NodePath("Hud/PerfomnacePanel")
+RegenerateLevelHint = NodePath("Hud/RegenerateLevel")
+LevelStage = NodePath("SubViewportContainer/SubViewport/LevelStage")
+
+[node name="Background" type="ColorRect" parent="." unique_id=536950690]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ArrowPointer" type="Sprite2D" parent="Background" unique_id=1891815555]
+position = Vector2(582, 135)
+scale = Vector2(2.4583323, 2.458333)
+texture = ExtResource("2_xji3q")
+
+[node name="SelectAlgorithmLabel" type="Label" parent="Background" unique_id=341142463]
+layout_mode = 0
+offset_left = 335.0
+offset_top = 173.0
+offset_right = 560.0
+offset_bottom = 256.0
+text = "SELECT 
+ALGORITHM"
+label_settings = SubResource("LabelSettings_suach")
+
+[node name="Mouse" type="Sprite2D" parent="Background" unique_id=271435640]
+position = Vector2(938.75, 244.25)
+scale = Vector2(2.5104153, 2.6770837)
+texture = ExtResource("3_fggjv")
+
+[node name="MouseHintLabel" type="Label" parent="Background" unique_id=1010600232]
+layout_mode = 0
+offset_left = 769.0
+offset_top = 321.0
+offset_right = 1149.0
+offset_bottom = 404.0
+text = "Hold middle mouse
+to pan camera"
+label_settings = SubResource("LabelSettings_8mju2")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=483254814]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 10.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=2102206195]
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+msaa_2d = 1
+msaa_3d = 1
+screen_space_aa = 1
+canvas_item_default_texture_filter = 0
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="LevelStage" type="Node2D" parent="SubViewportContainer/SubViewport" unique_id=1820395066]
+script = ExtResource("4_gtjuo")
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport" unique_id=1509779193]
+anchor_mode = 0
+limit_enabled = false
+script = ExtResource("5_la0cc")
+
+[node name="Hud" type="MarginContainer" parent="." unique_id=843975563]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="RegenerateLevel" type="HBoxContainer" parent="Hud" unique_id=1533163496]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="Label" type="Label" parent="Hud/RegenerateLevel" unique_id=961524355]
+layout_mode = 2
+text = "Regenerate"
+label_settings = SubResource("LabelSettings_4sfge")
+
+[node name="Button" type="Button" parent="Hud/RegenerateLevel" unique_id=1076136336]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_eshy1")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_eshy1")
+theme_override_styles/hover = SubResource("StyleBoxTexture_eshy1")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_eshy1")
+theme_override_styles/focus = SubResource("StyleBoxTexture_eshy1")
+icon = SubResource("AtlasTexture_a6jju")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="PerfomnacePanel" type="PanelContainer" parent="Hud" unique_id=1243985764 node_paths=PackedStringArray("AlgoValueLabel", "TimeValueLabel", "MemoryValueLabel", "SeedValueLabel")]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/panel = ExtResource("7_hd2o6")
+script = ExtResource("8_8ggac")
+AlgoValueLabel = NodePath("MarginContainer/VBoxContainer/MarginContainer/GridContainer/AlgoValueLabel")
+TimeValueLabel = NodePath("MarginContainer/VBoxContainer/MarginContainer/GridContainer/TimeValueLabel")
+MemoryValueLabel = NodePath("MarginContainer/VBoxContainer/MarginContainer/GridContainer/MemoryValueLabel")
+SeedValueLabel = NodePath("MarginContainer/VBoxContainer/MarginContainer/GridContainer/SeedValueLabel")
+
+[node name="MarginContainer" type="MarginContainer" parent="Hud/PerfomnacePanel" unique_id=516683446]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Hud/PerfomnacePanel/MarginContainer" unique_id=1691897277]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="Hud/PerfomnacePanel/MarginContainer/VBoxContainer" unique_id=295578474]
+layout_mode = 2
+text = "DIAGNOSTICS"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ColorRect" type="ColorRect" parent="Hud/PerfomnacePanel/MarginContainer/VBoxContainer" unique_id=550730897]
+custom_minimum_size = Vector2(2, 2)
+layout_mode = 2
+color = Color(0.38431373, 0.25490198, 0.03529412, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Hud/PerfomnacePanel/MarginContainer/VBoxContainer" unique_id=1446754653]
+layout_mode = 2
+theme_override_constants/margin_top = 2
+
+[node name="GridContainer" type="GridContainer" parent="Hud/PerfomnacePanel/MarginContainer/VBoxContainer/MarginContainer" unique_id=938542488]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+columns = 2
+
+[node name="AlgoLabel" type="Label" parent="Hud/PerfomnacePanel/MarginContainer/VBoxContainer/MarginContainer/GridContainer" unique_id=118589873]
+layout_mode = 2
+text = "ALGORITHM"
+
+[node name="AlgoValueLabel" type="Label" parent="Hud/PerfomnacePanel/MarginContainer/VBoxContainer/MarginContainer/GridContainer" unique_id=1641362533]
+layout_mode = 2
+size_flags_horizontal = 11
+
+[node name="TimeLabel" type="Label" parent="Hud/PerfomnacePanel/MarginContainer/VBoxContainer/MarginContainer/GridContainer" unique_id=1555371882]
+layout_mode = 2
+text = "GEN TIME"
+
+[node name="TimeValueLabel" type="Label" parent="Hud/PerfomnacePanel/MarginContainer/VBoxContainer/MarginContainer/GridContainer" unique_id=120584086]
+layout_mode = 2
+size_flags_horizontal = 11
+
+[node name="MemoryLabel" type="Label" parent="Hud/PerfomnacePanel/MarginContainer/VBoxContainer/MarginContainer/GridContainer" unique_id=1172249070]
+layout_mode = 2
+text = "RAM DELTA"
+
+[node name="MemoryValueLabel" type="Label" parent="Hud/PerfomnacePanel/MarginContainer/VBoxContainer/MarginContainer/GridContainer" unique_id=823167885]
+layout_mode = 2
+size_flags_horizontal = 11
+
+[node name="SeedLabel" type="Label" parent="Hud/PerfomnacePanel/MarginContainer/VBoxContainer/MarginContainer/GridContainer" unique_id=1772213925]
+layout_mode = 2
+text = "SEED"
+
+[node name="SeedValueLabel" type="Label" parent="Hud/PerfomnacePanel/MarginContainer/VBoxContainer/MarginContainer/GridContainer" unique_id=1498640915]
+layout_mode = 2
+size_flags_horizontal = 11
+
+[node name="MainMenu" type="VBoxContainer" parent="Hud" unique_id=449388410 node_paths=PackedStringArray("AlgorithmsSelectorContainer", "ConfigPanelContainer", "GenerateButton", "QuitButton", "BackButton")]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+script = ExtResource("9_rh7da")
+Worlds = Array[ExtResource("10_qyih8")]([SubResource("Resource_suach"), SubResource("Resource_01ok1"), SubResource("Resource_iv70r")])
+AlgorithmsSelectorContainer = NodePath("HeaderArchon/AlgorithmsSelectorPanel")
+ConfigPanelContainer = NodePath("ConfigArchon/ConfigPanleStage")
+GenerateButton = NodePath("ConfigArchon/GenerateButton")
+QuitButton = NodePath("HeaderArchon/QuitButton")
+BackButton = NodePath("HeaderArchon/BackButton")
+
+[node name="HeaderArchon" type="Control" parent="Hud/MainMenu" unique_id=923371825]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="BackButton" type="Button" parent="Hud/MainMenu/HeaderArchon" unique_id=658930582]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -16.0
+offset_right = 32.0
+offset_bottom = 16.0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxTexture_hep7x")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_a1wpp")
+theme_override_styles/hover = SubResource("StyleBoxTexture_a1wpp")
+theme_override_styles/focus = SubResource("StyleBoxTexture_a1wpp")
+
+[node name="AlgorithmsSelectorPanel" type="PanelContainer" parent="Hud/MainMenu/HeaderArchon" unique_id=323493652]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -89.0
+offset_right = 89.0
+offset_bottom = 56.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("7_hd2o6")
+
+[node name="HBox" type="HBoxContainer" parent="Hud/MainMenu/HeaderArchon/AlgorithmsSelectorPanel" unique_id=1981223212]
+layout_mode = 2
+alignment = 1
+
+[node name="BSPButton" type="Button" parent="Hud/MainMenu/HeaderArchon/AlgorithmsSelectorPanel/HBox" unique_id=896626378]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_colors/font_pressed_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_colors/font_hover_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_fonts/font = ExtResource("22_4bcei")
+theme_override_font_sizes/font_size = 18
+text = "BSP"
+flat = true
+icon_alignment = 1
+
+[node name="CAButton" type="Button" parent="Hud/MainMenu/HeaderArchon/AlgorithmsSelectorPanel/HBox" unique_id=1340474878]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_colors/font_pressed_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_colors/font_hover_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_fonts/font = ExtResource("22_4bcei")
+theme_override_font_sizes/font_size = 18
+text = "CA"
+flat = true
+icon_alignment = 1
+
+[node name="WFCButton" type="Button" parent="Hud/MainMenu/HeaderArchon/AlgorithmsSelectorPanel/HBox" unique_id=209248011]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_colors/font_pressed_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_colors/font_hover_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+theme_override_fonts/font = ExtResource("22_4bcei")
+theme_override_font_sizes/font_size = 18
+text = "WFC"
+flat = true
+icon_alignment = 1
+
+[node name="QuitButton" type="Button" parent="Hud/MainMenu/HeaderArchon" unique_id=1860244663]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxTexture_klqev")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_sqa74")
+theme_override_styles/hover = SubResource("StyleBoxTexture_sqa74")
+theme_override_styles/focus = SubResource("StyleBoxTexture_sqa74")
+
+[node name="ConfigArchon" type="Control" parent="Hud/MainMenu" unique_id=2051945211]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="ConfigPanleStage" type="VBoxContainer" parent="Hud/MainMenu/ConfigArchon" unique_id=2074425658]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+size_flags_vertical = 3
+
+[node name="GenerateButton" type="Button" parent="Hud/MainMenu/ConfigArchon" unique_id=1611200163]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -29.0
+offset_right = 76.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 18
+text = "Generate"
+
+[node name="CursorLayer" type="CanvasLayer" parent="." unique_id=168272111]
+layer = 100
+
+[node name="CursorSprite" type="Sprite2D" parent="CursorLayer" unique_id=1928583157]
+texture = ExtResource("25_npvl2")
+script = ExtResource("26_uc5gi")
+
+[connection signal="pressed" from="Hud/MainMenu/HeaderArchon/BackButton" to="Hud/MainMenu" method="OnBackPressed"]
+[connection signal="pressed" from="Hud/MainMenu/HeaderArchon/AlgorithmsSelectorPanel/HBox/BSPButton" to="Hud/MainMenu" method="OnBspButtonPressed"]
+[connection signal="pressed" from="Hud/MainMenu/HeaderArchon/AlgorithmsSelectorPanel/HBox/CAButton" to="Hud/MainMenu" method="OnCaButtonPressed"]
+[connection signal="pressed" from="Hud/MainMenu/HeaderArchon/AlgorithmsSelectorPanel/HBox/WFCButton" to="Hud/MainMenu" method="OnWfcButtonPressed"]
+[connection signal="pressed" from="Hud/MainMenu/HeaderArchon/QuitButton" to="Hud/MainMenu" method="OnQuitPressed"]
+[connection signal="pressed" from="Hud/MainMenu/ConfigArchon/GenerateButton" to="Hud/MainMenu" method="OnGeneratePressed"]

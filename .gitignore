@@ -18,9 +18,28 @@ obj/
 *.log
 *.dmp
 
+License – no to distribute
+assets/tilesets/free_2d_top_down_dungeon/
 
 !*.cs
 !*.csproj
 !*.sln
+
+!*.tscn
+!*.tres
+!*.import
+!*.gdshader
+!project.godot
+!export_presets.cfg
+
+!*.png
+!*.jpg
+!*.jpeg
+!*.wav
+!*.ogg
+!*.mp3
+!*.ttf
+!*.otf
+
 !.gitignore
 !*.md

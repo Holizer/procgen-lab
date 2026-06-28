@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bl2smdrjqnc4n"]
+
+[ext_resource type="Script" uid="uid://cip5okh8fm1ne" path="res://source/shared/ui/RandomAnimation.cs" id="1_4dt6d"]
+[ext_resource type="Texture2D" uid="uid://hmbev044mr5m" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/keys/keys_1_1.png" id="2_00vdn"]
+[ext_resource type="Texture2D" uid="uid://dc2vguck17ig" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/keys/keys_1_2.png" id="3_t3sqx"]
+[ext_resource type="Texture2D" uid="uid://be5465mj1lu72" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/keys/keys_1_3.png" id="4_g6j6o"]
+[ext_resource type="Texture2D" uid="uid://c32v8b0s2dpue" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/keys/keys_1_4.png" id="5_y85ip"]
+[ext_resource type="Texture2D" uid="uid://di1oxfm1feqqa" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/keys/keys_2_1.png" id="6_r3y31"]
+[ext_resource type="Texture2D" uid="uid://rdcwlbwiaypt" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/keys/keys_2_2.png" id="7_elyrp"]
+[ext_resource type="Texture2D" uid="uid://c31edyswlb463" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/keys/keys_2_3.png" id="8_read0"]
+[ext_resource type="Texture2D" uid="uid://bdvkpi85vtw85" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/keys/keys_2_4.png" id="9_jikh5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g7cor"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_00vdn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_t3sqx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_g6j6o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_y85ip")
+}],
+"loop": true,
+"name": &"golden",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_r3y31")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_elyrp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_read0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_jikh5")
+}],
+"loop": true,
+"name": &"silver",
+"speed": 5.0
+}]
+
+[node name="Prop" type="Node2D" unique_id=1684709698 node_paths=PackedStringArray("Sprite")]
+script = ExtResource("1_4dt6d")
+Sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1119307138]
+sprite_frames = SubResource("SpriteFrames_g7cor")
+animation = &"golden"
+autoplay = "golden"
+frame_progress = 0.72114956

@@ -1,0 +1,145 @@
+[gd_resource type="Resource" script_class="WfcWeightConfig" format=3 uid="uid://dmfn3vx7jylrv"]
+
+[ext_resource type="Script" uid="uid://mm66qjj4eojc" path="res://source/wfc/resources/definitions/WfcWeightEntry.cs" id="1_4wdik"]
+[ext_resource type="Script" uid="uid://0niubiyr7dfd" path="res://source/wfc/resources/definitions/WfcWeightConfig.cs" id="2_8jxrd"]
+
+[sub_resource type="Resource" id="Resource_0"]
+script = ExtResource("1_4wdik")
+Weight = 5.0
+
+[sub_resource type="Resource" id="Resource_1"]
+script = ExtResource("1_4wdik")
+Type = 1
+Weight = 3.0
+
+[sub_resource type="Resource" id="Resource_2"]
+script = ExtResource("1_4wdik")
+Type = 2
+Weight = 3.0
+
+[sub_resource type="Resource" id="Resource_3"]
+script = ExtResource("1_4wdik")
+Type = 3
+Weight = 1.5
+
+[sub_resource type="Resource" id="Resource_4"]
+script = ExtResource("1_4wdik")
+Type = 4
+Weight = 1.5
+
+[sub_resource type="Resource" id="Resource_5"]
+script = ExtResource("1_4wdik")
+Type = 5
+Weight = 1.5
+
+[sub_resource type="Resource" id="Resource_6"]
+script = ExtResource("1_4wdik")
+Type = 6
+Weight = 1.5
+
+[sub_resource type="Resource" id="Resource_7"]
+script = ExtResource("1_4wdik")
+Type = 7
+
+[sub_resource type="Resource" id="Resource_8"]
+script = ExtResource("1_4wdik")
+Type = 8
+
+[sub_resource type="Resource" id="Resource_9"]
+script = ExtResource("1_4wdik")
+Type = 9
+
+[sub_resource type="Resource" id="Resource_10"]
+script = ExtResource("1_4wdik")
+Type = 10
+
+[sub_resource type="Resource" id="Resource_11"]
+script = ExtResource("1_4wdik")
+Type = 11
+Weight = 0.5
+
+[sub_resource type="Resource" id="Resource_12"]
+script = ExtResource("1_4wdik")
+Type = 12
+Weight = 2.0
+
+[sub_resource type="Resource" id="Resource_13"]
+script = ExtResource("1_4wdik")
+Type = 13
+Weight = 2.0
+
+[sub_resource type="Resource" id="Resource_14"]
+script = ExtResource("1_4wdik")
+Type = 14
+Weight = 2.0
+
+[sub_resource type="Resource" id="Resource_15"]
+script = ExtResource("1_4wdik")
+Type = 15
+Weight = 2.0
+
+[sub_resource type="Resource" id="Resource_16"]
+script = ExtResource("1_4wdik")
+Type = 16
+Weight = 2.0
+
+[sub_resource type="Resource" id="Resource_17"]
+script = ExtResource("1_4wdik")
+Type = 17
+Weight = 2.0
+
+[sub_resource type="Resource" id="Resource_18"]
+script = ExtResource("1_4wdik")
+Type = 18
+Weight = 2.0
+
+[sub_resource type="Resource" id="Resource_19"]
+script = ExtResource("1_4wdik")
+Type = 19
+Weight = 2.0
+
+[sub_resource type="Resource" id="Resource_20"]
+script = ExtResource("1_4wdik")
+Type = 20
+Weight = 2.0
+metadata/_custom_type_script = "uid://capmub6v57b3h"
+
+[sub_resource type="Resource" id="Resource_21"]
+script = ExtResource("1_4wdik")
+Type = 21
+Weight = 2.0
+metadata/_custom_type_script = "uid://capmub6v57b3h"
+
+[sub_resource type="Resource" id="Resource_22"]
+script = ExtResource("1_4wdik")
+Type = 22
+Weight = 2.0
+metadata/_custom_type_script = "uid://capmub6v57b3h"
+
+[sub_resource type="Resource" id="Resource_23"]
+script = ExtResource("1_4wdik")
+Type = 23
+Weight = 2.0
+metadata/_custom_type_script = "uid://capmub6v57b3h"
+
+[sub_resource type="Resource" id="Resource_24"]
+script = ExtResource("1_4wdik")
+Type = 24
+Weight = 2.0
+metadata/_custom_type_script = "uid://capmub6v57b3h"
+
+[sub_resource type="Resource" id="Resource_25"]
+script = ExtResource("1_4wdik")
+Type = 25
+Weight = 2.0
+metadata/_custom_type_script = "uid://capmub6v57b3h"
+
+[sub_resource type="Resource" id="Resource_26"]
+script = ExtResource("1_4wdik")
+Type = 26
+Weight = 3.5
+metadata/_custom_type_script = "uid://capmub6v57b3h"
+
+[resource]
+script = ExtResource("2_8jxrd")
+Weights = Array[Object]([SubResource("Resource_0"), SubResource("Resource_1"), SubResource("Resource_2"), SubResource("Resource_3"), SubResource("Resource_4"), SubResource("Resource_5"), SubResource("Resource_6"), SubResource("Resource_7"), SubResource("Resource_8"), SubResource("Resource_9"), SubResource("Resource_10"), SubResource("Resource_11"), SubResource("Resource_12"), SubResource("Resource_13"), SubResource("Resource_14"), SubResource("Resource_15"), SubResource("Resource_16"), SubResource("Resource_17"), SubResource("Resource_18"), SubResource("Resource_19"), SubResource("Resource_20"), SubResource("Resource_21"), SubResource("Resource_22"), SubResource("Resource_23"), SubResource("Resource_24"), SubResource("Resource_25"), SubResource("Resource_26")])

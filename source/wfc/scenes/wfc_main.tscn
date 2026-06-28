@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://b4bg4eyigr41g"]
+
+[ext_resource type="Script" uid="uid://doyxscyoyra1b" path="res://source/wfc/core/WfcLevelController.cs" id="1_v24ah"]
+[ext_resource type="Resource" uid="uid://ckv7bsotxgkig" path="res://source/wfc/resources/сonfigs/wfc_chunk_catalog.tres" id="2_iax5y"]
+[ext_resource type="Script" uid="uid://5cuunx4sa0wo" path="res://source/wfc/visualization/WfcMapVisualizer.cs" id="2_vdsos"]
+[ext_resource type="Resource" uid="uid://1s8d3cr34vle" path="res://source/wfc/resources/сonfigs/wfc_config.tres" id="3_i0au7"]
+[ext_resource type="Texture2D" uid="uid://dnhjqvaehsvcp" path="res://assets/tilesets/free_2d_top_down_dungeon/walls_floor.png" id="4_p5mdd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxn3y"]
+atlas = ExtResource("4_p5mdd")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhfw1"]
+atlas = SubResource("AtlasTexture_nxn3y")
+
+[node name="WFCWorld" type="Node2D" unique_id=1202326843 node_paths=PackedStringArray("Visualizer")]
+script = ExtResource("1_v24ah")
+Visualizer = NodePath("Visualizer")
+Catalog = ExtResource("2_iax5y")
+DevConfig = ExtResource("3_i0au7")
+
+[node name="Visualizer" type="Node2D" parent="." unique_id=393811861]
+script = ExtResource("2_vdsos")
+DebugMode = null
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=220537929]
+layer = -100
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=61220939]
+texture_filter = 1
+texture_repeat = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_mhfw1")
+expand_mode = 1
+stretch_mode = 1

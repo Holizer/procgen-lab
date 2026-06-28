@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BiomeSettings" format=3 uid="uid://be7i10qpno4q4"]
+
+[ext_resource type="Script" uid="uid://g6tmslfhman" path="res://source/cellular_automata/resources/definitions/PropRule.cs" id="1_xgwn0"]
+[ext_resource type="Script" uid="uid://d3k77k71hsqwy" path="res://source/cellular_automata/resources/definitions/BiomeSettings.cs" id="5_yyi7w"]
+
+[sub_resource type="Resource" id="Resource_r23j3"]
+script = ExtResource("1_xgwn0")
+Type = 71
+Weight = 3
+Context = 3
+
+[sub_resource type="Resource" id="Resource_ja21t"]
+script = ExtResource("1_xgwn0")
+Type = 17
+Context = 3
+
+[resource]
+script = ExtResource("5_yyi7w")
+Type = 10
+PropDensity = 15.0
+PropRules = Array[ExtResource("1_xgwn0")]([SubResource("Resource_r23j3"), SubResource("Resource_ja21t")])

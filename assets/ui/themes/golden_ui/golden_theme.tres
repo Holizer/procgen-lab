@@ -1,0 +1,59 @@
+[gd_resource type="Theme" format=3 uid="uid://dnqultoxu00ss"]
+
+[ext_resource type="StyleBox" uid="uid://cbmw8x4j64ddm" path="res://assets/ui/themes/golden_ui/button/golden_button_normal.tres" id="1_5edpf"]
+[ext_resource type="StyleBox" uid="uid://c812sgyhho8xy" path="res://assets/ui/themes/golden_ui/button/golden_button_focused.tres" id="1_j18uq"]
+[ext_resource type="Texture2D" uid="uid://d12lnt3sgolk6" path="res://assets/ui/themes/golden_ui/checkbox/checkbox_checked.tres" id="1_ookno"]
+[ext_resource type="Texture2D" uid="uid://c53b1bom87kmn" path="res://assets/ui/themes/golden_ui/checkbox/checkbox_unchecked.tres" id="2_5edpf"]
+[ext_resource type="FontFile" uid="uid://7luemu2pby6d" path="res://assets/fonts/quaver.ttf" id="3_3nn3p"]
+[ext_resource type="StyleBox" uid="uid://b5qh52yw72l16" path="res://assets/ui/themes/golden_ui/line_edit/GoldenLineEditFocused.tres" id="4_j18uq"]
+[ext_resource type="StyleBox" uid="uid://dw5urmv70vslp" path="res://assets/ui/themes/golden_ui/line_edit/GoldenLineEditNormal.tres" id="5_r12el"]
+[ext_resource type="Texture2D" uid="uid://75le1wtt1jdg" path="res://assets/ui/themes/golden_ui/arrows/arrow_down.tres" id="6_j524s"]
+[ext_resource type="Texture2D" uid="uid://bd7q1fqw88hxp" path="res://assets/ui/themes/golden_ui/arrows/arrow_up.tres" id="7_aej7g"]
+[ext_resource type="StyleBox" uid="uid://pi1dxp46f131" path="res://assets/ui/themes/golden_ui/scroll/golden_grabber.tres" id="8_b48v4"]
+[ext_resource type="StyleBox" uid="uid://dk8mv5uy40y27" path="res://assets/ui/themes/golden_ui/scroll/golden_grabber_highlight.tres" id="9_cktlg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xpd7w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fdk8u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hle1n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hhsm7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_00wmi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gyemy"]
+
+[resource]
+Button/colors/font_focus_color = Color(0.5647059, 0.5686275, 0.6117647, 1)
+Button/colors/font_hover_color = Color(0.5647059, 0.5686275, 0.6117647, 1)
+Button/colors/font_pressed_color = Color(0.5647059, 0.5686275, 0.6117647, 1)
+Button/styles/focus = ExtResource("1_j18uq")
+Button/styles/hover = ExtResource("1_j18uq")
+Button/styles/normal = ExtResource("1_5edpf")
+Button/styles/pressed = ExtResource("1_j18uq")
+CheckBox/icons/checked = ExtResource("1_ookno")
+CheckBox/icons/unchecked = ExtResource("2_5edpf")
+CheckBox/styles/disabled = SubResource("StyleBoxEmpty_xpd7w")
+CheckBox/styles/focus = SubResource("StyleBoxEmpty_fdk8u")
+CheckBox/styles/hover = SubResource("StyleBoxEmpty_hle1n")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxEmpty_hhsm7")
+CheckBox/styles/normal = SubResource("StyleBoxEmpty_00wmi")
+CheckBox/styles/pressed = SubResource("StyleBoxEmpty_gyemy")
+LineEdit/colors/font_focus_color = Color(0.5647059, 0.5686275, 0.6117647, 1)
+LineEdit/constants/caret_width = 1
+LineEdit/font_sizes/font_size = 16
+LineEdit/fonts/font = ExtResource("3_3nn3p")
+LineEdit/styles/focus = ExtResource("4_j18uq")
+LineEdit/styles/normal = ExtResource("5_r12el")
+SpinBox/icons/down = ExtResource("6_j524s")
+SpinBox/icons/down_disabled = ExtResource("6_j524s")
+SpinBox/icons/down_hover = ExtResource("6_j524s")
+SpinBox/icons/down_pressed = ExtResource("6_j524s")
+SpinBox/icons/up = ExtResource("7_aej7g")
+SpinBox/icons/up_disabled = ExtResource("7_aej7g")
+SpinBox/icons/up_hover = ExtResource("7_aej7g")
+SpinBox/icons/up_pressed = ExtResource("7_aej7g")
+VScrollBar/styles/grabber = ExtResource("8_b48v4")
+VScrollBar/styles/grabber_highlight = ExtResource("9_cktlg")
+VScrollBar/styles/grabber_pressed = ExtResource("9_cktlg")

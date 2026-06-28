@@ -1,0 +1,180 @@
+[gd_scene format=3 uid="uid://dc2c83of4lxte"]
+
+[ext_resource type="Script" uid="uid://rvboevbmlgtn" path="res://source/cellular_automata/scenes/config_panel/CaConfigPanel.cs" id="1_7tob5"]
+[ext_resource type="PackedScene" uid="uid://bp0wqslkwp8ep" path="res://source/shared/ui/scroll_panel/scroll_panel.tscn" id="2_orasm"]
+[ext_resource type="PackedScene" uid="uid://cym1gi22r1n8s" path="res://source/shared/ui/config_row/сonfig_row.tscn" id="4_f0le5"]
+[ext_resource type="PackedScene" uid="uid://wjmcuh18vcqi" path="res://source/shared/ui/row_description_panel/row_description_panel.tscn" id="5_v3nxs"]
+
+[node name="CAConfigPanel" type="Control" unique_id=1120707116]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7tob5")
+
+[node name="SettingsAnchor" type="Control" parent="." unique_id=808399108]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -185.0
+offset_right = 185.0
+grow_horizontal = 2
+
+[node name="SettingsPanel" parent="SettingsAnchor" unique_id=1391092548 instance=ExtResource("2_orasm")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -185.0
+offset_right = 185.0
+offset_bottom = 513.0
+grow_horizontal = 2
+TitleText = "Cellular Automata Settings"
+
+[node name="TitleLabel" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1391092548, 1367772229) index="0" unique_id=36782893]
+text = "Cellular Automata Settings"
+
+[node name="MapWidthPx" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="0" unique_id=1182190479 instance=ExtResource("4_f0le5")]
+layout_mode = 2
+LabelText = "Map Width"
+LabelTooltip = "[color=#f2be32][b]Map Width[/b][/color]
+[color=#8e6e53][i]Unit: Pixels | Range: 512 - 2048 px[/i][/color]
+
+[b]Effect:[/b] Sets the horizontal size of the map in pixels. 
+(e.g., at 16px tile size, 1024px translates to a grid 64 tiles wide).
+
+[b]Visual Result:[/b]
+ 
+[color=#5cb85c]Larger:[/color] Stretches the island horizontally, providing more space for land and lakes.
+
+[color=#d9534f]Smaller:[/color] Narrows the map boundaries, squeezing generated areas closer together."
+
+[node name="MapHeightPx" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="1" unique_id=658670583 instance=ExtResource("4_f0le5")]
+layout_mode = 2
+LabelText = "Map Height"
+LabelTooltip = "[color=#f2be32][b]Map Height[/b][/color]
+[color=#8e6e53][i]Unit: Pixels | Range: 512 - 2048 px[/i][/color]
+
+[b]Effect:[/b] Sets the vertical size of the map in pixels. 
+(e.g., at 16px tile size, 1024px translates to a grid 64 tiles tall).
+
+[b]Visual Result:[/b] 
+
+[color=#5cb85c]Larger:[/color] Stretches the island vertically, allowing for more vertical landmasses.
+
+[color=#d9534f]Smaller:[/color] Shortens the map boundaries, reducing vertical space."
+
+[node name="FillPercent" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="2" unique_id=112399832 instance=ExtResource("4_f0le5")]
+layout_mode = 2
+LabelText = "Intial Water Density"
+LabelTooltip = "[color=#f2be32][b]INITIAL WATER DENSITY[/b][/color]
+[color=#8e6e53][i]Unit: Percentage | Range: 0 - 100%[/i][/color]
+
+[b]Effect:[/b] Sets the starting ratio of water to land before the smoothing process begins.
+
+[b]Visual Result:[/b]
+
+[color=#5cb85c]Higher value:[/color] The map starts with more water, resulting in smaller, highly divided islands or narrow archipelagos.
+
+[color=#d9534f]Lower value:[/color] Generates a massive, solid continent with very few inland lakes."
+
+[node name="SimulationSteps" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="3" unique_id=292948761 instance=ExtResource("4_f0le5")]
+layout_mode = 2
+LabelText = "Smoothing Iterations"
+LabelTooltip = "[color=#f2be32][b]Smoothing Iterations[/b][/color]
+[color=#8e6e53][i]Unit: Cycles | Range: 0 - 10[/i][/color]
+
+[b]Effect:[/b] The number of cellular automata simulation passes. Each pass smooths out the chaotic random noise.
+
+[b]Visual Result:[/b] 
+
+[color=#5cb85c]Higher value:[/color] Creates clean, smooth, organic coastlines and rounder island shapes.
+
+[color=#d9534f]Zero value:[/color] The map remains a chaotic, highly pixelated noise of individual blocks."
+
+[node name="WallTransitionThreshold" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="4" unique_id=405422414 instance=ExtResource("4_f0le5")]
+layout_mode = 2
+LabelText = "Land Density Threshold"
+LabelTooltip = "[color=#f2be32][b]Land Density Threshold[/b][/color]
+[color=#8e6e53][i]Unit: Neighbor Tiles | Range: 2 - 6[/i][/color]
+
+[b]Effect:[/b] The rule threshold that determines if a tile becomes land or water based on its neighbors. 
+
+[b]Visual Result:[/b] 
+
+[color=#5cb85c]Higher value:[/color] Makes it harder for water to survive, creating thick, chunky, and massive landmasses.
+
+[color=#d9534f]Lower value:[/color] Water expands easily, creating thin, winding pathways, narrow bridges, and highly fractured islands."
+
+[node name="MinLakeSizeTiles" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="5" unique_id=734892401 instance=ExtResource("4_f0le5")]
+layout_mode = 2
+LabelText = "Min Lake Size"
+LabelTooltip = "[color=#f2be32][b]Min Lake Size[/b][/color]
+[color=#8e6e53][i]Unit: Tiles | Range: 0 - 500[/i][/color]
+
+[b]Effect:[/b] Defines the minimum tile threshold for lakes. Any isolated water bodies with a tile count smaller than this value are automatically filled with ground.
+
+[b]Visual Result:[/b] 
+
+[color=#5cb85c]Higher value:[/color] Removes small inland puddles and lakes, leaving only large oceans and clean, solid landmasses.
+
+[color=#d9534f]Zero value:[/color] Retains all water pockets, keeping even single-tile holes inside islands."
+
+[node name="MinIslandSizeTiles" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="6" unique_id=940921190 instance=ExtResource("4_f0le5")]
+layout_mode = 2
+LabelText = "Min Island Size"
+LabelTooltip = "[color=#f2be32][b]Min Island Size[/b][/color]
+[color=#8e6e53][i]Unit: Tiles | Range: 0 - 500[/i][/color]
+
+[b]Effect:[/b] Defines the minimum tile threshold for islands. Any isolated landmasses with a tile count smaller than this value are automatically submerged into water.
+
+[b]Visual Result:[/b] 
+
+[color=#5cb85c]Higher value:[/color] Automatically cleans up tiny single-tile dirt blocks and small useless islands, leaving only major, playable landmasses.
+
+[color=#d9534f]Zero value:[/color] Retains every small speck of dirt generated by the initial noise, leading to a cluttered map."
+
+[node name="BiomeNoiseFrequency" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="7" unique_id=1940985221 instance=ExtResource("4_f0le5")]
+layout_mode = 2
+LabelText = "Biome Scale"
+LabelTooltip = "[color=#f2be32][b]Biome Scale[/b][/color]
+[color=#8e6e53][i]Unit: Noise Frequency | Range: 0.001 - 0.2[/i][/color]
+
+[b]Effect:[/b] Controls the frequency of the Simplex noise generator used to distribute biomes (forests, plains, etc.) across the island.
+
+[b]Visual Result:[/b] 
+
+[color=#5cb85c]Higher value:[/color] Creates chaotic, patchy, and highly fractured micro-biomes over short distances.
+
+[color=#d9534f]Lower value (0.01):[/color] Generates large, smooth, continuous, and natural-looking biome regions (e.g., a massive unified forest)."
+
+[node name="UseRandomSeed" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="8" unique_id=1297951406 instance=ExtResource("4_f0le5")]
+layout_mode = 2
+LabelText = "Use Random Seed"
+LabelTooltip = "[color=#f2be32][b]Use Random Seed[/b][/color]
+[color=#8e6e53][i]Toggle | Boolean[/i][/color]
+
+[b]Effect:[/b] Automatically generates a completely new seed for each run.
+
+[b]Visual Result:[/b] Every single click of the \"Generate\" button will produce a brand new, unique island layout."
+Type = 1
+
+[node name="Seed" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="9" unique_id=1187850495 instance=ExtResource("4_f0le5")]
+layout_mode = 2
+LabelText = "Manual Seed"
+LabelTooltip = "[color=#f2be32][b]Manual Seed[/b][/color]
+[color=#8e6e53][i]Integer Value[/i][/color]
+
+[b]Effect:[/b] Allows you to input a specific numerical key to build the map.
+
+[b]Visual Result:[/b] Using the exact same seed value will always reproduce the identical world layout. Perfect for sharing maps with others!"
+
+[node name="RowDescriptionPanel" parent="SettingsAnchor" unique_id=820992293 instance=ExtResource("5_v3nxs")]
+layout_mode = 1
+offset_left = -290.0
+offset_right = -10.0
+
+[editable path="SettingsAnchor/SettingsPanel"]

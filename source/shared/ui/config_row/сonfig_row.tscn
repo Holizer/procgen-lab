@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://cym1gi22r1n8s"]
+
+[ext_resource type="Script" uid="uid://4r8ec66r58bu" path="res://source/shared/ui/config_row/ConfigRow.cs" id="1_ldeu4"]
+[ext_resource type="LabelSettings" uid="uid://cc4djpesl0vnt" path="res://assets/fonts/PixelText.tres" id="1_mv4bw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lqlfe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ldeu4"]
+
+[node name="ConfigRow" type="PanelContainer" unique_id=248412759 node_paths=PackedStringArray("SpinBoxNode", "LabelNode", "CheckBoxNode", "HoverBackground")]
+offset_right = 184.0
+offset_bottom = 29.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lqlfe")
+script = ExtResource("1_ldeu4")
+LabelText = "Parameters"
+SpinBoxNode = NodePath("MarginContainer/HBoxContainer/SpinBox")
+LabelNode = NodePath("MarginContainer/HBoxContainer/Label")
+CheckBoxNode = NodePath("MarginContainer/HBoxContainer/CheckBox")
+HoverBackground = NodePath("HoverBackground")
+
+[node name="HoverBackground" type="ColorRect" parent="." unique_id=379332]
+visible = false
+layout_mode = 2
+color = Color(1, 1, 1, 0.078431375)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=370798285]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1914659446]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1283427548]
+layout_mode = 2
+text = "Parameters"
+label_settings = ExtResource("1_mv4bw")
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/HBoxContainer" unique_id=1388424635]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ldeu4")
+
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/HBoxContainer" unique_id=311845099]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="MarginContainer/HBoxContainer" unique_id=841542112]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2

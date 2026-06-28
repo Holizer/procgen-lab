@@ -1,0 +1,129 @@
+[gd_resource type="Resource" script_class="BspEnemyConfig" format=3 uid="uid://g2xh22yjt8dl"]
+
+[ext_resource type="Script" uid="uid://csgdmm5yor12d" path="res://source/bsp/resources/definitions/EnemySpawnEntry.cs" id="1_c7axg"]
+[ext_resource type="Script" uid="uid://cbljn0ng5vtnb" path="res://source/bsp/resources/definitions/EnemyGroup.cs" id="2_oev3e"]
+[ext_resource type="Script" uid="uid://b8d3rm7kwhyti" path="res://source/bsp/resources/definitions/BspEnemyConfig.cs" id="3_32f52"]
+
+[sub_resource type="Resource" id="Resource_c7axg"]
+script = ExtResource("1_c7axg")
+Type = 4
+metadata/_custom_type_script = "uid://csgdmm5yor12d"
+
+[sub_resource type="Resource" id="Resource_oev3e"]
+script = ExtResource("1_c7axg")
+Type = 5
+metadata/_custom_type_script = "uid://csgdmm5yor12d"
+
+[sub_resource type="Resource" id="Resource_32f52"]
+script = ExtResource("1_c7axg")
+Type = 6
+metadata/_custom_type_script = "uid://csgdmm5yor12d"
+
+[sub_resource type="Resource" id="Resource_wfooq"]
+script = ExtResource("2_oev3e")
+Entries = Array[ExtResource("1_c7axg")]([SubResource("Resource_c7axg"), SubResource("Resource_oev3e"), SubResource("Resource_32f52")])
+metadata/_custom_type_script = "uid://cbljn0ng5vtnb"
+
+[sub_resource type="Resource" id="Resource_iua11"]
+script = ExtResource("1_c7axg")
+Count = 3
+metadata/_custom_type_script = "uid://csgdmm5yor12d"
+
+[sub_resource type="Resource" id="Resource_cgjw5"]
+script = ExtResource("1_c7axg")
+Type = 1
+Count = 2
+metadata/_custom_type_script = "uid://csgdmm5yor12d"
+
+[sub_resource type="Resource" id="Resource_5jcuj"]
+script = ExtResource("2_oev3e")
+Entries = Array[ExtResource("1_c7axg")]([SubResource("Resource_iua11"), SubResource("Resource_cgjw5")])
+metadata/_custom_type_script = "uid://cbljn0ng5vtnb"
+
+[sub_resource type="Resource" id="Resource_drc0f"]
+script = ExtResource("1_c7axg")
+Type = 2
+Count = 8
+metadata/_custom_type_script = "uid://csgdmm5yor12d"
+
+[sub_resource type="Resource" id="Resource_8r6a8"]
+script = ExtResource("2_oev3e")
+Entries = Array[ExtResource("1_c7axg")]([SubResource("Resource_drc0f")])
+metadata/_custom_type_script = "uid://cbljn0ng5vtnb"
+
+[sub_resource type="Resource" id="Resource_qmcm3"]
+script = ExtResource("1_c7axg")
+Type = 3
+Count = 3
+metadata/_custom_type_script = "uid://csgdmm5yor12d"
+
+[sub_resource type="Resource" id="Resource_kbyuv"]
+script = ExtResource("1_c7axg")
+Type = 1
+Count = 4
+metadata/_custom_type_script = "uid://csgdmm5yor12d"
+
+[sub_resource type="Resource" id="Resource_g1siv"]
+script = ExtResource("2_oev3e")
+Entries = Array[ExtResource("1_c7axg")]([SubResource("Resource_qmcm3"), SubResource("Resource_kbyuv")])
+metadata/_custom_type_script = "uid://cbljn0ng5vtnb"
+
+[sub_resource type="Resource" id="Resource_wud0r"]
+script = ExtResource("1_c7axg")
+Type = 3
+Count = 5
+metadata/_custom_type_script = "uid://csgdmm5yor12d"
+
+[sub_resource type="Resource" id="Resource_armqi"]
+script = ExtResource("2_oev3e")
+Entries = Array[ExtResource("1_c7axg")]([SubResource("Resource_wud0r")])
+metadata/_custom_type_script = "uid://cbljn0ng5vtnb"
+
+[sub_resource type="Resource" id="Resource_biy7v"]
+script = ExtResource("1_c7axg")
+Type = 1
+Count = 3
+metadata/_custom_type_script = "uid://csgdmm5yor12d"
+
+[sub_resource type="Resource" id="Resource_jg4pi"]
+script = ExtResource("1_c7axg")
+Count = 2
+metadata/_custom_type_script = "uid://csgdmm5yor12d"
+
+[sub_resource type="Resource" id="Resource_r0ewy"]
+script = ExtResource("1_c7axg")
+Type = 1
+Count = 2
+metadata/_custom_type_script = "uid://csgdmm5yor12d"
+
+[sub_resource type="Resource" id="Resource_0rual"]
+script = ExtResource("2_oev3e")
+Entries = Array[ExtResource("1_c7axg")]([SubResource("Resource_biy7v"), SubResource("Resource_jg4pi"), SubResource("Resource_r0ewy")])
+metadata/_custom_type_script = "uid://cbljn0ng5vtnb"
+
+[sub_resource type="Resource" id="Resource_10xc6"]
+script = ExtResource("1_c7axg")
+Type = 3
+Count = 2
+metadata/_custom_type_script = "uid://csgdmm5yor12d"
+
+[sub_resource type="Resource" id="Resource_t6ri1"]
+script = ExtResource("1_c7axg")
+Type = 1
+Count = 2
+metadata/_custom_type_script = "uid://csgdmm5yor12d"
+
+[sub_resource type="Resource" id="Resource_fc8st"]
+script = ExtResource("1_c7axg")
+Count = 2
+metadata/_custom_type_script = "uid://csgdmm5yor12d"
+
+[sub_resource type="Resource" id="Resource_r2sck"]
+script = ExtResource("2_oev3e")
+Entries = Array[ExtResource("1_c7axg")]([SubResource("Resource_10xc6"), SubResource("Resource_t6ri1"), SubResource("Resource_fc8st")])
+metadata/_custom_type_script = "uid://cbljn0ng5vtnb"
+
+[resource]
+script = ExtResource("3_32f52")
+StandardGroups = Array[ExtResource("2_oev3e")]([SubResource("Resource_5jcuj"), SubResource("Resource_8r6a8"), SubResource("Resource_g1siv"), SubResource("Resource_armqi"), SubResource("Resource_0rual"), SubResource("Resource_r2sck")])
+BossGroup = SubResource("Resource_wfooq")

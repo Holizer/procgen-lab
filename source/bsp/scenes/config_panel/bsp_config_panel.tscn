@@ -1,0 +1,186 @@
+[gd_scene format=3 uid="uid://cbma31oehx75f"]
+
+[ext_resource type="Script" uid="uid://dafjt457c3x2b" path="res://source/bsp/scenes/config_panel/BspConfigPanel.cs" id="1_s1xnb"]
+[ext_resource type="PackedScene" uid="uid://bp0wqslkwp8ep" path="res://source/shared/ui/scroll_panel/scroll_panel.tscn" id="2_g5bod"]
+[ext_resource type="PackedScene" uid="uid://cym1gi22r1n8s" path="res://source/shared/ui/config_row/сonfig_row.tscn" id="4_g5bod"]
+[ext_resource type="PackedScene" uid="uid://wjmcuh18vcqi" path="res://source/shared/ui/row_description_panel/row_description_panel.tscn" id="5_nx66l"]
+
+[node name="BSPConfigPanel" type="Control" unique_id=1120707116]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s1xnb")
+ConfigRowScene = ExtResource("4_g5bod")
+
+[node name="SettingsAnchor" type="Control" parent="." unique_id=2001303196]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -185.0
+offset_right = 185.0
+grow_horizontal = 2
+
+[node name="SettingsPanel" parent="SettingsAnchor" unique_id=1391092548 instance=ExtResource("2_g5bod")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -185.0
+offset_right = 185.0
+offset_bottom = 536.0
+grow_horizontal = 2
+TitleText = "Binary Space Partitioning
+Settings"
+
+[node name="TitleLabel" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer" parent_id_path=PackedInt32Array(1391092548, 1367772229) index="0" unique_id=36782893]
+text = "Binary Space Partitioning
+Settings"
+
+[node name="MapWidthPx" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="0" unique_id=1659318986 instance=ExtResource("4_g5bod")]
+layout_mode = 2
+LabelText = "Map Width"
+LabelTooltip = "[color=#f2be32][b]MAP WIDTH[/b][/color]
+[color=#8e6e53][i]Unit: Pixels | Range: 512 - 2048 px[/i][/color]
+
+[b]Effect:[/b] Sets the horizontal size of the map in pixels. 
+(e.g., at 16px tile size, 1024px translates to a grid 64 tiles wide).
+
+[b]Visual Result:[/b] 
+
+[color=#5cb85c]Larger:[/color] Stretches the island horizontally, providing more space for rooms and subdivisions.
+
+[color=#d9534f]Smaller:[/color] Narrows the map boundaries, squeezing generated areas closer together."
+
+[node name="MapHeightPx" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="1" unique_id=823304580 instance=ExtResource("4_g5bod")]
+layout_mode = 2
+LabelText = "Map Height"
+LabelTooltip = "[color=#f2be32][b]MAP HEIGHT[/b][/color]
+[color=#8e6e53][i]Unit: Pixels | Range: 512 - 2048 px[/i][/color]
+
+[b]Effect:[/b] Sets the vertical size of the map in pixels. 
+(e.g., at 16px tile size, 1024px translates to a grid 64 tiles tall).
+
+[b]Visual Result:[/b] 
+
+[color=#5cb85c]Larger:[/color] Stretches the island vertically, allowing for more rooms and taller corridors.
+
+[color=#d9534f]Smaller:[/color] Shortens the map boundaries, reducing vertical space."
+
+[node name="MaxTreasureRooms" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="2" unique_id=1912178134 instance=ExtResource("4_g5bod")]
+layout_mode = 2
+LabelText = "Max Treasure Rooms"
+LabelTooltip = "[color=#f2be32][b]MAX TREASURE ROOMS[/b][/color]
+[color=#8e6e53][i]Unit: Rooms | Range: 0 - 99[/i][/color]
+
+[b]Effect:[/b] Sets the upper limit for dead-end rooms that the game will convert into treasure chambers containing golden chests and coins.
+
+[b]Visual Result:[/b]
+ 
+[color=#5cb85c]Higher value:[/color] Spawns more reward chambers filled with loot (if there are enough dead-ends).
+
+[color=#d9534f]Zero value:[/color] The map will only contain standard rooms, the Spawn room, and the Boss exit gate."
+
+[node name="MinRoomWidthPx" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="3" unique_id=1173344030 instance=ExtResource("4_g5bod")]
+layout_mode = 2
+LabelText = "Min Room Width"
+LabelTooltip = "[color=#f2be32][b]MIN ROOM WIDTH[/b][/color]
+[color=#8e6e53][i]Unit: Pixels | Range: 48 - 512 px[/i][/color]
+
+[b]Effect:[/b] Defines the absolute smallest width for any room in pixels. 
+(e.g., at 16px tile size, 128px equals a room 8 tiles wide).
+
+[b]Visual Result:[/b]
+ 
+[color=#5cb85c]Larger:[/color] Fewer, but much larger, spacious hall-like rooms.
+
+[color=#d9534f]Lower:[/color] A dense maze consisting of many small, cozy, and tight chambers."
+
+[node name="MinRoomHeightPx" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="4" unique_id=727397244 instance=ExtResource("4_g5bod")]
+layout_mode = 2
+LabelText = "Min Room Height"
+LabelTooltip = "[color=#f2be32][b]MIN ROOM HEIGHT[/b][/color]
+[color=#8e6e53][i]Unit: Pixels | Range: 48 - 512 px[/i][/color]
+
+[b]Effect:[/b] Defines the absolute smallest height for any room in pixels. 
+(e.g., at 16px tile size, 128px equals a room 8 tiles tall).
+
+[b]Visual Result:[/b] 
+
+[color=#5cb85c]Larger:[/color] Fewer, but taller, spacious hall-like rooms.
+
+[color=#d9534f]Lower:[/color] A dense maze consisting of many small, cozy, and tight chambers."
+
+[node name="RoomPaddingPx" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="5" unique_id=1440336721 instance=ExtResource("4_g5bod")]
+layout_mode = 2
+LabelText = "Room Border Padding"
+LabelTooltip = "[color=#f2be32][b]ROOM BORDER PADDING[/b][/color]
+[color=#8e6e53][i]Unit: Pixels | Range: 0 - 512 px[/i][/color]
+
+[b]Effect:[/b] Controls the empty safety buffer in pixels between the room walls and its region boundaries.
+(e.g., 32px padding creates a 2-tile wide empty border around the room).
+
+[b]Visual Result:[/b] 
+
+[color=#5cb85c]Higher:[/color] Rooms shrink inside their regions, creating wider empty zones and longer corridors.
+
+[color=#d9534f]Zero:[/color] Rooms will expand to completely fill their regions, sitting wall-to-wall."
+
+[node name="MaxDepth" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="6" unique_id=1436725016 instance=ExtResource("4_g5bod")]
+layout_mode = 2
+LabelText = "Subdivision Depth"
+LabelTooltip = "[color=#f2be32][b]SUBDIVISION DEPTH[/b][/color]
+[color=#8e6e53][i]Unit: Split Levels | Range: 1 - 20[/i][/color]
+
+[b]Effect:[/b] The maximum depth of the recursive binary split tree. Determines how many times the map area can be recursively divided into halves. 
+
+[b]Visual Result:[/b] 
+
+[color=#5cb85c]Higher value:[/color] Subdivides the map into a complex, multi-room labyrinth with dozens of chambers.
+
+[color=#d9534f]Lower value (1-3):[/color] Generates a very simple layout with only 2 to 8 massive rooms."
+
+[node name="AspectRatioThreshold" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="7" unique_id=1632628663 instance=ExtResource("4_g5bod")]
+layout_mode = 2
+LabelText = "Room Elongation Limit"
+LabelTooltip = "[color=#f2be32][b]ROOM ELONGATION LIMIT[/b][/color]
+[color=#8e6e53][i]Unit: Ratio | Range: 1.0 - 3.0[/i][/color]
+
+[b]Effect:[/b] Limits how stretched a room can be. If a region's width-to-height ratio is too high, the algorithm forces a split to prevent extremely narrow zones.
+
+[b]Visual Result:[/b] 
+
+[color=#5cb85c]Higher value:[/color] Allows the generation of long, narrow, corridor-like rooms.
+
+[color=#d9534f]Close to 1.0:[/color] Forces all rooms to remain strictly square, blocky, and symmetrical."
+
+[node name="UseRandomSeed" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="8" unique_id=1373512091 instance=ExtResource("4_g5bod")]
+layout_mode = 2
+LabelText = "Use Random Seed"
+LabelTooltip = "[color=#f2be32][b]USE RANDOM SEED[/b][/color]
+[color=#8e6e53][i]Toggle | Boolean[/i][/color]
+
+[b]Effect:[/b] Automatically generates a completely new seed for each run.
+
+[b]Visual Result:[/b] Every single click of the \"Generate\" button will produce a brand new, unique island layout."
+Type = 1
+
+[node name="Seed" parent="SettingsAnchor/SettingsPanel/MarginContainer/VBoxContainer/ScrollContainer/ItemContainer" parent_id_path=PackedInt32Array(1391092548, 1407372978) index="9" unique_id=1851660070 instance=ExtResource("4_g5bod")]
+layout_mode = 2
+LabelText = "Manual Seed"
+LabelTooltip = "[color=#f2be32][b]MANUAL SEED[/b][/color]
+[color=#8e6e53][i]Integer Value[/i][/color]
+
+[b]Effect:[/b] Allows you to input a specific numerical key to build the map.
+
+[b]Visual Result:[/b] Using the exact same seed value will always reproduce the identical world layout. Perfect for sharing maps with others!"
+
+[node name="RowDescriptionPanel" parent="SettingsAnchor" unique_id=820992293 instance=ExtResource("5_nx66l")]
+layout_mode = 1
+offset_left = -290.0
+offset_right = -10.0
+
+[editable path="SettingsAnchor/SettingsPanel"]

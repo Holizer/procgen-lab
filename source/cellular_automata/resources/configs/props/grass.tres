@@ -1,0 +1,20 @@
+[gd_resource type="Resource" format=3 uid="uid://bcps4y1aoru57"]
+
+[ext_resource type="Script" uid="uid://bf35s2g22re5e" path="res://source/cellular_automata/resources/definitions/PropData.cs" id="1_r0g32"]
+[ext_resource type="Script" uid="uid://db33brhoatumo" path="res://source/cellular_automata/resources/definitions/PropGroup.cs" id="2_1ld4y"]
+
+[sub_resource type="Resource" id="Resource_v081b"]
+script = ExtResource("1_r0g32")
+Tag = "grass_1x1"
+metadata/_custom_type_script = "uid://cp0i12k2i0v8e"
+
+[sub_resource type="Resource" id="Resource_xpu6f"]
+script = ExtResource("1_r0g32")
+Tag = "grass_2x2"
+ObjectSize = Vector2i(2, 2)
+Weight = 8
+metadata/_custom_type_script = "uid://cp0i12k2i0v8e"
+
+[resource]
+script = ExtResource("2_1ld4y")
+Variations = Array[Object]([SubResource("Resource_v081b"), SubResource("Resource_xpu6f")])

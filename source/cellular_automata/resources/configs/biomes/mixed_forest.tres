@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="BiomeSettings" format=3 uid="uid://t5u2hxsohjad"]
+
+[ext_resource type="Script" uid="uid://g6tmslfhman" path="res://source/cellular_automata/resources/definitions/PropRule.cs" id="1_3hsyj"]
+[ext_resource type="Script" uid="uid://d3k77k71hsqwy" path="res://source/cellular_automata/resources/definitions/BiomeSettings.cs" id="2_p7am8"]
+
+[sub_resource type="Resource" id="Resource_3hsyj"]
+script = ExtResource("1_3hsyj")
+Type = 51
+Weight = 40
+metadata/_custom_type_script = "uid://6cqgkeooecma"
+
+[sub_resource type="Resource" id="Resource_l4nwd"]
+script = ExtResource("1_3hsyj")
+Type = 50
+Weight = 40
+metadata/_custom_type_script = "uid://6cqgkeooecma"
+
+[sub_resource type="Resource" id="Resource_w338p"]
+script = ExtResource("1_3hsyj")
+Type = 6
+Weight = 20
+metadata/_custom_type_script = "uid://6cqgkeooecma"
+
+[sub_resource type="Resource" id="Resource_sa5gn"]
+script = ExtResource("1_3hsyj")
+metadata/_custom_type_script = "uid://6cqgkeooecma"
+
+[sub_resource type="Resource" id="Resource_p7am8"]
+script = ExtResource("1_3hsyj")
+Type = 1
+Weight = 5
+metadata/_custom_type_script = "uid://6cqgkeooecma"
+
+[sub_resource type="Resource" id="Resource_q4jc2"]
+script = ExtResource("1_3hsyj")
+Type = 4
+Weight = 2
+metadata/_custom_type_script = "uid://6cqgkeooecma"
+
+[resource]
+script = ExtResource("2_p7am8")
+Type = 4
+PropDensity = 75.0
+PropRules = Array[ExtResource("1_3hsyj")]([SubResource("Resource_3hsyj"), SubResource("Resource_l4nwd"), SubResource("Resource_w338p"), SubResource("Resource_sa5gn"), SubResource("Resource_p7am8"), SubResource("Resource_q4jc2")])

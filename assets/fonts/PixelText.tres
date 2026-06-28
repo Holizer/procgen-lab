@@ -1,0 +1,6 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://cc4djpesl0vnt"]
+
+[ext_resource type="FontFile" uid="uid://7luemu2pby6d" path="res://assets/fonts/quaver.ttf" id="1_78kyy"]
+
+[resource]
+font = ExtResource("1_78kyy")

@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://3vtcerlryh0a"]
+
+[ext_resource type="Script" uid="uid://cip5okh8fm1ne" path="res://source/shared/ui/RandomAnimation.cs" id="1_la10m"]
+[ext_resource type="Texture2D" uid="uid://btyby7qrfk18d" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/flasks/flasks_1_1.png" id="2_gbhpp"]
+[ext_resource type="Texture2D" uid="uid://lu1d2li7w8oe" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/flasks/flasks_1_2.png" id="3_x2284"]
+[ext_resource type="Texture2D" uid="uid://dsppw84j73jpo" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/flasks/flasks_1_3.png" id="4_4owg7"]
+[ext_resource type="Texture2D" uid="uid://cqjtu44p6l4kh" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/flasks/flasks_1_4.png" id="5_nhqk8"]
+[ext_resource type="Texture2D" uid="uid://25274a66v268" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/flasks/flasks_2_1.png" id="6_ocs87"]
+[ext_resource type="Texture2D" uid="uid://duhsslkyyoudf" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/flasks/flasks_2_2.png" id="7_0fnda"]
+[ext_resource type="Texture2D" uid="uid://b4vx1eccw87xu" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/flasks/flasks_2_3.png" id="8_oafyq"]
+[ext_resource type="Texture2D" uid="uid://dll454itkkcqx" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/flasks/flasks_2_4.png" id="9_lqqpj"]
+[ext_resource type="Texture2D" uid="uid://b0wfaiu0uq1pn" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/flasks/flasks_3_1.png" id="10_7b6nw"]
+[ext_resource type="Texture2D" uid="uid://dn5x3kgausg32" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/flasks/flasks_3_2.png" id="11_jpxhc"]
+[ext_resource type="Texture2D" uid="uid://61wlikeldasy" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/flasks/flasks_3_3.png" id="12_f53f8"]
+[ext_resource type="Texture2D" uid="uid://c45j6qstl8bf0" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/flasks/flasks_3_4.png" id="13_j2pvy"]
+[ext_resource type="Texture2D" uid="uid://ft1nqjrr1vq4" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/flasks/flasks_4_1.png" id="14_tqidx"]
+[ext_resource type="Texture2D" uid="uid://p3tq8wrwtctn" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/flasks/flasks_4_2.png" id="15_oxfxw"]
+[ext_resource type="Texture2D" uid="uid://bxmtcw1u8qs0p" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/flasks/flasks_4_3.png" id="16_i4q28"]
+[ext_resource type="Texture2D" uid="uid://bn0ffny4fat3n" path="res://assets/tilesets/2d_pixel_dungeon/items and trap_animation/flasks/flasks_4_4.png" id="17_0tnuw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g7cor"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gbhpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_x2284")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4owg7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_nhqk8")
+}],
+"loop": true,
+"name": &"flask1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ocs87")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0fnda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_oafyq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_lqqpj")
+}],
+"loop": true,
+"name": &"flask2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_7b6nw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_jpxhc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_f53f8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_j2pvy")
+}],
+"loop": true,
+"name": &"flask3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_tqidx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_oxfxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_i4q28")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_0tnuw")
+}],
+"loop": true,
+"name": &"flask4",
+"speed": 5.0
+}]
+
+[node name="Prop" type="Node2D" unique_id=1684709698 node_paths=PackedStringArray("Sprite")]
+script = ExtResource("1_la10m")
+Sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1119307138]
+sprite_frames = SubResource("SpriteFrames_g7cor")
+animation = &"flask1"
+autoplay = "flask1"
+frame_progress = 0.92280895

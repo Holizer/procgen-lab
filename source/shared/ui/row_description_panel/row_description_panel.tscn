@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://wjmcuh18vcqi"]
+
+[ext_resource type="StyleBox" uid="uid://bkohwb8ojlt35" path="res://assets/ui/themes/golden_ui/panels/golden_panel_common.tres" id="1_37nka"]
+[ext_resource type="Script" uid="uid://bueaiemex54r3" path="res://source/shared/ui/row_description_panel/TooltipRichLabel.cs" id="2_i2ixy"]
+
+[node name="RowDescriptionPanel" type="PanelContainer" unique_id=820992293]
+offset_right = 280.0
+offset_bottom = 280.0
+theme_override_styles/panel = ExtResource("1_37nka")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1296427985]
+clip_contents = true
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer" unique_id=297028593]
+layout_mode = 2
+bbcode_enabled = true
+text = "Hover over the parameter for a tooltip..."
+script = ExtResource("2_i2ixy")

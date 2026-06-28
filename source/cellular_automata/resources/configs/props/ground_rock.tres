@@ -1,0 +1,21 @@
+[gd_resource type="Resource" format=3 uid="uid://kp3iju5yv16j"]
+
+[ext_resource type="Script" uid="uid://bf35s2g22re5e" path="res://source/cellular_automata/resources/definitions/PropData.cs" id="1_opvu4"]
+[ext_resource type="Script" uid="uid://db33brhoatumo" path="res://source/cellular_automata/resources/definitions/PropGroup.cs" id="2_ndswf"]
+
+[sub_resource type="Resource" id="Resource_8c8qb"]
+script = ExtResource("1_opvu4")
+Tag = "ground_rock"
+metadata/_custom_type_script = "uid://cp0i12k2i0v8e"
+
+[sub_resource type="Resource" id="Resource_ndswf"]
+script = ExtResource("1_opvu4")
+Tag = "big_ground_rock"
+ObjectSize = Vector2i(2, 2)
+Weight = 2
+metadata/_custom_type_script = "uid://cp0i12k2i0v8e"
+
+[resource]
+script = ExtResource("2_ndswf")
+Type = 4
+Variations = Array[Object]([SubResource("Resource_8c8qb"), SubResource("Resource_ndswf")])

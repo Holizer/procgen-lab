@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bvgwi7l8jwj61"]
+
+[ext_resource type="Texture2D" uid="uid://dwewor41qouok" path="res://Assets/LevelsTileSets/BSP/2D Pixel Dungeon Asset Pack/items and trap_animation/chest/chest_1.png" id="1_7yimy"]
+[ext_resource type="Texture2D" uid="uid://k84fk2c2hvac" path="res://Assets/LevelsTileSets/BSP/2D Pixel Dungeon Asset Pack/items and trap_animation/chest/chest_2.png" id="2_auwot"]
+[ext_resource type="Texture2D" uid="uid://bjelgeebg6no4" path="res://Assets/LevelsTileSets/BSP/2D Pixel Dungeon Asset Pack/items and trap_animation/chest/chest_3.png" id="3_v6jdp"]
+[ext_resource type="Texture2D" uid="uid://dp2capnmr2wmt" path="res://Assets/LevelsTileSets/BSP/2D Pixel Dungeon Asset Pack/items and trap_animation/chest/chest_4.png" id="4_fyphg"]
+[ext_resource type="Texture2D" uid="uid://bcxhsjkjl6wae" path="res://Assets/LevelsTileSets/BSP/2D Pixel Dungeon Asset Pack/items and trap_animation/chest/chest_open_1.png" id="5_7p3gs"]
+[ext_resource type="Texture2D" uid="uid://cj8v35c5gds62" path="res://Assets/LevelsTileSets/BSP/2D Pixel Dungeon Asset Pack/items and trap_animation/chest/chest_open_2.png" id="6_41010"]
+[ext_resource type="Texture2D" uid="uid://dhbap1nuv15lr" path="res://Assets/LevelsTileSets/BSP/2D Pixel Dungeon Asset Pack/items and trap_animation/chest/chest_open_3.png" id="7_m68jd"]
+[ext_resource type="Texture2D" uid="uid://omury6kb1axu" path="res://Assets/LevelsTileSets/BSP/2D Pixel Dungeon Asset Pack/items and trap_animation/chest/chest_open_4.png" id="8_yys7t"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7p3gs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7yimy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_auwot")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_v6jdp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fyphg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7p3gs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_41010")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_m68jd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_yys7t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Chest" type="Node2D" unique_id=237085532]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2122311732]
+sprite_frames = SubResource("SpriteFrames_7p3gs")
+autoplay = "default"
+frame_progress = 0.19475073

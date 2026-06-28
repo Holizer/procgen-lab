@@ -1,0 +1,14 @@
+[gd_resource type="Resource" format=3 uid="uid://dyjbp7volpa25"]
+
+[ext_resource type="Script" uid="uid://bf35s2g22re5e" path="res://source/cellular_automata/resources/definitions/PropData.cs" id="1_7nxm7"]
+[ext_resource type="Script" uid="uid://db33brhoatumo" path="res://source/cellular_automata/resources/definitions/PropGroup.cs" id="2_b2bkj"]
+
+[sub_resource type="Resource" id="Resource_c2p7y"]
+script = ExtResource("1_7nxm7")
+Tag = "flower"
+metadata/_custom_type_script = "uid://cp0i12k2i0v8e"
+
+[resource]
+script = ExtResource("2_b2bkj")
+Type = 1
+Variations = Array[Object]([SubResource("Resource_c2p7y")])

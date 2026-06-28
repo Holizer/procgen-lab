@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MacroTile" format=3 uid="uid://coyh33o65s54h"]
+
+[ext_resource type="Script" uid="uid://yrkcmhollhdo" path="res://source/wfc/resources/definitions/MacroTile.cs" id="1_a40p5"]
+[ext_resource type="PackedScene" uid="uid://cdfwj0k5rj2q7" path="res://source/wfc/scenes/chunks/rooms/room_s.tscn" id="1_hx3h3"]
+
+[resource]
+script = ExtResource("1_a40p5")
+Type = 15
+ChunkScene = ExtResource("1_hx3h3")
