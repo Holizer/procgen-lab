@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace ProcGenLab.Shared.Enums;
@@ -36,6 +37,18 @@ public static class DirectionExtensions
             Direction.East => new Vector2I(1, 0),
             Direction.West => new Vector2I(-1, 0),
             _ => Vector2I.Zero
+        };
+    }
+
+    public static Vector2I GetWallPoint(this Direction side, Rect2I rect, int candidate)
+    {
+        return side switch
+        {
+            Direction.North => new Vector2I(candidate, rect.Position.Y),
+            Direction.South => new Vector2I(candidate, rect.End.Y - 1),
+            Direction.East => new Vector2I(rect.End.X - 1, candidate),
+            Direction.West => new Vector2I(rect.Position.X, candidate),
+            _ => throw new ArgumentOutOfRangeException(nameof(side))
         };
     }
 }

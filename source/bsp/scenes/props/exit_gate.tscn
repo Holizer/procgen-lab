@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bc3kgh2cthcvj"]
 
-[ext_resource type="Texture2D" uid="uid://cxwqhcmb0mjrx" path="res://assets/tilesets/2d_pixel_dungeon/dungeon_tileset_modifed.png" id="1_2j0fc"]
+[ext_resource type="Texture2D" uid="uid://ds8ukqdnafal3" path="res://assets/tilesets/2d_pixel_dungeon/dungeon_tileset_modifed.png" id="1_2j0fc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_66d1w"]
 atlas = ExtResource("1_2j0fc")

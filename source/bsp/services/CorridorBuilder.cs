@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using ProcGenLab.BSP.Models;
@@ -9,22 +8,21 @@ namespace ProcGenLab.BSP.Services;
 
 public class CorridorBuilder
 {
-    private readonly Dictionary<(Room Room, Direction Dir), Vector2I> _entrances = new();
+    private readonly CorridorEntranceResolver _entranceResolver = new();
 
-    private readonly List<Vector2I> _pathTiles = [];
+    private readonly CorridorPathWriter _pathWriter = new();
 
     public int GetRoomConnectionCount(Room room)
     {
-        return room == null ? 0 : _entrances.Keys.Count(key => key.Room == room);
+        return _entranceResolver.GetRoomConnectionCount(room);
     }
 
     public void Connect(BspNode root, BspMap map)
     {
-        _pathTiles.Clear();
-        _entrances.Clear();
-
+        _entranceResolver.Reset();
+        _pathWriter.Reset();
         ConnectNodes(root);
-        map.PathsTiles = _pathTiles;
+        map.PathsTiles = _pathWriter.PathTiles;
     }
 
     private void ConnectNodes(BspNode node)
@@ -38,7 +36,7 @@ public class CorridorBuilder
         var (bestA, bestB) = FindBestRoomsToConnect(node.Left, node.Right);
 
         if (bestA == null || bestB == null)
-            return;
+            throw new LabException(this, "Failed to find rooms to connect");
 
         BuildCorridorBetween(bestA, bestB, node.IsHorizontal);
     }
@@ -50,17 +48,16 @@ public class CorridorBuilder
 
         Room bestLeft = null;
         Room bestRight = null;
-
         var lowestScore = float.MaxValue;
 
         foreach (var roomLeft in roomsLeft)
         foreach (var roomRight in roomsRight)
         {
-            var currentScore = GetConnectionScore(roomLeft, roomRight);
+            var score = GetConnectionScore(roomLeft, roomRight);
 
-            if (currentScore < lowestScore)
+            if (score < lowestScore)
             {
-                lowestScore = currentScore;
+                lowestScore = score;
                 bestLeft = roomLeft;
                 bestRight = roomRight;
             }
@@ -72,61 +69,39 @@ public class CorridorBuilder
     private float GetConnectionScore(Room roomA, Room roomB)
     {
         float distance = roomA.Rect.GetCenter().DistanceSquaredTo(roomB.Rect.GetCenter());
-        var totalConnections = GetRoomConnectionCount(roomA) + GetRoomConnectionCount(roomB);
+        var connections = GetRoomConnectionCount(roomA) + GetRoomConnectionCount(roomB);
 
-        return distance + totalConnections * 1500f;
+        return distance + connections * 1500f;
     }
 
     private void BuildCorridorBetween(Room roomA, Room roomB, bool isHorizontalSplit)
     {
-        var centerA = roomA.Rect.GetCenter();
-        var centerB = roomB.Rect.GetCenter();
+        var centerA = GridUtils.GetCenter(roomA.Rect);
+        var centerB = GridUtils.GetCenter(roomB.Rect);
 
-        Direction sideA;
-        if (isHorizontalSplit)
-            sideA = centerB.Y > centerA.Y ? Direction.South : Direction.North;
-        else
-            sideA = centerB.X > centerA.X ? Direction.East : Direction.West;
-
+        var sideA = GetExitSide(centerA, centerB, isHorizontalSplit);
         var sideB = sideA.GetOpposite();
 
-        var start = GridUtils.GetCenter(roomA.Rect);
-        var end = GridUtils.GetCenter(roomB.Rect);
-
-        _entrances[(roomA, sideA)] = start;
-        _entrances[(roomB, sideB)] = end;
-
-        CreateLPath(start, end);
-    }
-
-    private void CreateLPath(Vector2I start, Vector2I end)
-    {
-        var current = start;
-        _pathTiles.Add(current);
-
-        MoveX(ref current, end.X);
-        MoveY(ref current, end.Y);
-    }
-
-    private void MoveX(ref Vector2I current, int targetX)
-    {
-        var stepX = targetX > current.X ? 1 : -1;
-
-        while (current.X != targetX)
+        if (isHorizontalSplit)
         {
-            current.X += stepX;
-            _pathTiles.Add(current);
+            var start = _entranceResolver.Resolve(roomA, sideA, centerB.X);
+            var end = _entranceResolver.Resolve(roomB, sideB, centerA.X);
+            _pathWriter.BuildLPath(start, end);
+        }
+        else
+        {
+            var start = _entranceResolver.Resolve(roomA, sideA, centerB.Y);
+            var end = _entranceResolver.Resolve(roomB, sideB, centerA.Y);
+            _pathWriter.BuildLPath(start, end);
         }
     }
 
-    private void MoveY(ref Vector2I current, int targetY)
+    private static Direction GetExitSide(Vector2I centerA, Vector2I centerB, bool isHorizontalSplit)
     {
-        var stepY = targetY > current.Y ? 1 : -1;
-
-        while (current.Y != targetY)
-        {
-            current.Y += stepY;
-            _pathTiles.Add(current);
-        }
+        return isHorizontalSplit
+            ? centerA.Y < centerB.Y ? Direction.South : Direction.North
+            : centerA.X < centerB.X
+                ? Direction.East
+                : Direction.West;
     }
 }
