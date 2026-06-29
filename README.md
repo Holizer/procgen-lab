@@ -65,16 +65,16 @@ Cellular automata produce organic structures — caves, canyons, islands — by 
 
 ```mermaid
 graph TD
-    A[Grid initialization: Random noise] --> B{Step loop: for each cell};
-    B -- Count neighboring wall tiles --> C{Evaluate transition rule};
-    C -- walls > threshold --> D[Cell becomes Water/Wall];
-    C -- walls < threshold --> E[Cell becomes Ground];
-    C -- walls == threshold --> F[Cell keeps current state];
-    F --> B;
-    D --> B;
-    E --> B;
-    B -- Simulation complete --> G[Cleanup phase: Connectivity via Disjoint-Set];
-    G --> H[Biomes and object placement];
+	A[Grid initialization: Random noise] --> B{Step loop: for each cell};
+	B -- Count neighboring wall tiles --> C{Evaluate transition rule};
+	C -- walls > threshold --> D[Cell becomes Water/Wall];
+	C -- walls < threshold --> E[Cell becomes Ground];
+	C -- walls == threshold --> F[Cell keeps current state];
+	F --> B;
+	D --> B;
+	E --> B;
+	B -- Simulation complete --> G[Cleanup phase: Connectivity via Disjoint-Set];
+	G --> H[Biomes and object placement];
 ```
 
 **Technical implementation:**
@@ -92,12 +92,12 @@ Wave Function Collapse is a constraint-solving algorithm inspired by quantum mec
 
 ```mermaid
 graph TD
-    A[Grid initialization: All macro-tiles possible] --> B{Find cell with minimum entropy};
-    B -- Not found --> C[Success: Map fully collapsed];
-    B -- Found --> D{Collapse: Pick tile by weight};
-    D --> E{Propagate constraints to neighbors};
-    E -- Conflict! --> F[Error: Backtrack / Regenerate map];
-    E -- Step resolved --> B;
+	A[Grid initialization: All macro-tiles possible] --> B{Find cell with minimum entropy};
+	B -- Not found --> C[Success: Map fully collapsed];
+	B -- Found --> D{Collapse: Pick tile by weight};
+	D --> E{Propagate constraints to neighbors};
+	E -- Conflict! --> F[Error: Backtrack / Regenerate map];
+	E -- Step resolved --> B;
 ```
 
 **Technical implementation:**
@@ -118,15 +118,15 @@ graph TD
 This project uses high-quality community assets to achieve its visual style. All rights belong to their respective authors:
 
 * **Cellular Automata graphics:**
-    * **[Little Dreamyland Asset Pack](https://starmixu.itch.io/little-dreamyland-asset-pack)** by **[starmixu](https://starmixu.itch.io/) and [utaskuas](https://itch.io/profile/utaskuas)**
+	* **[Little Dreamyland Asset Pack](https://starmixu.itch.io/little-dreamyland-asset-pack)** by **[starmixu](https://starmixu.itch.io/) and [utaskuas](https://itch.io/profile/utaskuas)**
 * **BSP graphics:**
-    * **[Dungeon Assetpuck](https://pixel-poem.itch.io/dungeon-assetpuck)** by **[Pixel_Poem](https://pixel-poem.itch.io/)**
+	* **[Dungeon Assetpuck](https://pixel-poem.itch.io/dungeon-assetpuck)** by **[Pixel_Poem](https://pixel-poem.itch.io/)**
 * **WFC graphics:**
-    * **[Free 2D Top-Down Pixel Dungeon Asset Pack](https://free-game-assets.itch.io/free-2d-top-down-pixel-dungeon-asset-pack)** by **[Free Game Assets (GUI, Sprite, Tilesets)](https://free-game-assets.itch.io/)**
+	* **[Free 2D Top-Down Pixel Dungeon Asset Pack](https://free-game-assets.itch.io/free-2d-top-down-pixel-dungeon-asset-pack)** by **[Free Game Assets (GUI, Sprite, Tilesets)](https://free-game-assets.itch.io/)**
 * **UI and onboarding icons (Mouse/Keyboard):**
-    * **[Keyboard Keys for UI](https://dreammixgames.itch.io/keyboard-keys-for-ui)** by **[Dream Mix](https://dreammixgames.itch.io/)**
+	* **[Keyboard Keys for UI](https://dreammixgames.itch.io/keyboard-keys-for-ui)** by **[Dream Mix](https://dreammixgames.itch.io/)**
 * **Typography (Font):**
-    * **[Quaver](https://caffinate.itch.io/quaver)** by **[Caffinate](https://caffinate.itch.io/)** (Pixel font used across all UI panels)
+	* **[Quaver](https://caffinate.itch.io/quaver)** by **[Caffinate](https://caffinate.itch.io/)** (Pixel font used across all UI panels)
 
 ---
 

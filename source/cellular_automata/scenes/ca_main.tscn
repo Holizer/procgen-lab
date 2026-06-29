@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://ux5aen4uft8u" path="res://source/cellular_automata/resources/configs/ca_config.tres" id="2_rrj4k"]
 [ext_resource type="Script" uid="uid://dkvs37irubos3" path="res://source/cellular_automata/visualization/CaMapVisualizer.cs" id="2_twr6j"]
 [ext_resource type="TileSet" uid="uid://ct8l27hltp4d6" path="res://assets/tilesets/little_dreamyland/little_dreamyland.tres" id="3_twr6j"]
-[ext_resource type="Texture2D" uid="uid://dh6v6bodc22wg" path="res://assets/tilesets/little_dreamyland/autotile_grass_and_dirt_path_tileset.png" id="5_ehq5g"]
+[ext_resource type="Texture2D" uid="uid://b2t67bpiv2fow" path="res://assets/tilesets/little_dreamyland/autotile_grass_and_dirt_path_tileset.png" id="5_ehq5g"]
 [ext_resource type="Texture2D" uid="uid://bvjpnepw4rsup" path="res://assets/tilesets/little_dreamyland/tileset_floor_detail.png" id="6_3f44j"]
 [ext_resource type="Texture2D" uid="uid://7mxe08d4x06p" path="res://assets/tilesets/little_dreamyland/nature_tileset.png" id="7_m7kh5"]
 

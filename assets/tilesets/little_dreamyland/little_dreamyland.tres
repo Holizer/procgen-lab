@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" format=3 uid="uid://ct8l27hltp4d6"]
 
-[ext_resource type="Texture2D" uid="uid://dh6v6bodc22wg" path="res://assets/tilesets/little_dreamyland/autotile_grass_and_dirt_path_tileset.png" id="1_cdegt"]
+[ext_resource type="Texture2D" uid="uid://b2t67bpiv2fow" path="res://assets/tilesets/little_dreamyland/autotile_grass_and_dirt_path_tileset.png" id="1_cdegt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nexhk"]
 texture = ExtResource("1_cdegt")
