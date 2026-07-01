@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bc3kgh2cthcvj" path="res://source/bsp/scenes/props/exit_gate.tscn" id="5_7knki"]
 [ext_resource type="FontFile" uid="uid://7luemu2pby6d" path="res://assets/fonts/quaver.ttf" id="5_57fqt"]
 [ext_resource type="PackedScene" uid="uid://bajeecl3u4a08" path="res://source/bsp/scenes/enemies/skeleton_with_scythe.tscn" id="5_d8vd1"]
+[ext_resource type="PackedScene" uid="uid://bpwrm52028de2" path="res://source/bsp/scenes/enemies/skeleton_with_sword.tscn" id="5_odgf4"]
 [ext_resource type="PackedScene" uid="uid://bmhxnmkn1k8ou" path="res://source/bsp/scenes/enemies/vampier.tscn" id="6_7xn80"]
 [ext_resource type="PackedScene" uid="uid://23b8pkrogbd5" path="res://source/bsp/scenes/enemies/flying_skull.tscn" id="7_uc5dy"]
 [ext_resource type="PackedScene" uid="uid://bvgwi7l8jwj61" path="res://source/bsp/scenes/props/chest.tscn" id="7_usyon"]
@@ -36,6 +37,7 @@ DevConfig = ExtResource("2_57fqt")
 
 [node name="Visualizer" type="Node2D" parent="." unique_id=575112004 node_paths=PackedStringArray("DebugContainer", "ObjectsContainer", "EnemiesContainer", "TerrainLayer")]
 script = ExtResource("3_s03xr")
+ShowDebugLabels = false
 DebugContainer = NodePath("DebugContainer")
 DebugLabelStyle = SubResource("LabelSettings_57fqt")
 RoomColors = Dictionary[int, Color]({
@@ -47,8 +49,8 @@ RoomColors = Dictionary[int, Color]({
 ObjectsContainer = NodePath("ObjectsContainer")
 EnemiesContainer = NodePath("EnemiesContainer")
 EnemyPrefabs = Dictionary[int, PackedScene]({
-0: ExtResource("5_d8vd1"),
-1: ExtResource("10_lub3m"),
+0: ExtResource("5_odgf4"),
+1: ExtResource("5_d8vd1"),
 2: ExtResource("7_uc5dy"),
 3: ExtResource("6_7xn80"),
 4: ExtResource("12_57fqt"),
