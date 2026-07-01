@@ -1,6 +1,7 @@
 # ProcGen Lab: Лаборатория процедурной генерации миров
 
-![Godot](https://img.shields.io/badge/Godot-4.3-blue?logo=godotengine&logoColor=white)
+
+![Godot](https://img.shields.io/badge/Godot-4.7-blue?logo=godotengine&logoColor=white)
 ![Language](https://img.shields.io/badge/Language-C%23%20%2F%20.NET%208-239120?logo=csharp&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 
