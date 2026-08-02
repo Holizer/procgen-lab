@@ -1,4 +1,4 @@
-# ProcGen Lab: Procedural World Generation Laboratory
+# Algorithmica: Procedural Generation Sandbox 
 
 ![Godot](https://img.shields.io/badge/Godot-4.7-blue?logo=godotengine&logoColor=white)
 ![Language](https://img.shields.io/badge/Language-C%23%20%2F%20.NET%208-239120?logo=csharp&logoColor=white)
@@ -8,29 +8,25 @@
 > 
 ## About
 
-**ProcGen Lab** is an interactive platform for studying, visualizing, and experimenting with procedural content generation (PCG) algorithms. It provides a flexible environment for creating diverse maps and levels, highlighting the internal logic of each generator.
-
-The laboratory is divided into three core generation modules, each using a fundamentally different algorithmic approach:
+**Algorithmica** is an interactive educational sandbox for demonstrating and experimenting with procedural map generation algorithms.
 
 1. **Binary Space Partitioning (BSP)** — for structured room-based layouts (dungeons, buildings).
 2. **Cellular Automata (CA)** — for organic, natural environments (caves, islands, biomes).
-3. **Wave Function Collapse (WFC)** — for complex rule-based tile structures with guaranteed macro-level connectivity.
-
+3. **Wave Function Collapse (WFC)** — a constraint-solving approach for rule-based procedural structures, extended with a hybrid topology layer (BSP-based in this project) for guaranteed macro-level connectivity.
 ---
 
-### Using the laboratory
+### Interactive Features
 
-In the **ProcGen Lab** control panel you can:
-
-* **Tune parameters in real time:** Drag sliders to adjust minimum/maximum room sizes, noise frequencies, cell thresholds, and WFC weights.
-* **Visualizer debug mode:** Watch algorithms execute step by step — see rooms split or cellular automata structures smooth out in real time.
-* **Performance monitoring:** Analyze generation time, search depth, and system load via built-in diagnostic panels.
+*    Parameter Tooltips: Hover over any config field to see what it actually does — no guesswork.
+*    Diagnostics & Performance: Keep track of generation time (ms) and RAM usage for each layout.
+*    Deterministic Seeds: Use seed values to recreate identical layouts — perfect for testing or sharing.
+*    Real-Time Tweaking: Adjust map parameters on the fly and watch the map rebuild instantly.
 
 > ⚠️ Some graphical assets are not included due to licensing restrictions. The asset used by the WFC algorithm is prohibited from redistribution under the author's license terms. The project cannot be built independently — links to the original asset packs are listed in the Credits section.
 
 ---
 
-## Algorithm Overview
+## Algorithms Overview
 
 ### 1. Binary Space Partitioning (BSP)
 
@@ -50,11 +46,18 @@ graph TD
 	B -- No --> H[Leaf node: Create room / corridor];
 ```
 
-**Technical implementation:**
+#### Technical implementation:
 * **Partition tree:** Implemented via [`BspNode`](source/bsp/models/BspNode.cs), where each node stores its area bounds (`Area`) and references to child branches.
 * **Smart axis selection:** [`BspProcessor.TryGetSplitOrientation()`](source/bsp/services/BspProcessor.cs) dynamically picks vertical or horizontal cuts based on the current area's aspect ratio, using `AspectRatioThreshold` from [`BspConfig`](source/bsp/resources/definitions/BspConfig.cs).
 * **Size constraints:** The `MinSplitSize` parameter limits split offsets, ensuring child nodes are always large enough to fit rooms with their required padding.
 * **Layout generation:** Leaf nodes serve as containers for [`Room`](source/bsp/models/Room.cs) objects, which are then connected via MST pathfinding and corridor generation.
+
+#### Screenshots
+
+![BSP](https://img.itch.zone/aW1nLzI5MDA0OTQyLnBuZw==/original/zKXwKA.png)
+*BSP dungeon*
+![BSP configuration](https://img.itch.zone/aW1nLzI5MDA1MDU3LnBuZw==/original/K8JYJq.png)
+*BSP config panel*
 
 ---
 
@@ -77,18 +80,27 @@ graph TD
 	G --> H[Biomes and object placement];
 ```
 
-**Technical implementation:**
+#### Technical implementation:
 * **Grid evolution:** Simulation is driven by [`AutomataSimulator`](source/cellular_automata/services/AutomataSimulator.cs), which evaluates the 3×3 Moore neighborhood for each cell.
 * **Transition rules:** Logic is controlled by `FillPercent` (initial fill density) and `WallTransitionThreshold` (threshold at which a cell solidifies).
 * **Cleanup and connectivity:** Isolated regions are resolved using a **Union-Find** algorithm inside [`RegionAnalyzer`](source/cellular_automata/services/RegionAnalyzer.cs) and [`RegionConnector`](source/cellular_automata/services/RegionConnector.cs). They identify separate regions, flood-fill to merge them, remove structures smaller than `MinIslandSizeTiles`, and carve corridors to guarantee 100% traversability.
 * **Biome layers:** FastNoiseLite integration in [`BiomeCreator`](source/cellular_automata/services/BiomeCreator.cs) overlays noise layers for procedural biome distribution and smooth parameter blending.
+
+#### Screenshots
+
+![Cellular Automata](https://img.itch.zone/aW1nLzI5MDA1MDAxLnBuZw==/original/woMadf.png)
+*Cellular Automata landscape*
+![Cellular Automata configuration](https://img.itch.zone/aW1nLzI5MDA1MDcwLnBuZw==/original/Ssb5bQ.png)
+*Cellular config panel*
 
 ---
 
 ### 3. Wave Function Collapse (WFC)
 
 **General description:**
-Wave Function Collapse is a constraint-solving algorithm inspired by quantum mechanics. Each cell in the grid starts in a "superposition" of all possible tiles. By collapsing cells one at a time and propagating constraints to neighbors, the algorithm transforms a chaotic grid into a fully consistent structure that satisfies all adjacency rules.
+Wave Function Collapse is a constraint-solving algorithm inspired by quantum mechanics. Each cell in the grid starts in a "superposition" of all possible states. By collapsing cells one at a time and propagating constraints to neighbors, the algorithm transforms a chaotic grid into a locally consistent structure that satisfies all adjacency rules — though a plain WFC run offers no guarantee of a solvable, fully connected layout: contradictions can occur, forcing a backtrack or a full regenerate.
+
+To solve this, a **hybrid topology layer** is built on top of standard WFC; in this project, a BSP tree is converted into a level topology graph, and key paths are pre-constrained ahead of the collapse — guaranteeing dungeon connectivity without relying on backtracking.
 
 ```mermaid
 graph TD
@@ -100,16 +112,19 @@ graph TD
 	E -- Step resolved --> B;
 ```
 
-**Technical implementation:**
+#### Technical implementation:
 * **Entropy and collapse:** Managed by [`WfcSolver`](source/wfc/services/WfcSolver.cs). The algorithm picks the cell with the fewest valid options (`PickLowestEntropy`) and collapses it to a single tile using weighted probabilities from [`WfcWeightConfig`](source/wfc/resources/definitions/WfcWeightConfig.cs).
 * **Constraint propagation:** After each collapse, the solver iteratively narrows valid tile types for neighboring cells based on the socket compatibility table in [`MacroTileSocketMap`](source/wfc/services/MacroTileSocketMap.cs).
 * **BSP topology hybrid:** A unique feature of this project — WFC can be overlaid on a macro-structure. When `UseBspTopology` is enabled in [`WfcConfig`](source/wfc/resources/definitions/WfcConfig.cs), the BSP tree is converted into a level topology graph, and [`TopologyPlacer`](source/wfc/services/topology_placer/TopologyPlacer.cs) pre-constrains key paths to guarantee dungeon connectivity.
 
----
+#### Screenshots
 
-## Screenshots
-
-> *(Screenshots will be added upon itch.io publication)*
+![Pure WFC](https://img.itch.zone/aW1nLzI5MDA1NzU2LnBuZw==/original/UacNqP.png)
+*Pure WFC generation*
+![Hybrid WFC](https://img.itch.zone/aW1nLzI5MDA1MDQzLnBuZw==/original/XYQAC4.png)
+*Hybrid WFC generation*
+![WFC configuration](https://img.itch.zone/aW1nLzI5MDA1MDk5LnBuZw==/original/j5yEMy.png)
+*WFC config panel*
 
 ---
 
